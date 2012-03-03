@@ -9,6 +9,8 @@
 
 #include <math.h>
 
+#include "saturation.h"
+
 static double n[] = {
 	+1.00000000000000E0,
 	+0.11670521452767E4,
