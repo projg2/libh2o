@@ -14,3 +14,15 @@ noinst_PROGRAMS = test
 
 test_SOURCES = src/test.c
 test_LDADD = libh2o.la
+
+check_LTLIBRARIES = libh2o-test.la
+
+libh2o_test_la_SOURCES = src/tests/tests.c
+libh2o_test_la_LDFLAGS = -shared
+
+TESTS = saturation-test
+check_PROGRAMS = $(TESTS)
+
+saturation_test_SOURCES = src/tests/saturation-test.c
+saturation_test_CPPFLAGS = -Isrc/lowlevel
+saturation_test_LDADD = libh2o.la libh2o-test.la

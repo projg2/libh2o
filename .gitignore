@@ -1,6 +1,7 @@
 *.la
 *.lo
 *.o
+/*-test
 /.deps/
 /.libs/
 /Makefile
