@@ -25,7 +25,7 @@ static double n[] = {
 	+0.65017534844798E3
 };
 
-const double steam_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
+const double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 {
 	double theta = T + n[9] / (T - n[10]);
 	double thetasq = theta * theta;

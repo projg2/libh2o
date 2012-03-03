@@ -13,7 +13,7 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
-const double steam_saturation_p_T(double T); /* p [MPa] = f(T [K]) */
+const double h2o_saturation_p_T(double T); /* p [MPa] = f(T [K]) */
 
 #ifdef __cplusplus
 };
