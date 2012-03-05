@@ -11,6 +11,9 @@
 
 #include "saturation.h"
 
+/* Based on IF97-Rev, s. 8: Equations for Region 4 */
+
+/* coefficient table; n[0] added for convenience */
 static double n[] = {
 	+1.00000000000000E0,
 	+0.11670521452767E4,
@@ -25,6 +28,7 @@ static double n[] = {
 	+0.65017534844798E3
 };
 
+/* 8.1 The Saturation-Pressure Equation (Basic Equation) */
 double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 {
 	double theta = T + n[9] / (T - n[10]);
@@ -41,6 +45,7 @@ double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 	return retqu;
 }
 
+/* 8.2 The Saturation-Temperature Equation (Backward Equation) */
 double h2o_saturation_T_p(double p) /* T [K] = f(p [MPa]) */
 {
 	double betasq = sqrt(p);
