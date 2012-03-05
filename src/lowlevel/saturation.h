@@ -14,6 +14,7 @@ extern "C"
 #endif /*__cplusplus*/
 
 double h2o_saturation_p_T(double T); /* p [MPa] = f(T [K]) */
+double h2o_saturation_T_p(double p); /* T [K] = f(p [MPa]) */
 
 #ifdef __cplusplus
 };

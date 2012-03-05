@@ -40,3 +40,23 @@ double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 
 	return retqu;
 }
+
+double h2o_saturation_T_p(double p) /* T [K] = f(p [MPa]) */
+{
+	double betasq = sqrt(p);
+	double beta = sqrt(betasq);
+
+	double E = n[0] * betasq + n[3] * beta + n[6];
+	double F = n[1] * betasq + n[4] * beta + n[7];
+	double G = n[2] * betasq + n[5] * beta + n[8];
+
+	double delta = F * F - 4 * E * G;
+	double D = 2 * G / (-F - sqrt(delta));
+
+	double Dadj = n[10] + D;
+	double subexpr = Dadj * Dadj - 4 * (n[9] + n[10] * D);
+
+	double ret = (n[10] + D - sqrt(subexpr)) / 2;
+
+	return ret;
+}
