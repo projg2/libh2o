@@ -20,5 +20,5 @@ int main(void)
 	CHECK(h2o_saturation_T_p(1.0), 0.453035632E3, 1E-6);
 	CHECK(h2o_saturation_T_p(10.), 0.584149488E3, 1E-6);
 
-	return 0;
+	return exit_status;
 }
