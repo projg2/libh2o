@@ -5,6 +5,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.6 foreign dist-bzip2 no-dependencies])
 
 AC_PROG_CC
+AC_C_INLINE
 
 LT_INIT([disable-static])
 

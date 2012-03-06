@@ -10,6 +10,7 @@
 #include <math.h>
 
 #include "saturation.h"
+#include "xmath.h"
 
 /* Based on IF97-Rev, s. 8: Equations for Region 4 */
 
@@ -32,7 +33,7 @@ static double n[] = {
 double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 {
 	double theta = T + n[9] / (T - n[10]);
-	double thetasq = theta * theta;
+	double thetasq = pow2(theta);
 
 	double A = n[0] * thetasq + n[1] * theta + n[2];
 	double B = n[3] * thetasq + n[4] * theta + n[5];
@@ -41,9 +42,9 @@ double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 	/* gcc is not smart enough to notice 2*C being used twice */
 	double twoC = 2 * C;
 
-	double delta = B * B - 2 * A * twoC;
+	double delta = pow2(B) - 2 * A * twoC;
 	double ret = twoC / (-B + sqrt(delta));
-	double retqu = ret * ret * ret * ret;
+	double retqu = pow4(ret);
 
 	return retqu;
 }
@@ -61,11 +62,11 @@ double h2o_saturation_T_p(double p) /* T [K] = f(p [MPa]) */
 	/* gcc is not smart enough to notice 2*G being used twice */
 	double twoG = 2 * G;
 
-	double delta = F * F - 2 * E * twoG;
+	double delta = pow2(F) - 2 * E * twoG;
 	double D = twoG / (-F - sqrt(delta));
 
 	double Dadj = n[10] + D;
-	double subexpr = Dadj * Dadj - 4 * (n[9] + n[10] * D);
+	double subexpr = pow2(Dadj) - 4 * (n[9] + n[10] * D);
 
 	double ret = (n[10] + D - sqrt(subexpr)) / 2;
 
