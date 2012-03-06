@@ -13,6 +13,10 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
+/* using pow(arg, N) is basically equivalent
+ * but it will be optimized out only with -ffast-math;
+ * this way, optimization always takes place. */
+
 static inline double pow2(double arg)
 {
 	return arg * arg;
