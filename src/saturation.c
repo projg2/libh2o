@@ -65,10 +65,8 @@ double h2o_saturation_T_p(double p) /* T [K] = f(p [MPa]) */
 	double delta = pow2(F) - 2 * E * twoG;
 	double D = twoG / (-F - sqrt(delta));
 
-	double Dadj = n[10] + D;
-	double subexpr = pow2(Dadj) - 4 * (n[9] + n[10] * D);
-
-	double ret = (Dadj - sqrt(subexpr)) / 2;
+	double subexpr = pow2(n[10]) + pow2(D) - 4 * n[9] - 2 * n[10] * D;
+	double ret = (n[10] + D - sqrt(subexpr)) / 2;
 
 	return ret;
 }
