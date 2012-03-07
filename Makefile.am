@@ -20,9 +20,9 @@ check_LTLIBRARIES = libh2o-test.la
 libh2o_test_la_SOURCES = tests/tests.c
 libh2o_test_la_LDFLAGS = -shared
 
-TESTS = saturation-test
+TESTS = if97-test-values
 check_PROGRAMS = $(TESTS)
 
-saturation_test_SOURCES = tests/saturation-test.c
-saturation_test_CPPFLAGS = -Isrc
-saturation_test_LDADD = libh2o.la libh2o-test.la
+if97_test_values_SOURCES = tests/if97-test-values.c
+if97_test_values_CPPFLAGS = -Isrc
+if97_test_values_LDADD = libh2o.la libh2o-test.la
