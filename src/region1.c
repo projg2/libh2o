@@ -81,12 +81,21 @@ double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 
 	double sum = 0;
 
+	double pipowers[6];
+
 	int i;
 
+	pipowers[0] = 1/piexpr;
+	pipowers[1] = 1;
+	pipowers[2] = piexpr;
+
+	for (i = 3; i < 6; ++i)
+		pipowers[i] = pipowers[i - 1] * piexpr;
+
+#pragma omp parallel for default(shared) private(i) reduction(-: sum)
 	for (i = 1; i <= 34; ++i)
 	{
-		/* XXX: optimize? cache? */
-		double pipow = pow(piexpr, I[i] - 1);
+		double pipow = I[i] < 6 ? pipowers[I[i]] : pow(piexpr, I[i] - 1);
 		double taupow = pow(tauexpr, J[i]);
 
 		sum -= n[i] * I[i] * pipow * taupow;
