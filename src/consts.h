@@ -5,18 +5,18 @@
 
 #pragma once
 
-#ifndef _H2O_REGION1_H
-#define _H2O_REGION1_H 1
+#ifndef _H2O_CONSTS_H
+#define _H2O_CONSTS_H 1
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif /*__cplusplus*/
 
-double h2o_region1_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
+extern double R; /* [MJ/kgK] (shifted to suit MPa) */
 
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/
 
-#endif /*_H2O_REGION1_H*/
+#endif /*_H2O_CONSTS_H*/

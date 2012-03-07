@@ -9,6 +9,7 @@
 
 #include <math.h>
 
+#include "consts.h"
 #include "region1.h"
 #include "xmath.h"
 
@@ -67,10 +68,10 @@ static int J[] = {
 	-29, -31, -38, -39, -40, -41
 };
 
-static const double pstar = 16.53;
-static const double Tstar = 1386;
+static const double pstar = 16.53; /* [MPa] */
+static const double Tstar = 1386; /* [K] */
 
-double h2o_region1_gamma_pt(double p, double T) /* [MPa, K] */
+double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
@@ -85,11 +86,11 @@ double h2o_region1_gamma_pt(double p, double T) /* [MPa, K] */
 	for (i = 1; i <= 34; ++i)
 	{
 		/* XXX: optimize? cache? */
-		double pipow = pow(piexpr, I[i]);
+		double pipow = pow(piexpr, I[i] - 1);
 		double taupow = pow(tauexpr, J[i]);
 
-		sum += n[i] * pipow * taupow;
+		sum -= n[i] * I[i] * pipow * taupow;
 	}
 
-	return sum;
+	return sum * pi * R * T / p;
 }
