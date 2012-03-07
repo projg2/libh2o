@@ -1,12 +1,16 @@
 #include <stdio.h>
 
+#include "src/region1.h"
 #include "src/saturation.h"
 
 int main(void)
 {
-	printf("%.13e\n", h2o_saturation_p_T(300.0));
-	printf("%.13e\n", h2o_saturation_p_T(500.0));
-	printf("%.13e\n", h2o_saturation_p_T(600.0));
+	double T;
+
+	for (T = 300; T < 500; T += 0.004)
+	{
+		printf("%.11e\n", h2o_region1_v_pT(3, T));
+	}
 
 	return 0;
 }
