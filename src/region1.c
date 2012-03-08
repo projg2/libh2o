@@ -84,21 +84,20 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 
 	int i;
 
-#if 0
 	double pipowers[6];
 
-	pipowers[0] = 1/piexpr;
-	pipowers[1] = 1;
-	pipowers[2] = piexpr;
+	pipowers[pider] = 1;
+	pipowers[pider + 1] = piexpr;
 
-	for (i = 3; i < 6; ++i)
+	for (i = pider + 2; i <= 5; ++i)
 		pipowers[i] = pipowers[i - 1] * piexpr;
-#endif
+	for (i = pider - 1; i >= 0; --i)
+		pipowers[i] = pipowers[i + 1] / piexpr;
 
 #pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 34; ++i)
 	{
-		double pipow = pow(piexpr, I[i] - pider);
+		double pipow = I[i] <= 5 ? pipowers[I[i]] : pow(piexpr, I[i] - pider);
 		double taupow = pow(tauexpr, J[i] - tauder);
 
 		double memb = n[i] * pipow * taupow;
