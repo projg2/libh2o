@@ -84,7 +84,9 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 
 	int i;
 
-	double pipowers[6];
+	double pipowers[9], taupowers_store[7 + 11];
+		/* shift it for negative indices */
+	double* taupowers = &taupowers_store[11];
 
 	pipowers[pider] = 1;
 	pipowers[pider + 1] = piexpr;
@@ -93,13 +95,23 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 		pipowers[i] = pipowers[i - 1] * piexpr;
 	for (i = pider - 1; i >= 0; --i)
 		pipowers[i] = pipowers[i + 1] / piexpr;
+	pipowers[8] = pow(piexpr, 8 - pider);
+
+	taupowers[tauder] = 1;
+	taupowers[tauder + 1] = tauexpr;
+
+	for (i = tauder + 2; i <= 6; ++i)
+		taupowers[i] = taupowers[i - 1] * tauexpr;
+	for (i = tauder - 1; i >= -11; --i)
+		taupowers[i] = taupowers[i + 1] / tauexpr;
 
 #pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 34; ++i)
 	{
-		double pipow = I[i] <= 5 ? pipowers[I[i]]
+		double pipow = I[i] <= 8 ? pipowers[I[i]]
 				: pow(piexpr, I[i] - pider);
-		double taupow = pow(tauexpr, J[i] - tauder);
+		double taupow = J[i] >= -11 && J[i] <= 6 ? taupowers[J[i]]
+				: pow(tauexpr, J[i] - tauder);
 
 		double memb = n[i] * pipow * taupow;
 		if (pider == 1)
