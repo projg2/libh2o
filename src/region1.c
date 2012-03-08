@@ -71,7 +71,8 @@ static int J[] = {
 static const double pstar = 16.53; /* [MPa] */
 static const double Tstar = 1386; /* [K] */
 
-double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
+static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tauder)
+	/* p [MPa], T [K], pider, tauder: 0/1 */
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
@@ -81,9 +82,10 @@ double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 
 	double sum = 0;
 
-	double pipowers[6];
-
 	int i;
+
+#if 0
+	double pipowers[6];
 
 	pipowers[0] = 1/piexpr;
 	pipowers[1] = 1;
@@ -91,15 +93,32 @@ double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 
 	for (i = 3; i < 6; ++i)
 		pipowers[i] = pipowers[i - 1] * piexpr;
+#endif
 
-#pragma omp parallel for default(shared) private(i) reduction(-: sum)
+#pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 34; ++i)
 	{
-		double pipow = I[i] < 6 ? pipowers[I[i]] : pow(piexpr, I[i] - 1);
-		double taupow = pow(tauexpr, J[i]);
+		double pipow = pow(piexpr, I[i] - pider);
+		double taupow = pow(tauexpr, J[i] - tauder);
 
-		sum -= n[i] * I[i] * pipow * taupow;
+		double memb = n[i] * pipow * taupow;
+		if (pider == 1)
+			memb *= I[i];
+		if (tauder == 1)
+			memb *= J[i];
+
+		sum += memb;
 	}
 
-	return sum * pi * R * T / p;
+	if (pider == 1)
+		sum *= -pi;
+	if (tauder == 1)
+		sum *= tau;
+
+	return sum;
+}
+
+double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
+{
+	return h2o_region1_gamma_pT(p, T, 1, 0) * R * T / p;
 }
