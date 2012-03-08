@@ -63,11 +63,28 @@ double h2o_region1_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 
 	int i;
 
+	double ppowers[7], etapowers[33];
+
+	ppowers[0] = 1;
+	ppowers[1] = p;
+
+	for (i = 2; i <= 6; ++i)
+		ppowers[i] = ppowers[i - 1] * p;
+
+	etapowers[0] = 1;
+	etapowers[1] = etaexpr;
+	for (i = 2; i <= 6; ++i)
+		etapowers[i] = etapowers[i - 1] * etaexpr;
+
+	etapowers[10] = pow(etaexpr, 10);
+	etapowers[22] = pow(etaexpr, 22);
+	etapowers[32] = pow(etaexpr, 32);
+
 #pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 20; ++i)
 	{
-		double pipow = pow(p, I[i]);
-		double etapow = pow(etaexpr, J[i]);
+		double pipow = ppowers[I[i]];
+		double etapow = etapowers[J[i]];
 
 		sum += n[i] * pipow * etapow;
 	}
