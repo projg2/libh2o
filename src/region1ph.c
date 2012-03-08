@@ -9,7 +9,6 @@
 
 #include <math.h>
 
-#include "consts.h"
 #include "region1.h"
 #include "xmath.h"
 
@@ -49,7 +48,7 @@ static const int J[] = {
 	0, 1, 2, 3, 4, 10, 32, /* [13] */
 	10, 32,
 	10, 32, /* [17] */
-	32, 32, 32, 32
+	32, 32, 32
 };
 
 static const double hstar = 2500; /* [kJ/kg] */
