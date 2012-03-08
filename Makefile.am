@@ -4,7 +4,7 @@ h2odir = $(includedir)/h2o
 
 lib_LTLIBRARIES = libh2o.la
 
-libh2o_la_SOURCES = src/consts.c src/saturation.c src/region1.c
+libh2o_la_SOURCES = src/saturation.c src/region1.c
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0
 

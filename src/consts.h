@@ -13,7 +13,9 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
-extern double R; /* [MJ/kgK] (shifted to suit MPa) */
+/* Based on IF97-Rev, s. 3: Reference Constants */
+
+static double R = 0.461526E-3; /* [kJ/kgK] */
 
 #ifdef __cplusplus
 };
