@@ -119,5 +119,30 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 
 double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 {
-	return h2o_region1_gamma_pT(p, T, 1, 0) * R * T / p;
+	double gammapi = h2o_region1_gamma_pT(p, T, 1, 0);
+
+	return gammapi * R * T / p * 1E-3;
+}
+
+double h2o_region1_u_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
+{
+	double gammatau = h2o_region1_gamma_pT(p, T, 0, 1);
+	double gammapi = h2o_region1_gamma_pT(p, T, 1, 0);
+
+	return (gammatau - gammapi) * R * T;
+}
+
+double h2o_region1_s_pT(double p, double T) /* [MPa, K] -> [kJ/kgK] */
+{
+	double gammatau = h2o_region1_gamma_pT(p, T, 0, 1);
+	double gamma = h2o_region1_gamma_pT(p, T, 0, 0);
+
+	return (gammatau - gamma) * R;
+}
+
+double h2o_region1_h_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
+{
+	double gammatau = h2o_region1_gamma_pT(p, T, 0, 1);
+
+	return gammatau * R * T;
 }

@@ -15,7 +15,7 @@ extern "C"
 
 /* Based on IF97-Rev, s. 3: Reference Constants */
 
-static double R = 0.461526E-3; /* [kJ/kgK] */
+static double R = 0.461526; /* [kJ/kgK] */
 
 #ifdef __cplusplus
 };

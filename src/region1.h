@@ -14,6 +14,9 @@ extern "C"
 #endif /*__cplusplus*/
 
 double h2o_region1_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
+double h2o_region1_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+double h2o_region1_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
+double h2o_region1_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
 
 #ifdef __cplusplus
 };
