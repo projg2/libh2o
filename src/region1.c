@@ -16,7 +16,7 @@
 /* Based on IF97-Rev, s. 5: Equations for Region 1 */
 
 /* coefficient table; n[0] added for convenience */
-static double n[] = {
+static const double n[] = {
 	+0.00000000000000E+00,
 
 	+0.14632971213167E+00, -0.84548187169114E+00,
@@ -42,7 +42,7 @@ static double n[] = {
 	+0.18228094581404E-23, -0.93537087292458E-25
 };
 
-static int I[] = {
+static const int I[] = {
 	0,
 
 	0, 0, 0, 0, 0, 0, 0, 0, /* [8] */
@@ -55,7 +55,7 @@ static int I[] = {
 	21, 23, 29, 30, 31, 32
 };
 
-static int J[] = {
+static const int J[] = {
 	0,
 
 	-2, -1, 0, 1, 2, 3, 4, 5, /* [8] */
@@ -97,7 +97,8 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 #pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 34; ++i)
 	{
-		double pipow = I[i] <= 5 ? pipowers[I[i]] : pow(piexpr, I[i] - pider);
+		double pipow = I[i] <= 5 ? pipowers[I[i]]
+				: pow(piexpr, I[i] - pider);
 		double taupow = pow(tauexpr, J[i] - tauder);
 
 		double memb = n[i] * pipow * taupow;

@@ -15,7 +15,7 @@
 /* Based on IF97-Rev, s. 8: Equations for Region 4 */
 
 /* coefficient table; n[0] added for convenience */
-static double n[] = {
+static const double n[] = {
 	+1.00000000000000E0,
 	+0.11670521452767E4,
 	-0.72421316703206E6,
