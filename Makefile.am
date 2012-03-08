@@ -10,11 +10,6 @@ libh2o_la_LDFLAGS = -version-info 0:0:0
 
 h2o_HEADERS = src/saturation.h src/region1.h
 
-noinst_PROGRAMS = test
-
-test_SOURCES = test.c
-test_LDADD = libh2o.la
-
 check_LTLIBRARIES = libh2o-test.la
 
 libh2o_test_la_SOURCES = tests/tests.c
