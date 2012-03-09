@@ -57,14 +57,11 @@ double h2o_saturation_T_p(double p) /* T [K] = f(p [MPa]) */
 	double F = quadr_value(n[1], n[4], n[7], beta);
 	double G = quadr_value(n[2], n[5], n[8], beta);
 
-	/* gcc is not smart enough to notice 2*G being used twice */
-	double twoG = 2 * G;
+	double delta = pow2(F) - 4 * E * G;
+	double halfD = G / (-F - sqrt(delta));
 
-	double delta = pow2(F) - 2 * E * twoG;
-	double D = twoG / (-F - sqrt(delta));
-
-	double subexpr = pow2(n[10]) + pow2(D) - 4 * n[9] - 2 * n[10] * D;
-	double ret = (n[10] + D - sqrt(subexpr)) / 2;
+	double subexpr = pow2(n[10] / 2) + pow2(halfD) - n[9] - n[10] * halfD;
+	double ret = n[10] / 2 + halfD - sqrt(subexpr);
 
 	return ret;
 }
