@@ -27,6 +27,11 @@ static inline double pow4(double arg)
 	return pow2(pow2(arg));
 }
 
+static inline double quadr_value(double a, double b, double c, double x)
+{
+	return (a * x + b) * x + c;
+}
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/

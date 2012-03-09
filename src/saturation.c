@@ -33,11 +33,10 @@ static const double n[] = {
 double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 {
 	double theta = T + n[9] / (T - n[10]);
-	double thetasq = pow2(theta);
 
-	double A = n[0] * thetasq + n[1] * theta + n[2];
-	double B = n[3] * thetasq + n[4] * theta + n[5];
-	double C = n[6] * thetasq + n[7] * theta + n[8];
+	double A = quadr_value(n[0], n[1], n[2], theta);
+	double B = quadr_value(n[3], n[4], n[5], theta);
+	double C = quadr_value(n[6], n[7], n[8], theta);
 
 	/* gcc is not smart enough to notice 2*C being used twice */
 	double twoC = 2 * C;
@@ -52,12 +51,11 @@ double h2o_saturation_p_T(double T) /* p [MPa] = f(T [K]) */
 /* 8.2 The Saturation-Temperature Equation (Backward Equation) */
 double h2o_saturation_T_p(double p) /* T [K] = f(p [MPa]) */
 {
-	double betasq = sqrt(p);
-	double beta = sqrt(betasq);
+	double beta = pow(p, 0.25);
 
-	double E = n[0] * betasq + n[3] * beta + n[6];
-	double F = n[1] * betasq + n[4] * beta + n[7];
-	double G = n[2] * betasq + n[5] * beta + n[8];
+	double E = quadr_value(n[0], n[3], n[6], beta);
+	double F = quadr_value(n[1], n[4], n[7], beta);
+	double G = quadr_value(n[2], n[5], n[8], beta);
 
 	/* gcc is not smart enough to notice 2*G being used twice */
 	double twoG = 2 * G;

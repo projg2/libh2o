@@ -11,6 +11,7 @@
 
 #include "boundaries.h"
 #include "saturation.h"
+#include "xmath.h"
 
 /* Based on IF97-Rev, s. 2: Structure of the Formulation
  * and s. 4: Auxiliary Equation for the Boundary between Regions 2 and 3 */
@@ -27,7 +28,7 @@ static const double n[] = {
 
 double h2o_b23_p_T(double T) /* [K] -> [MPa] */
 {
-	return ((n[3] * T) + n[2]) * T + n[1];
+	return quadr_value(n[3], n[2], n[1], T);
 }
 
 double h2o_b23_T_p(double p) /* [MPa] -> [K] */
