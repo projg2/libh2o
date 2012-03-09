@@ -26,7 +26,10 @@ enum h2o_region
 	H2O_REGION_MAX
 };
 
-enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */;
+double h2o_b23_p_T(double T); /* [K] -> [MPa] */
+double h2o_b23_T_p(double p); /* [MPa] -> [K] */
+
+enum h2o_region h2o_region_pT(double p, double T); /* [MPa, K] */
 
 #ifdef __cplusplus
 };
