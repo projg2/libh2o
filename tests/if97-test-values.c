@@ -10,6 +10,7 @@
 #include "tests.h"
 #include "boundaries.h"
 #include "region1.h"
+#include "region2.h"
 #include "saturation.h"
 
 int main(void)
@@ -45,6 +46,22 @@ int main(void)
 	CHECK(h2o_region1_T_ps(3., 0.5), 0.307842258E+3, 1E-6);
 	CHECK(h2o_region1_T_ps(80, 0.5), 0.309979785E+3, 1E-6);
 	CHECK(h2o_region1_T_ps(80, 3.0), 0.565899909E+3, 1E-6);
+
+	CHECK(h2o_region2_v_pT(35E-4, 300), 0.394913866E+2, 1E-6);
+	CHECK(h2o_region2_v_pT(35E-4, 700), 0.923015898E+2, 1E-6);
+	CHECK(h2o_region2_v_pT(30E+0, 700), 0.542946619E-2, 1E-10);
+
+	CHECK(h2o_region2_h_pT(35E-4, 300), 0.254991145E+4, 1E-4);
+	CHECK(h2o_region2_h_pT(35E-4, 700), 0.333568375E+4, 1E-4);
+	CHECK(h2o_region2_h_pT(30E+0, 700), 0.263149474E+4, 1E-4);
+
+	CHECK(h2o_region2_u_pT(35E-4, 300), 0.241169160E+4, 1E-4);
+	CHECK(h2o_region2_u_pT(35E-4, 700), 0.301262819E+4, 1E-4);
+	CHECK(h2o_region2_u_pT(30E+0, 700), 0.246861076E+4, 1E-4);
+
+	CHECK(h2o_region2_s_pT(35E-4, 300), 0.852238967E+1, 1E-5);
+	CHECK(h2o_region2_s_pT(35E-4, 700), 0.101749996E+2, 1E-6);
+	CHECK(h2o_region2_s_pT(30E+0, 700), 0.517540298E+1, 1E-5);
 
 	return exit_status;
 }
