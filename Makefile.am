@@ -5,11 +5,13 @@ h2odir = $(includedir)/h2o
 lib_LTLIBRARIES = libh2o.la
 
 libh2o_la_SOURCES = src/boundaries.c src/saturation.c \
-	src/region1.c src/region1ph.c src/region1ps.c
+	src/region1.c src/region1ph.c src/region1ps.c \
+	src/region2.c
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0
 
-h2o_HEADERS = src/boundaries.h src/saturation.h src/region1.h
+h2o_HEADERS = src/boundaries.h src/saturation.h \
+	src/region1.h src/region2.h
 
 check_LTLIBRARIES = libh2o-test.la
 
