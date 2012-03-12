@@ -16,26 +16,22 @@
 /* Based on IF97-Rev, s. 6: Equations for Region 2 */
 
 /* ideal-gas part coefficients */
-static const double no[] = {
-	+0.00000000000000E+0,
-
-	-0.96927686500217E+1,
-	+0.10086655968018E+2,
+static const double no_store[] = {
 	-0.56087911283020E-2,
 	+0.71452738081455E-1,
 	-0.40710498223928E+0,
 	+0.14240819171444E+1,
 	-0.43839511319450E+1,
+	-0.96927686500217E+1,
+	+0.10086655968018E+2,
 	-0.28408632460772E+0,
 	+0.21268463753307E-1
 };
 
-static const int Jo[] = {
-	0,
+/* shift for negative indices */
+static const double *no = &no_store[5];
 
-	0, 1, -5, -4, -3, -2, -1, 2, 3
-};
-
+/* resident part coefficients */
 static const double n[] = {
 	+0.00000000000000E+00,
 
@@ -132,13 +128,13 @@ static inline double h2o_region2_gammao_pitau(double pi, double tau, int pider, 
 			sum = log(pi);
 
 #pragma omp parallel for default(shared) private(i) reduction(+: sum)
-		for (i = 1; i <= 9; ++i)
+		for (i = -5; i <= 3; ++i)
 		{
-			double taupow = taupowers[Jo[i]];
+			double taupow = taupowers[i];
 
 			double memb = no[i] * taupow;
 			if (tauder == 1)
-				memb *= Jo[i];
+				memb *= i;
 
 			sum += memb;
 		}
