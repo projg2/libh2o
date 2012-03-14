@@ -10,5 +10,5 @@ AC_C_INLINE
 LT_INIT([disable-static])
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile libh2o.pc])
 AC_OUTPUT
