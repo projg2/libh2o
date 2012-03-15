@@ -5,8 +5,8 @@
 
 #pragma once
 
-#ifndef _H2O_COMMON_H
-#define _H2O_COMMON_H 1
+#ifndef _H2O_BOUNDARIES_H
+#define _H2O_BOUNDARIES_H 1
 
 #ifdef __cplusplus
 extern "C"
@@ -35,4 +35,4 @@ enum h2o_region h2o_region_pT(double p, double T); /* [MPa, K] */
 };
 #endif /*__cplusplus*/
 
-#endif /*_H2O_COMMON_H*/
+#endif /*_H2O_BOUNDARIES_H*/
