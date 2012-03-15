@@ -66,6 +66,9 @@ int main(void)
 	CHECK(h2o_region2a_T_ph(1E-3, 3000), 0.534433241E3, 1E-5);
 	CHECK(h2o_region2a_T_ph(3.00, 3000), 0.575373370E3, 1E-5);
 	CHECK(h2o_region2a_T_ph(3.00, 4000), 0.101077577E4, 1E-4);
+	CHECK(h2o_region2b_T_ph(5.00, 3500), 0.801299102E3, 1E-5);
+	CHECK(h2o_region2b_T_ph(5.00, 4000), 0.101531583E4, 1E-4);
+	CHECK(h2o_region2b_T_ph(25.0, 3500), 0.875279054E3, 1E-5);
 
 	return exit_status;
 }
