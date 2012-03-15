@@ -33,3 +33,13 @@ double h2o_region2_b2bc_h_p(double p) /* [MPa] -> [kJ/kg] */
 {
 	return sqrt((p - n[5]) / n[3]) + n[4];
 }
+
+enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h)
+{
+	if (p < 4)
+		return H2O_REGION2A;
+	if (p < h2o_region2_b2bc_p_h(h))
+		return H2O_REGION2B;
+	else
+		return H2O_REGION2C;
+}
