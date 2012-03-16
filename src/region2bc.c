@@ -43,3 +43,13 @@ enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h)
 	else
 		return H2O_REGION2C;
 }
+
+enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s)
+{
+	if (p < 4)
+		return H2O_REGION2A;
+	if (s >= 5.85)
+		return H2O_REGION2B;
+	else
+		return H2O_REGION2C;
+}
