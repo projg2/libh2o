@@ -93,29 +93,7 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 		/* shift it for negative indices */
 	double* taupowers = &taupowers_store[11];
 
-	double tmp = piexpr;
-
-	pipowers[pider] = 1;
-	pipowers[pider + 1] = tmp;
-
-	for (i = pider + 2; i <= 13; ++i)
-	{
-		if (Ipows[i] - 1 == Ipows[i - 1])
-			tmp *= piexpr;
-		else
-			tmp = pow(piexpr, Ipows[i] - pider);
-		pipowers[i] = tmp;
-	}
-
-	tmp = 1.0;
-	for (i = pider - 1; i >= 0; --i)
-	{
-		if (Ipows[i] + 1 == Ipows[i + 1])
-			tmp /= piexpr;
-		else
-			tmp = pow(piexpr, Ipows[i] - pider);
-		pipowers[i] = tmp;
-	}
+	fill_powers(pipowers, Ipows, 0, 13, piexpr, pider);
 
 	taupowers[tauder] = 1;
 	taupowers[tauder + 1] = tauexpr;
