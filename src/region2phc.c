@@ -64,7 +64,7 @@ double h2o_region2c_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 
 	int i;
 
-	double pipowers_store[7+7], etapowers[3];
+	double pipowers_store[7+7], etapowers[5];
 	double* pipowers = &pipowers_store[7];
 
 	pipowers[0] = 1;
