@@ -42,6 +42,11 @@ static const double n[] = {
 	+0.18228094581404E-23, -0.93537087292458E-25
 };
 
+static const double Ipows[] = {
+	0, 1, 2, 3, 4, 5, 8, 21, 23, 29, 30, 31, 32
+};
+
+/* using Ipows[] indexes */
 static const int I[] = {
 	0,
 
@@ -51,8 +56,8 @@ static const int I[] = {
 	3, 3, 3,
 	4, 4, 4, /* [25] */
 	5,
-	8, 8, /* [28] */
-	21, 23, 29, 30, 31, 32
+	6, 6, /* [28] */
+	7, 8, 9, 10, 11, 12
 };
 
 static const int J[] = {
@@ -84,18 +89,33 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 
 	int i;
 
-	double pipowers[9], taupowers_store[7 + 11];
+	double pipowers[13], taupowers_store[7 + 11];
 		/* shift it for negative indices */
 	double* taupowers = &taupowers_store[11];
 
-	pipowers[pider] = 1;
-	pipowers[pider + 1] = piexpr;
+	double tmp = piexpr;
 
-	for (i = pider + 2; i <= 5; ++i)
-		pipowers[i] = pipowers[i - 1] * piexpr;
+	pipowers[pider] = 1;
+	pipowers[pider + 1] = tmp;
+
+	for (i = pider + 2; i <= 13; ++i)
+	{
+		if (Ipows[i] - 1 == Ipows[i - 1])
+			tmp *= piexpr;
+		else
+			tmp = pow(piexpr, Ipows[i] - pider);
+		pipowers[i] = tmp;
+	}
+
+	tmp = 1.0;
 	for (i = pider - 1; i >= 0; --i)
-		pipowers[i] = pipowers[i + 1] / piexpr;
-	pipowers[8] = pow(piexpr, 8 - pider);
+	{
+		if (Ipows[i] + 1 == Ipows[i + 1])
+			tmp /= piexpr;
+		else
+			tmp = pow(piexpr, Ipows[i] - pider);
+		pipowers[i] = tmp;
+	}
 
 	taupowers[tauder] = 1;
 	taupowers[tauder + 1] = tauexpr;
@@ -107,14 +127,13 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 
 	for (i = 1; i <= 34; ++i)
 	{
-		double pipow = I[i] <= 8 ? pipowers[I[i]]
-				: pow(piexpr, I[i] - pider);
+		double pipow = pipowers[I[i]];
 		double taupow = J[i] >= -11 && J[i] <= 6 ? taupowers[J[i]]
 				: pow(tauexpr, J[i] - tauder);
 
 		double memb = n[i] * pipow * taupow;
 		if (pider == 1)
-			memb *= I[i];
+			memb *= Ipows[I[i]];
 		if (tauder == 1)
 			memb *= J[i];
 
