@@ -127,7 +127,6 @@ static inline double h2o_region2_gammao_pitau(double pi, double tau, int pider, 
 		if (!tauder)
 			sum = log(pi);
 
-#pragma omp parallel for default(shared) private(i) reduction(+: sum)
 		for (i = -5; i <= 3; ++i)
 		{
 			double taupow = taupowers[i];
@@ -152,7 +151,6 @@ static inline double h2o_region2_gammar_pitau(double pi, double tau, int pider, 
 	int i;
 	double sum = 0;
 
-#pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 43; ++i)
 	{
 		double pipow = pow(pi, I[i] - pider);

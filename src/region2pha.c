@@ -91,7 +91,6 @@ double h2o_region2a_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 	etapowers[3] = etapowers[2] * etaexpr;
 	etapowers[7] = pow(etaexpr, 7);
 
-#pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 34; ++i)
 	{
 		double pipow = ppowers[I[i]];

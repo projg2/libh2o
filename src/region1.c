@@ -105,7 +105,6 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 	for (i = tauder - 1; i >= -11; --i)
 		taupowers[i] = taupowers[i + 1] / tauexpr;
 
-#pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 34; ++i)
 	{
 		double pipow = I[i] <= 8 ? pipowers[I[i]]

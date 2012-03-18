@@ -77,7 +77,6 @@ double h2o_region1_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 	spowers[31] = pow(sexpr, 31);
 	spowers[32] = spowers[31] * sexpr;
 
-#pragma omp parallel for default(shared) private(i) reduction(+: sum)
 	for (i = 1; i <= 20; ++i)
 	{
 		double pipow = ppowers[I[i]];
