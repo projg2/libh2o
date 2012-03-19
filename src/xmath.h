@@ -61,6 +61,21 @@ static inline void fill_powers(double* powers, const double* exponents,
 	}
 }
 
+static inline void fill_powers_incr(double* powers, int count, double expr)
+{
+	int i;
+	double tmp = expr;
+
+	powers[0] = 1;
+	powers[1] = tmp;
+
+	for (i = 2; i < count; ++i)
+	{
+		tmp *= expr;
+		powers[i] = tmp;
+	}
+}
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/

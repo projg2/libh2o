@@ -63,6 +63,11 @@ static const double n[] = {
 	-0.94369707241210E-06
 };
 
+static const double Ipows[] = {
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, /* [10] */
+	16, 18, 20, 21, 22, 23, 24
+};
+
 static const int I[] = {
 	0,
 
@@ -76,31 +81,37 @@ static const int I[] = {
 	8, 8,
 	9, /* [28] */
 	10, 10, 10,
-	16, 16,
-	18, /* [34] */
-	20, 20, 20,
-	21, 22, 23, /* [40] */
-	24, 24, 24
+	11, 11,
+	12, /* [34] */
+	13, 13, 13,
+	14, 15, 16, /* [40] */
+	17, 17, 17
+};
+
+static const double Jpows[] = {
+	0, 1, 2, 3, 4, 6, 7, 8, 10, 11, 13, /* [10] */
+	14, 16, 20, 21, 25, 26, 29, 35, 36, 39, /* [20] */
+	40, 48, 50, 53, 57, 58
 };
 
 static const int J[] = {
 	0,
 
-	0, 1, 2, 3, 6,
-	1, 2, 4, 7, 36, /* [10] */
-	0, 1, 3, 6, 35,
+	0, 1, 2, 3, 5,
+	1, 2, 4, 6, 19, /* [10] */
+	0, 1, 3, 5, 18,
 	1, 2, 3, /* [18] */
-	7,
-	3, 16, 35, /* [22] */
-	0, 11, 25,
-	8, 36,
-	13, /* [28] */
-	4, 10, 14,
-	29, 50,
-	57, /* [34] */
-	20, 35, 48,
-	21, 53, 39, /* [40] */
-	26, 40, 58
+	6,
+	3, 12, 18, /* [22] */
+	0, 9, 15,
+	7, 19,
+	10, /* [28] */
+	4, 8, 11,
+	17, 23,
+	25, /* [34] */
+	13, 18, 22,
+	14, 24, 20, /* [40] */
+	16, 21, 26
 };
 
 static const double Tstar = 540; /* [K] */
@@ -151,16 +162,22 @@ static inline double h2o_region2_gammar_pitau(double pi, double tau, int pider, 
 	int i;
 	double sum = 0;
 
+	double pipowers[18];
+	double taupowers[27];
+
+	fill_powers(pipowers, Ipows, 0, 18, pi, pider);
+	fill_powers(taupowers, Jpows, 0, 27, tauexpr, tauder);
+
 	for (i = 1; i <= 43; ++i)
 	{
-		double pipow = pow(pi, I[i] - pider);
-		double taupow = pow(tauexpr, J[i] - tauder);
+		double pipow = pipowers[I[i]];
+		double taupow = taupowers[J[i]];
 
 		double memb = n[i] * pipow * taupow;
 		if (pider == 1)
-			memb *= I[i];
+			memb *= Ipows[I[i]];
 		if (tauder == 1)
-			memb *= J[i];
+			memb *= Jpows[J[i]];
 
 		sum += memb;
 	}

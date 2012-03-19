@@ -40,13 +40,17 @@ static const int I[] = {
 	3, 3, 4
 };
 
+static const double Jpows[] = {
+	0, 1, 2, 3, 9, 10, 11, 12, 31, 32
+};
+
 static const int J[] = {
 	0,
 
-	0, 1, 2, 3, 11, 31, /* [6] */
-	0, 1, 2, 3, 12, 31, /* [12] */
-	0, 1, 2, 9, 31, /* [17] */
-	10, 32, 32
+	0, 1, 2, 3, 6, 8, /* [6] */
+	0, 1, 2, 3, 7, 8, /* [12] */
+	0, 1, 2, 4, 8, /* [17] */
+	5, 9, 9
 };
 
 double h2o_region1_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
@@ -57,25 +61,10 @@ double h2o_region1_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 
 	int i;
 
-	double ppowers[5], spowers[33];
+	double ppowers[5], spowers[10];
 
-	ppowers[0] = 1;
-	ppowers[1] = p;
-
-	for (i = 2; i <= 4; ++i)
-		ppowers[i] = ppowers[i - 1] * p;
-
-	spowers[0] = 1;
-	spowers[1] = sexpr;
-	spowers[2] = spowers[1] * sexpr;
-	spowers[3] = spowers[2] * sexpr;
-
-	spowers[9] = pow(sexpr, 9);
-	for (i = 10; i <= 12; ++i)
-		spowers[i] = spowers[i - 1] * sexpr;
-
-	spowers[31] = pow(sexpr, 31);
-	spowers[32] = spowers[31] * sexpr;
+	fill_powers_incr(ppowers, 5, p);
+	fill_powers(spowers, Jpows, 0, 10, sexpr, 0);
 
 	for (i = 1; i <= 20; ++i)
 	{

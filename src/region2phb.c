@@ -56,18 +56,22 @@ static const int I[] = {
 	9, 9
 };
 
+static const double Jpows[] = {
+	0, 1, 2, 6, 8, 12, 18, 24, 28, 40
+};
+
 static const int J[] = {
 	0,
 
-	0, 1, 2, 12, 18, 24, 28, 40, /* [8] */
-	0, 2, 6, 12, 18, 24, 28, 40, /* [16] */
-	2, 8, 18, 40,
-	1, 2, 12, 24, /* [24] */
-	2, 12, 18, 24, 28, 40,
-	18, 24, 40, /* [33] */
-	28,
-	2, 28, /* [36] */
-	1, 40
+	0, 1, 2, 5, 6, 7, 8, 9, /* [8] */
+	0, 2, 3, 5, 6, 7, 8, 9, /* [16] */
+	2, 4, 6, 9,
+	1, 2, 5, 7, /* [24] */
+	2, 5, 6, 7, 8, 9,
+	6, 7, 9, /* [33] */
+	8,
+	2, 8, /* [36] */
+	1, 9
 };
 
 static const double hstar = 2000; /* [kJ/kg] */
@@ -82,21 +86,10 @@ double h2o_region2b_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 
 	int i;
 
-	double pipowers[10], etapowers[41];
+	double pipowers[10], etapowers[10];
 
-	pipowers[0] = 1;
-	pipowers[1] = piexpr;
-
-	for (i = 2; i <= 9; ++i)
-		pipowers[i] = pipowers[i - 1] * piexpr;
-
-	etapowers[0] = 1;
-	etapowers[1] = etaexpr;
-	etapowers[2] = etaexpr * etaexpr;
-	etapowers[8] = pow(etaexpr, 8);
-
-	for (i = 11; i <= 16; ++i)
-		etapowers[J[i]] = pow(etaexpr, J[i]);
+	fill_powers_incr(pipowers, 10, piexpr);
+	fill_powers(etapowers, Jpows, 0, 10, etaexpr, 0);
 
 	for (i = 1; i <= 38; ++i)
 	{

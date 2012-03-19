@@ -60,17 +60,24 @@ static const int I[] = {
 	7, 8, 9, 10, 11, 12
 };
 
+static const double Jpows[] = {
+	-41, -40, -39, -38, -31, -29, -11,
+	-9, -8, -7, -6, -5, -4, -3, -2, -1, /* [15] */
+	0, 1, 2, 3, 4, 5, 6, 10, 17
+};
+
+/* using Jpows[] indexes */
 static const int J[] = {
 	0,
 
-	-2, -1, 0, 1, 2, 3, 4, 5, /* [8] */
-	-9, -7, -1, 0, 1, 3, /* [14] */
-	-3, 0, 1, 3, 17, /* [19] */
-	-4, 0, 6,
-	-5, -2, 10, /* [25] */
-	-8,
-	-11, -6, /* [28] */
-	-29, -31, -38, -39, -40, -41
+	14, 15, 16, 17, 18, 19, 20, 21, /* [8] */
+	7, 9, 15, 16, 17, 19, /* [14] */
+	13, 16, 17, 19, 24, /* [19] */
+	12, 16, 22,
+	11, 14, 23, /* [25] */
+	8,
+	6, 10, /* [28] */
+	5, 4, 3, 2, 1, 0
 };
 
 static const double pstar = 16.53; /* [MPa] */
@@ -89,31 +96,21 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 
 	int i;
 
-	double pipowers[13], taupowers_store[7 + 11];
-		/* shift it for negative indices */
-	double* taupowers = &taupowers_store[11];
+	double pipowers[13], taupowers[25];
 
 	fill_powers(pipowers, Ipows, 0, 13, piexpr, pider);
-
-	taupowers[tauder] = 1;
-	taupowers[tauder + 1] = tauexpr;
-
-	for (i = tauder + 2; i <= 6; ++i)
-		taupowers[i] = taupowers[i - 1] * tauexpr;
-	for (i = tauder - 1; i >= -11; --i)
-		taupowers[i] = taupowers[i + 1] / tauexpr;
+	fill_powers(taupowers, Jpows, 16, 25, tauexpr, tauder);
 
 	for (i = 1; i <= 34; ++i)
 	{
 		double pipow = pipowers[I[i]];
-		double taupow = J[i] >= -11 && J[i] <= 6 ? taupowers[J[i]]
-				: pow(tauexpr, J[i] - tauder);
+		double taupow = taupowers[J[i]];
 
 		double memb = n[i] * pipow * taupow;
 		if (pider == 1)
 			memb *= Ipows[I[i]];
 		if (tauder == 1)
-			memb *= J[i];
+			memb *= Jpows[J[i]];
 
 		sum += memb;
 	}
