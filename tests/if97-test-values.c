@@ -76,5 +76,15 @@ int main(void)
 	CHECK(h2o_region2c_T_ph(60.0, 2700), 0.791137067E3, 1E-5);
 	CHECK(h2o_region2c_T_ph(60.0, 3200), 0.882756860E3, 1E-5);
 
+	CHECK(h2o_region2a_T_ps(0.1, 7.50), 0.399517097E3, 1E-5);
+	CHECK(h2o_region2a_T_ps(0.1, 8.00), 0.514127081E3, 1E-5);
+	CHECK(h2o_region2a_T_ps(2.5, 8.00), 0.103984917E4, 1E-4);
+	CHECK(h2o_region2b_T_ps(8.0, 6.00), 0.600484040E3, 1E-5);
+	CHECK(h2o_region2b_T_ps(8.0, 7.50), 0.106495556E4, 1E-4);
+	CHECK(h2o_region2b_T_ps(90., 6.00), 0.103801126E4, 1E-4);
+	CHECK(h2o_region2c_T_ps(20., 5.75), 0.697992849E3, 1E-5);
+	CHECK(h2o_region2c_T_ps(80., 5.25), 0.854011484E3, 1E-5);
+	CHECK(h2o_region2c_T_ps(80., 5.75), 0.949017998E3, 1E-5);
+
 	return exit_status;
 }

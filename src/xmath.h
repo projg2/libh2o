@@ -76,6 +76,18 @@ static inline void fill_powers_incr(double* powers, int count, double expr)
 	}
 }
 
+static inline void fill_powers_decr(double* powers, int min, double expr)
+{
+	int i;
+	double tmp = 1.0;
+
+	for (i = -1; i >= min; --i)
+	{
+		tmp /= expr;
+		powers[i] = tmp;
+	}
+}
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/

@@ -8,7 +8,8 @@ lib_LTLIBRARIES = libh2o.la
 libh2o_la_SOURCES = src/boundaries.c src/saturation.c \
 	src/region1.c src/region1ph.c src/region1ps.c \
 	src/region2.c src/region2bc.c \
-	src/region2pha.c src/region2phb.c src/region2phc.c
+	src/region2pha.c src/region2phb.c src/region2phc.c \
+	src/region2psa.c src/region2psb.c src/region2psc.c
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0
 
