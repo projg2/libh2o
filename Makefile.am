@@ -29,7 +29,3 @@ check_PROGRAMS = $(TESTS)
 if97_test_values_SOURCES = tests/if97-test-values.c
 if97_test_values_CPPFLAGS = -Isrc
 if97_test_values_LDADD = libh2o.la libh2o-test.la
-
-noinst_PROGRAMS = bench
-bench_SOURCES = bench.c
-bench_LDADD = -lrt -lm libh2o.la
