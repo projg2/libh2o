@@ -7,7 +7,6 @@
 #	include "config.h"
 #endif
 
-#include <math.h>
 
 #include "consts.h"
 #include "region2.h"

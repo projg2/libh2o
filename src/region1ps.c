@@ -7,7 +7,6 @@
 #	include "config.h"
 #endif
 
-#include <math.h>
 
 #include "region1.h"
 #include "xmath.h"

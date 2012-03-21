@@ -13,6 +13,8 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
+#include <math.h>
+
 /* using pow(arg, N) is basically equivalent
  * but it will be optimized out only with -ffast-math;
  * this way, optimization always takes place. */

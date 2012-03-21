@@ -7,7 +7,6 @@
 #	include "config.h"
 #endif
 
-#include <math.h>
 
 #include "boundaries.h"
 #include "saturation.h"
