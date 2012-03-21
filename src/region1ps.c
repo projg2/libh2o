@@ -63,7 +63,7 @@ double h2o_region1_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 
 	double ppowers[5], spowers[10];
 
-	fill_powers_incr(ppowers, 5, p);
+	fill_powers_incr(ppowers, 5, p, 0);
 	fill_powers(spowers, Jpows, 0, 10, sexpr, 0);
 
 	for (i = 1; i <= 20; ++i)

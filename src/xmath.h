@@ -61,25 +61,31 @@ static inline void fill_powers(double* powers, const double* exponents,
 	}
 }
 
-static inline void fill_powers_incr(double* powers, int count, double expr)
+static inline void fill_powers_incr(double* powers, int count, double expr, int deriv)
 {
 	int i;
 	double tmp = expr;
 
-	powers[0] = 1;
-	powers[1] = tmp;
+	powers[deriv] = 1;
+	powers[deriv + 1] = tmp;
 
-	for (i = 2; i < count; ++i)
+	for (i = deriv + 2; i < count; ++i)
 	{
 		tmp *= expr;
 		powers[i] = tmp;
 	}
+
+	if (deriv)
+		powers[0] = 1/expr;
 }
 
-static inline void fill_powers_decr(double* powers, int min, double expr)
+static inline void fill_powers_decr(double* powers, int min, double expr, int deriv)
 {
 	int i;
 	double tmp = 1.0;
+
+	if (deriv)
+		tmp /= expr;
 
 	for (i = -1; i >= min; --i)
 	{

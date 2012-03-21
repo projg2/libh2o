@@ -84,7 +84,7 @@ double h2o_region2a_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 
 	double ppowers[8], etapowers[19];
 
-	fill_powers_incr(ppowers, 8, p);
+	fill_powers_incr(ppowers, 8, p, 0);
 	fill_powers(etapowers, Jpows, 0, 19, etaexpr, 0);
 
 	for (i = 1; i <= 34; ++i)

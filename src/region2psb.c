@@ -86,9 +86,9 @@ double h2o_region2b_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 	double pipowers_store[6+6], sigmapowers[13];
 	double* pipowers = &pipowers_store[6];
 
-	fill_powers_incr(pipowers, 6, p);
-	fill_powers_decr(pipowers, -6, p);
-	fill_powers_incr(sigmapowers, 13, sigmaexpr);
+	fill_powers_incr(pipowers, 6, p, 0);
+	fill_powers_decr(pipowers, -6, p, 0);
+	fill_powers_incr(sigmapowers, 13, sigmaexpr, 0);
 
 	for (i = 1; i <= 44; ++i)
 	{

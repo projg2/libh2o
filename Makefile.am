@@ -9,12 +9,13 @@ libh2o_la_SOURCES = src/boundaries.c src/saturation.c \
 	src/region1.c src/region1ph.c src/region1ps.c \
 	src/region2.c src/region2bc.c \
 	src/region2pha.c src/region2phb.c src/region2phc.c \
-	src/region2psa.c src/region2psb.c src/region2psc.c
+	src/region2psa.c src/region2psb.c src/region2psc.c \
+	src/region5.c
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0
 
 h2o_HEADERS = src/boundaries.h src/saturation.h \
-	src/region1.h src/region2.h
+	src/region1.h src/region2.h src/region5.h
 
 pkgconfig_DATA = libh2o.pc
 
