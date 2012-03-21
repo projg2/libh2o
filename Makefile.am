@@ -19,14 +19,9 @@ h2o_HEADERS = src/boundaries.h src/saturation.h \
 
 pkgconfig_DATA = libh2o.pc
 
-check_LTLIBRARIES = libh2o-test.la
-
-libh2o_test_la_SOURCES = tests/tests.c
-libh2o_test_la_LDFLAGS = -shared
-
 TESTS = if97-test-values
 check_PROGRAMS = $(TESTS)
 
 if97_test_values_SOURCES = tests/if97-test-values.c
 if97_test_values_CPPFLAGS = -Isrc
-if97_test_values_LDADD = libh2o.la libh2o-test.la
+if97_test_values_LDADD = libh2o.la
