@@ -69,21 +69,21 @@ int main(void)
 	CHECK(h2o_region1_T_ps(80, 0.5), 0.309979785E+3, 1E-6);
 	CHECK(h2o_region1_T_ps(80, 3.0), 0.565899909E+3, 1E-6);
 
-	CHECK(h2o_region2_v_pT(35E-4, 300), 0.394913866E+2, 1E-6);
-	CHECK(h2o_region2_v_pT(35E-4, 700), 0.923015898E+2, 1E-6);
-	CHECK(h2o_region2_v_pT(30E+0, 700), 0.542946619E-2, 1E-10);
+	CHECK(h2o_region2_v_pT(35E-4, 300), 0.394913866E+2, 1E-7);
+	CHECK(h2o_region2_v_pT(35E-4, 700), 0.923015898E+2, 1E-7);
+	CHECK(h2o_region2_v_pT(30E+0, 700), 0.542946619E-2, 1E-11);
 
-	CHECK(h2o_region2_h_pT(35E-4, 300), 0.254991145E+4, 1E-4);
-	CHECK(h2o_region2_h_pT(35E-4, 700), 0.333568375E+4, 1E-4);
-	CHECK(h2o_region2_h_pT(30E+0, 700), 0.263149474E+4, 1E-4);
+	CHECK(h2o_region2_h_pT(35E-4, 300), 0.254991145E+4, 1E-5);
+	CHECK(h2o_region2_h_pT(35E-4, 700), 0.333568375E+4, 1E-5);
+	CHECK(h2o_region2_h_pT(30E+0, 700), 0.263149474E+4, 1E-5);
 
-	CHECK(h2o_region2_u_pT(35E-4, 300), 0.241169160E+4, 1E-4);
-	CHECK(h2o_region2_u_pT(35E-4, 700), 0.301262819E+4, 1E-4);
-	CHECK(h2o_region2_u_pT(30E+0, 700), 0.246861076E+4, 1E-4);
+	CHECK(h2o_region2_u_pT(35E-4, 300), 0.241169160E+4, 1E-5);
+	CHECK(h2o_region2_u_pT(35E-4, 700), 0.301262819E+4, 1E-5);
+	CHECK(h2o_region2_u_pT(30E+0, 700), 0.246861076E+4, 1E-5);
 
-	CHECK(h2o_region2_s_pT(35E-4, 300), 0.852238967E+1, 1E-5);
-	CHECK(h2o_region2_s_pT(35E-4, 700), 0.101749996E+2, 1E-6);
-	CHECK(h2o_region2_s_pT(30E+0, 700), 0.517540298E+1, 1E-5);
+	CHECK(h2o_region2_s_pT(35E-4, 300), 0.852238967E+1, 1E-8);
+	CHECK(h2o_region2_s_pT(35E-4, 700), 0.101749996E+2, 1E-7);
+	CHECK(h2o_region2_s_pT(30E+0, 700), 0.517540298E+1, 1E-8);
 
 	CHECK(h2o_region2_meta_v_pT(1.0, 450), 0.192516540E+0, 1E-9);
 	CHECK(h2o_region2_meta_v_pT(1.0, 440), 0.186212297E+0, 1E-9);
@@ -97,48 +97,48 @@ int main(void)
 	CHECK(h2o_region2_meta_u_pT(1.0, 440), 0.255393894E+4, 1E-5);
 	CHECK(h2o_region2_meta_u_pT(1.5, 450), 0.253881758E+4, 1E-5);
 
-	CHECK(h2o_region2_meta_s_pT(1.0, 450), 0.656660377E+1, 1E-5);
-	CHECK(h2o_region2_meta_s_pT(1.0, 440), 0.650218759E+1, 1E-5);
-	CHECK(h2o_region2_meta_s_pT(1.5, 450), 0.629170440E+1, 1E-5);
+	CHECK(h2o_region2_meta_s_pT(1.0, 450), 0.656660377E+1, 1E-8);
+	CHECK(h2o_region2_meta_s_pT(1.0, 440), 0.650218759E+1, 1E-8);
+	CHECK(h2o_region2_meta_s_pT(1.5, 450), 0.629170440E+1, 1E-8);
 
-	CHECK(h2o_region2_b2bc_p_h(0.3516004323E4), 0.1E3, 1E-5);
-	CHECK(h2o_region2_b2bc_h_p(0.1E3), 0.3516004323E4, 1E-4);
+	CHECK(h2o_region2_b2bc_p_h(0.3516004323E4), 0.1E3, 1E-6);
+	CHECK(h2o_region2_b2bc_h_p(0.1E3), 0.3516004323E4, 1E-5);
 
-	CHECK(h2o_region2a_T_ph(1E-3, 3000), 0.534433241E3, 1E-5);
-	CHECK(h2o_region2a_T_ph(3.00, 3000), 0.575373370E3, 1E-5);
-	CHECK(h2o_region2a_T_ph(3.00, 4000), 0.101077577E4, 1E-4);
-	CHECK(h2o_region2b_T_ph(5.00, 3500), 0.801299102E3, 1E-5);
-	CHECK(h2o_region2b_T_ph(5.00, 4000), 0.101531583E4, 1E-4);
-	CHECK(h2o_region2b_T_ph(25.0, 3500), 0.875279054E3, 1E-5);
-	CHECK(h2o_region2c_T_ph(40.0, 2700), 0.743056411E3, 1E-5);
-	CHECK(h2o_region2c_T_ph(60.0, 2700), 0.791137067E3, 1E-5);
-	CHECK(h2o_region2c_T_ph(60.0, 3200), 0.882756860E3, 1E-5);
+	CHECK(h2o_region2a_T_ph(1E-3, 3000), 0.534433241E3, 1E-6);
+	CHECK(h2o_region2a_T_ph(3.00, 3000), 0.575373370E3, 1E-6);
+	CHECK(h2o_region2a_T_ph(3.00, 4000), 0.101077577E4, 1E-5);
+	CHECK(h2o_region2b_T_ph(5.00, 3500), 0.801299102E3, 1E-6);
+	CHECK(h2o_region2b_T_ph(5.00, 4000), 0.101531583E4, 1E-5);
+	CHECK(h2o_region2b_T_ph(25.0, 3500), 0.875279054E3, 1E-6);
+	CHECK(h2o_region2c_T_ph(40.0, 2700), 0.743056411E3, 1E-6);
+	CHECK(h2o_region2c_T_ph(60.0, 2700), 0.791137067E3, 1E-6);
+	CHECK(h2o_region2c_T_ph(60.0, 3200), 0.882756860E3, 1E-6);
 
-	CHECK(h2o_region2a_T_ps(0.1, 7.50), 0.399517097E3, 1E-5);
-	CHECK(h2o_region2a_T_ps(0.1, 8.00), 0.514127081E3, 1E-5);
-	CHECK(h2o_region2a_T_ps(2.5, 8.00), 0.103984917E4, 1E-4);
-	CHECK(h2o_region2b_T_ps(8.0, 6.00), 0.600484040E3, 1E-5);
-	CHECK(h2o_region2b_T_ps(8.0, 7.50), 0.106495556E4, 1E-4);
-	CHECK(h2o_region2b_T_ps(90., 6.00), 0.103801126E4, 1E-4);
-	CHECK(h2o_region2c_T_ps(20., 5.75), 0.697992849E3, 1E-5);
-	CHECK(h2o_region2c_T_ps(80., 5.25), 0.854011484E3, 1E-5);
-	CHECK(h2o_region2c_T_ps(80., 5.75), 0.949017998E3, 1E-5);
+	CHECK(h2o_region2a_T_ps(0.1, 7.50), 0.399517097E3, 1E-6);
+	CHECK(h2o_region2a_T_ps(0.1, 8.00), 0.514127081E3, 1E-6);
+	CHECK(h2o_region2a_T_ps(2.5, 8.00), 0.103984917E4, 1E-5);
+	CHECK(h2o_region2b_T_ps(8.0, 6.00), 0.600484040E3, 1E-6);
+	CHECK(h2o_region2b_T_ps(8.0, 7.50), 0.106495556E4, 1E-5);
+	CHECK(h2o_region2b_T_ps(90., 6.00), 0.103801126E4, 1E-5);
+	CHECK(h2o_region2c_T_ps(20., 5.75), 0.697992849E3, 1E-6);
+	CHECK(h2o_region2c_T_ps(80., 5.25), 0.854011484E3, 1E-6);
+	CHECK(h2o_region2c_T_ps(80., 5.75), 0.949017998E3, 1E-6);
 
-	CHECK(h2o_region5_v_pT(.5, 1500), 0.138455090E+1, 1E-5);
-	CHECK(h2o_region5_v_pT(30, 1500), 0.230761299E-1, 1E-7);
-	CHECK(h2o_region5_v_pT(30, 2000), 0.311385219E-1, 1E-7);
+	CHECK(h2o_region5_v_pT(.5, 1500), 0.138455090E+1, 1E-08);
+	CHECK(h2o_region5_v_pT(30, 1500), 0.230761299E-1, 1E-10);
+	CHECK(h2o_region5_v_pT(30, 2000), 0.311385219E-1, 1E-10);
 
-	CHECK(h2o_region5_h_pT(.5, 1500), 0.521976855E+4, 1E-2);
-	CHECK(h2o_region5_h_pT(30, 1500), 0.516723514E+4, 1E-2);
-	CHECK(h2o_region5_h_pT(30, 2000), 0.657122604E+4, 1E-2);
+	CHECK(h2o_region5_h_pT(.5, 1500), 0.521976855E+4, 1E-5);
+	CHECK(h2o_region5_h_pT(30, 1500), 0.516723514E+4, 1E-5);
+	CHECK(h2o_region5_h_pT(30, 2000), 0.657122604E+4, 1E-5);
 
-	CHECK(h2o_region5_u_pT(.5, 1500), 0.452749310E+4, 1E-2);
-	CHECK(h2o_region5_u_pT(30, 1500), 0.447495124E+4, 1E-2);
-	CHECK(h2o_region5_u_pT(30, 2000), 0.563707038E+4, 1E-2);
+	CHECK(h2o_region5_u_pT(.5, 1500), 0.452749310E+4, 1E-5);
+	CHECK(h2o_region5_u_pT(30, 1500), 0.447495124E+4, 1E-5);
+	CHECK(h2o_region5_u_pT(30, 2000), 0.563707038E+4, 1E-5);
 
-	CHECK(h2o_region5_s_pT(.5, 1500), 0.965408875E+1, 1E-5);
-	CHECK(h2o_region5_s_pT(30, 1500), 0.772970133E+1, 1E-5);
-	CHECK(h2o_region5_s_pT(30, 2000), 0.853640523E+1, 1E-5);
+	CHECK(h2o_region5_s_pT(.5, 1500), 0.965408875E+1, 1E-8);
+	CHECK(h2o_region5_s_pT(30, 1500), 0.772970133E+1, 1E-8);
+	CHECK(h2o_region5_s_pT(30, 2000), 0.853640523E+1, 1E-8);
 
 	return exit_status;
 }
