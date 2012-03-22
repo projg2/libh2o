@@ -29,6 +29,11 @@ double h2o_region2_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
 double h2o_region2_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
 double h2o_region2_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
 
+double h2o_region2_meta_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
+double h2o_region2_meta_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+double h2o_region2_meta_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
+double h2o_region2_meta_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+
 double h2o_region2_b2bc_p_h(double h); /* [kJ/kg] -> [MPa] */
 double h2o_region2_b2bc_h_p(double p); /* [MPa] -> [kJ/kg] */
 
