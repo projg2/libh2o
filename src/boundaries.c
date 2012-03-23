@@ -40,15 +40,15 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 	if (T < 273.15 || T > 2273.15 || p < 0 || p > 100)
 		return H2O_REGION_OUT_OF_RANGE;
 
-	else if (T < 623.15) /* 1 or 2 */
+	else if (T <= 623.15) /* 1 or 2 */
 	{
-		if (p >= h2o_saturation_p_T(T))
+		if (p > h2o_saturation_p_T(T))
 			return H2O_REGION1;
 		else
 			return H2O_REGION2;
 	}
 
-	else if (T < 1073.15) /* 3 or 2 */
+	else if (T <= 1073.15) /* 3 or 2 */
 	{
 		if (p >= h2o_b23_p_T(T))
 			return H2O_REGION3;
