@@ -7,8 +7,10 @@
 #	include "config.h"
 #endif
 
-
 #include "boundaries.h"
+#include "region1.h"
+#include "region2.h"
+#include "region5.h"
 #include "saturation.h"
 #include "xmath.h"
 
@@ -63,4 +65,38 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 		else
 			return H2O_REGION5;
 	}
+}
+
+enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
+{
+	double psatmax = 16.5291642;
+
+	if (p < 0 || p > 100 || s < 0)
+		return H2O_REGION_OUT_OF_RANGE;
+
+	/* First, check the saturation curves. */
+	if (p <= psatmax)
+	{
+		double Tsat = h2o_saturation_T_p(p);
+
+		if (s <= h2o_region1_s_pT(p, Tsat))
+			return H2O_REGION1;
+		else if (s < h2o_region2_s_pT(p, Tsat))
+			return H2O_REGION4;
+	}
+	else /* Then, check the B13 & B23. */
+	{
+		if (s <= h2o_region1_s_pT(p, 623.15))
+			return H2O_REGION1;
+		else if (s < h2o_region2_s_pT(p, h2o_b23_T_p(p)))
+			return H2O_REGION3;
+	}
+
+	/* Finally, check B25/right border. */
+	if (s <= h2o_region2_s_pT(p, 1073.15))
+		return H2O_REGION2;
+	else if (p <= 50 && s <= h2o_region5_s_pT(p, 2273.15))
+		return H2O_REGION5;
+	else
+		return H2O_REGION_OUT_OF_RANGE;
 }

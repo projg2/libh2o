@@ -30,6 +30,7 @@ double h2o_b23_p_T(double T); /* [K] -> [MPa] */
 double h2o_b23_T_p(double p); /* [MPa] -> [K] */
 
 enum h2o_region h2o_region_pT(double p, double T); /* [MPa, K] */
+enum h2o_region h2o_region_ps(double p, double s); /* [MPa, kJ/kgK] */
 
 #ifdef __cplusplus
 };
