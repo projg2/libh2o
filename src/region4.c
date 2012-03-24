@@ -112,3 +112,14 @@ double h2o_region4_x_Ts(double T, double s) /* [K, kJ/kgK] -> [0..1] */
 
 	return (s - s1) / (s2 - s1);
 }
+
+double h2o_region4_x_Th(double T, double h) /* [K, kJ/kg] -> [0..1] */
+{
+	double p = h2o_saturation_p_T(T);
+
+	double h1 = h2o_region1_h_pT(p, T);
+	double h2 = p <= 10 ? h2o_region2_meta_h_pT(p, T)
+			: h2o_region2_h_pT(p, T);
+
+	return (h - h1) / (h2 - h1);
+}

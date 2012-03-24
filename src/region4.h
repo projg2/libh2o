@@ -19,6 +19,7 @@ double h2o_region4_s_Tx(double T, double x); /* [K, 0..1] -> [kJ/kgK] */
 double h2o_region4_h_Tx(double T, double x); /* [K, 0..1] -> [kJ/kg] */
 
 double h2o_region4_x_Ts(double T, double s); /* [K, kJ/kgK] -> [0..1] */
+double h2o_region4_x_Th(double T, double h); /* [K, kJ/kg] -> [0..1] */
 
 #ifdef __cplusplus
 };
