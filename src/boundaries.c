@@ -138,3 +138,18 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 	else
 		return H2O_REGION_OUT_OF_RANGE;
 }
+
+enum h2o_region h2o_region_rhoT(double rho, double T) /* [kg/m³, K] */
+{
+	/* XXX: support other regions */
+	if (T >= 623.15)
+	{
+		double v = 1/rho;
+
+		if (v <= h2o_region2_v_pT(h2o_b23_p_T(T), T))
+			return H2O_REGION3;
+		/* XXX: upper limit? */
+	}
+
+	return H2O_REGION_OUT_OF_RANGE;
+}
