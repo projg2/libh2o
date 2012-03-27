@@ -37,6 +37,11 @@ double h2o_region2_meta_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
 double h2o_region2_b2bc_p_h(double h); /* [kJ/kg] -> [MPa] */
 double h2o_region2_b2bc_h_p(double p); /* [MPa] -> [kJ/kg] */
 
+double h2o_region2_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
+double h2o_region2_T_ps(double p, double s); /* [MPa, kJ/kg] -> [K] */
+
+/* two above functions are preferred over those below */
+
 enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h);
 enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s);
 

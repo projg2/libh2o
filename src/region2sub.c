@@ -7,6 +7,7 @@
 #	include "config.h"
 #endif
 
+#include <stdlib.h>
 
 #include "region2.h"
 #include "xmath.h"
@@ -51,4 +52,60 @@ enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s)
 		return H2O_REGION2B;
 	else
 		return H2O_REGION2C;
+}
+
+typedef double (*twoarg_func_t)(double, double);
+
+/* this function intends to make compiler happy. */
+static double impossible_happened(double a, double b)
+{
+	abort();
+
+	if (a || b)
+	{
+	}
+}
+
+double h2o_region2_T_ph(double p, double h)
+{
+	twoarg_func_t T_getter;
+
+	switch (h2o_region2_subregion_ph(p, h))
+	{
+		case H2O_REGION2A:
+			T_getter = &h2o_region2a_T_ph;
+			break;
+		case H2O_REGION2B:
+			T_getter = &h2o_region2b_T_ph;
+			break;
+		case H2O_REGION2C:
+			T_getter = &h2o_region2c_T_ph;
+			break;
+		default:
+			T_getter = &impossible_happened;
+	}
+
+	return T_getter(p, h);
+}
+
+double h2o_region2_T_ps(double p, double s)
+{
+	twoarg_func_t T_getter;
+
+	switch (h2o_region2_subregion_ps(p, s))
+	{
+		case H2O_REGION2A:
+			T_getter = &h2o_region2a_T_ps;
+			break;
+		case H2O_REGION2B:
+			T_getter = &h2o_region2b_T_ps;
+			break;
+		case H2O_REGION2C:
+			T_getter = &h2o_region2c_T_ps;
+			break;
+		default:
+			T_getter = &impossible_happened;
+	}
+
+	return T_getter(p, s);
 }
