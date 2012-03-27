@@ -13,6 +13,7 @@
 #include "boundaries.h"
 #include "region1.h"
 #include "region2.h"
+#include "region3.h"
 #include "region5.h"
 #include "saturation.h"
 
@@ -123,6 +124,19 @@ int main(void)
 	CHECK(h2o_region2c_T_ps(20., 5.75), 0.697992849E3, 1E-6);
 	CHECK(h2o_region2c_T_ps(80., 5.25), 0.854011484E3, 1E-6);
 	CHECK(h2o_region2c_T_ps(80., 5.75), 0.949017998E3, 1E-6);
+
+	CHECK(h2o_region3_p_rhoT(500, 650), 0.255837018E2, 1E-7);
+	CHECK(h2o_region3_p_rhoT(200, 650), 0.222930643E2, 1E-7);
+	CHECK(h2o_region3_p_rhoT(500, 750), 0.783095639E2, 1E-7);
+	CHECK(h2o_region3_h_rhoT(500, 650), 0.186343019E4, 1E-5);
+	CHECK(h2o_region3_h_rhoT(200, 650), 0.237512401E4, 1E-5);
+	CHECK(h2o_region3_h_rhoT(500, 750), 0.225868845E4, 1E-5);
+	CHECK(h2o_region3_u_rhoT(500, 650), 0.181226279E4, 1E-5);
+	CHECK(h2o_region3_u_rhoT(200, 650), 0.226365868E4, 1E-5);
+	CHECK(h2o_region3_u_rhoT(500, 750), 0.210206932E4, 1E-5);
+	CHECK(h2o_region3_s_rhoT(500, 650), 0.405427273E1, 1E-8);
+	CHECK(h2o_region3_s_rhoT(200, 650), 0.485438792E1, 1E-8);
+	CHECK(h2o_region3_s_rhoT(500, 750), 0.446971906E1, 1E-8);
 
 	CHECK(h2o_region5_v_pT(.5, 1500), 0.138455090E+1, 1E-08);
 	CHECK(h2o_region5_v_pT(30, 1500), 0.230761299E-1, 1E-10);
