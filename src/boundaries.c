@@ -39,7 +39,7 @@ double h2o_b23_T_p(double p) /* [MPa] -> [K] */
 
 enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 {
-	if (T < 273.15 || T > 2273.15 || p < 0 || p > 100)
+	if (T <= 273.15 || T > 2273.15 || p <= 0 || p > 100)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	else if (T <= 623.15) /* 1 or 2 */
