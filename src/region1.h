@@ -20,6 +20,7 @@ double h2o_region1_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
 
 double h2o_region1_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
 double h2o_region1_T_ps(double p, double s); /* [MPa, kJ/kgK] -> [K] */
+double h2o_region1_p_hs(double h, double s); /* [kJ/kg, kJ/kgK] -> [MPa] */
 
 #ifdef __cplusplus
 };
