@@ -10,8 +10,8 @@
 #include "boundaries.h"
 #include "region1.h"
 #include "region2.h"
+#include "region4.h"
 #include "region5.h"
-#include "saturation.h"
 #include "xmath.h"
 
 /* Based on IF97-Rev, s. 2: Structure of the Formulation
@@ -44,7 +44,7 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 
 	else if (T <= 623.15) /* 1 or 2 */
 	{
-		if (p > h2o_saturation_p_T(T))
+		if (p > h2o_region4_p_T(T))
 			return H2O_REGION1;
 		else
 			return H2O_REGION2;
@@ -78,10 +78,10 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 	if (h < h2o_region1_h_pT(p, 273.15))
 		return H2O_REGION_OUT_OF_RANGE;
 
-	/* Check the saturation curves. */
+	/* Check the region4 curves. */
 	if (p <= psatmax)
 	{
-		double Tsat = h2o_saturation_T_p(p);
+		double Tsat = h2o_region4_T_p(p);
 
 		if (h <= h2o_region1_h_pT(p, Tsat))
 			return H2O_REGION1;
@@ -112,10 +112,10 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 	if (p < 0 || p > 100 || s < 0)
 		return H2O_REGION_OUT_OF_RANGE;
 
-	/* First, check the saturation curves. */
+	/* First, check the region4 curves. */
 	if (p <= psatmax)
 	{
-		double Tsat = h2o_saturation_T_p(p);
+		double Tsat = h2o_region4_T_p(p);
 
 		if (s <= h2o_region1_s_pT(p, Tsat))
 			return H2O_REGION1;

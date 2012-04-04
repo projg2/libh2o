@@ -5,7 +5,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 
 lib_LTLIBRARIES = libh2o.la
 
-libh2o_la_SOURCES = src/boundaries.c src/saturation.c \
+libh2o_la_SOURCES = src/boundaries.c \
 	src/region1.c src/region1ph.c src/region1ps.c \
 	src/region1hs.c \
 	src/region2.c src/region2sub.c src/region2meta.c \
@@ -17,7 +17,7 @@ libh2o_la_SOURCES = src/boundaries.c src/saturation.c \
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0
 
-h2o_HEADERS = src/boundaries.h src/saturation.h \
+h2o_HEADERS = src/boundaries.h \
 	src/region1.h src/region2.h src/region3.h src/region4.h src/region5.h
 
 pkgconfig_DATA = libh2o.pc

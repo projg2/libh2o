@@ -13,6 +13,9 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
+double h2o_region4_p_T(double T); /* p [MPa] = f(T [K]) */
+double h2o_region4_T_p(double p); /* T [K] = f(p [MPa]) */
+
 double h2o_region4_v_Tx(double T, double x); /* [K, 0..1] -> [m³/kg] */
 double h2o_region4_u_Tx(double T, double x); /* [K, 0..1] -> [kJ/kg] */
 double h2o_region4_s_Tx(double T, double x); /* [K, 0..1] -> [kJ/kgK] */

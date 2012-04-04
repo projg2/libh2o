@@ -14,8 +14,8 @@
 #include "region1.h"
 #include "region2.h"
 #include "region3.h"
+#include "region4.h"
 #include "region5.h"
-#include "saturation.h"
 
 int exit_status;
 
@@ -38,13 +38,13 @@ void _check(double result, double expected, double precision, const char* call)
 
 int main(void)
 {
-	CHECK(h2o_saturation_p_T(300), 0.353658941E-2, 1E-11);
-	CHECK(h2o_saturation_p_T(500), 0.263889776E+1, 1E-8);
-	CHECK(h2o_saturation_p_T(600), 0.123443146E+2, 1E-7);
+	CHECK(h2o_region4_p_T(300), 0.353658941E-2, 1E-11);
+	CHECK(h2o_region4_p_T(500), 0.263889776E+1, 1E-8);
+	CHECK(h2o_region4_p_T(600), 0.123443146E+2, 1E-7);
 
-	CHECK(h2o_saturation_T_p(0.1), 0.372755919E3, 1E-6);
-	CHECK(h2o_saturation_T_p(1.0), 0.453035632E3, 1E-6);
-	CHECK(h2o_saturation_T_p(10.), 0.584149488E3, 1E-6);
+	CHECK(h2o_region4_T_p(0.1), 0.372755919E3, 1E-6);
+	CHECK(h2o_region4_T_p(1.0), 0.453035632E3, 1E-6);
+	CHECK(h2o_region4_T_p(10.), 0.584149488E3, 1E-6);
 
 	CHECK(h2o_b23_p_T(0.62315E3), 0.165291643E2, 1E-7);
 	CHECK(h2o_b23_T_p(0.165291643E2), 0.62315E3, 1E-6);
