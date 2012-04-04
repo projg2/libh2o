@@ -33,6 +33,7 @@ enum h2o_region h2o_region_pT(double p, double T); /* [MPa, K] */
 enum h2o_region h2o_region_ph(double p, double h); /* [MPa, kJ/kg] */
 enum h2o_region h2o_region_ps(double p, double s); /* [MPa, kJ/kgK] */
 enum h2o_region h2o_region_Tx(double T, double x); /* [K, 0..1] */
+enum h2o_region h2o_region_px(double p, double x); /* [MPa, 0..1] */
 enum h2o_region h2o_region_rhoT(double rho, double T); /* [kg/m³, K] */
 
 #ifdef __cplusplus
