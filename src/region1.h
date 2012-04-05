@@ -13,14 +13,14 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
-double h2o_region1_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
-double h2o_region1_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
-double h2o_region1_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
-double h2o_region1_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+double h2o_region1_v_pT(double p, double T);
+double h2o_region1_u_pT(double p, double T);
+double h2o_region1_s_pT(double p, double T);
+double h2o_region1_h_pT(double p, double T);
 
-double h2o_region1_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
-double h2o_region1_T_ps(double p, double s); /* [MPa, kJ/kgK] -> [K] */
-double h2o_region1_p_hs(double h, double s); /* [kJ/kg, kJ/kgK] -> [MPa] */
+double h2o_region1_T_ph(double p, double h);
+double h2o_region1_T_ps(double p, double s);
+double h2o_region1_p_hs(double h, double s);
 
 #ifdef __cplusplus
 };

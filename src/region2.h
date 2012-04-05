@@ -24,34 +24,34 @@ enum h2o_region2_subregion
 	H2O_REGION2_MAX
 };
 
-double h2o_region2_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
-double h2o_region2_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
-double h2o_region2_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
-double h2o_region2_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+double h2o_region2_v_pT(double p, double T);
+double h2o_region2_u_pT(double p, double T);
+double h2o_region2_s_pT(double p, double T);
+double h2o_region2_h_pT(double p, double T);
 
-double h2o_region2_meta_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
-double h2o_region2_meta_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
-double h2o_region2_meta_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
-double h2o_region2_meta_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+double h2o_region2_meta_v_pT(double p, double T);
+double h2o_region2_meta_u_pT(double p, double T);
+double h2o_region2_meta_s_pT(double p, double T);
+double h2o_region2_meta_h_pT(double p, double T);
 
-double h2o_region2_b2bc_p_h(double h); /* [kJ/kg] -> [MPa] */
-double h2o_region2_b2bc_h_p(double p); /* [MPa] -> [kJ/kg] */
-
-double h2o_region2_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
-double h2o_region2_T_ps(double p, double s); /* [MPa, kJ/kg] -> [K] */
+double h2o_region2_T_ph(double p, double h);
+double h2o_region2_T_ps(double p, double s);
 
 /* two above functions are preferred over those below */
 
 enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h);
 enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s);
 
-double h2o_region2a_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
-double h2o_region2b_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
-double h2o_region2c_T_ph(double p, double h); /* [MPa, kJ/kg] -> [K] */
+double h2o_region2_b2bc_p_h(double h);
+double h2o_region2_b2bc_h_p(double p);
 
-double h2o_region2a_T_ps(double p, double s); /* [MPa, kJ/kgK] -> [K] */
-double h2o_region2b_T_ps(double p, double s); /* [MPa, kJ/kgK] -> [K] */
-double h2o_region2c_T_ps(double p, double s); /* [MPa, kJ/kgK] -> [K] */
+double h2o_region2a_T_ph(double p, double h);
+double h2o_region2b_T_ph(double p, double h);
+double h2o_region2c_T_ph(double p, double h);
+
+double h2o_region2a_T_ps(double p, double s);
+double h2o_region2b_T_ps(double p, double s);
+double h2o_region2c_T_ps(double p, double s);
 
 #ifdef __cplusplus
 };

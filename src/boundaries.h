@@ -26,15 +26,15 @@ enum h2o_region
 	H2O_REGION_MAX
 };
 
-double h2o_b23_p_T(double T); /* [K] -> [MPa] */
-double h2o_b23_T_p(double p); /* [MPa] -> [K] */
+enum h2o_region h2o_region_pT(double p, double T);
+enum h2o_region h2o_region_ph(double p, double h);
+enum h2o_region h2o_region_ps(double p, double s);
+enum h2o_region h2o_region_Tx(double T, double x);
+enum h2o_region h2o_region_px(double p, double x);
+enum h2o_region h2o_region_rhoT(double rho, double T);
 
-enum h2o_region h2o_region_pT(double p, double T); /* [MPa, K] */
-enum h2o_region h2o_region_ph(double p, double h); /* [MPa, kJ/kg] */
-enum h2o_region h2o_region_ps(double p, double s); /* [MPa, kJ/kgK] */
-enum h2o_region h2o_region_Tx(double T, double x); /* [K, 0..1] */
-enum h2o_region h2o_region_px(double p, double x); /* [MPa, 0..1] */
-enum h2o_region h2o_region_rhoT(double rho, double T); /* [kg/m³, K] */
+double h2o_b23_p_T(double T);
+double h2o_b23_T_p(double p);
 
 #ifdef __cplusplus
 };

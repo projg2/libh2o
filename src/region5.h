@@ -13,10 +13,10 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
-double h2o_region5_v_pT(double p, double T); /* [MPa, K] -> [m³/kg] */
-double h2o_region5_u_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
-double h2o_region5_s_pT(double p, double T); /* [MPa, K] -> [kJ/kgK] */
-double h2o_region5_h_pT(double p, double T); /* [MPa, K] -> [kJ/kg] */
+double h2o_region5_v_pT(double p, double T);
+double h2o_region5_u_pT(double p, double T);
+double h2o_region5_s_pT(double p, double T);
+double h2o_region5_h_pT(double p, double T);
 
 #ifdef __cplusplus
 };
