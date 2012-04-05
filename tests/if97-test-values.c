@@ -108,6 +108,7 @@ int main(void)
 
 	CHECK(h2o_region2_b2bc_p_h(0.3516004323E4), 0.1E3, 1E-6);
 	CHECK(h2o_region2_b2bc_h_p(0.1E3), 0.3516004323E4, 1E-5);
+	CHECK(h2o_region2_b2ab_h_s(7), 0.3376437884E4, 1E-5);
 
 	CHECK(h2o_region2a_T_ph(1E-3, 3000), 0.534433241E3, 1E-6);
 	CHECK(h2o_region2a_T_ph(3.00, 3000), 0.575373370E3, 1E-6);

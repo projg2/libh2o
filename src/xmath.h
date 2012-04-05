@@ -34,6 +34,11 @@ static inline double quadr_value(double a, double b, double c, double x)
 	return (a * x + b) * x + c;
 }
 
+static inline double deg3_value(double a, double b, double c, double d, double x)
+{
+	return quadr_value(a, b, c, x) * x + d;
+}
+
 static inline void fill_powers(double* powers, const double* exponents,
 		int zeropos, int count, double expr, int deriv)
 {

@@ -41,9 +41,11 @@ double h2o_region2_T_ps(double p, double s);
 
 enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h);
 enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s);
+enum h2o_region2_subregion h2o_region2_subregion_hs(double h, double s);
 
 double h2o_region2_b2bc_p_h(double h);
 double h2o_region2_b2bc_h_p(double p);
+double h2o_region2_b2ab_h_s(double s);
 
 double h2o_region2a_T_ph(double p, double h);
 double h2o_region2b_T_ph(double p, double h);

@@ -33,6 +33,16 @@ enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s)
 		return H2O_REGION2C;
 }
 
+enum h2o_region2_subregion h2o_region2_subregion_hs(double h, double s)
+{
+	if (h < h2o_region2_b2ab_h_s(s))
+		return H2O_REGION2A;
+	if (s >= 5.85)
+		return H2O_REGION2B;
+	else
+		return H2O_REGION2C;
+}
+
 typedef double (*twoarg_func_t)(double, double);
 
 /* this function intends to make compiler happy. */
