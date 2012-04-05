@@ -130,6 +130,16 @@ int main(void)
 	CHECK(h2o_region2c_T_ps(80., 5.25), 0.854011484E3, 1E-6);
 	CHECK(h2o_region2c_T_ps(80., 5.75), 0.949017998E3, 1E-6);
 
+	CHECK(h2o_region2a_p_hs(2800, 6.5), 0.1371012767E+1, 1E-9);
+	CHECK(h2o_region2a_p_hs(2800, 9.5), 0.1879743844E-2, 1E-12);
+	CHECK(h2o_region2a_p_hs(4100, 9.5), 0.1024788997E+0, 1E-10);
+	CHECK(h2o_region2b_p_hs(2800, 6.0), 0.4793911442E+1, 1E-9);
+	CHECK(h2o_region2b_p_hs(3600, 6.0), 0.8395519209E+2, 1E-8);
+	CHECK(h2o_region2b_p_hs(3600, 7.0), 0.7527161441E+1, 1E-9);
+	CHECK(h2o_region2c_p_hs(2800, 5.1), 0.9439202060E+2, 1E-8);
+	CHECK(h2o_region2c_p_hs(2800, 5.8), 0.8414574124E+1, 1E-9);
+	CHECK(h2o_region2c_p_hs(3400, 5.8), 0.8376903879E+2, 1E-8);
+
 	CHECK(h2o_region3_p_rhoT(500, 650), 0.255837018E2, 1E-7);
 	CHECK(h2o_region3_p_rhoT(200, 650), 0.222930643E2, 1E-7);
 	CHECK(h2o_region3_p_rhoT(500, 750), 0.783095639E2, 1E-7);

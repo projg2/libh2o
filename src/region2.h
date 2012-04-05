@@ -55,6 +55,10 @@ double h2o_region2a_T_ps(double p, double s);
 double h2o_region2b_T_ps(double p, double s);
 double h2o_region2c_T_ps(double p, double s);
 
+double h2o_region2a_p_hs(double h, double s);
+double h2o_region2b_p_hs(double h, double s);
+double h2o_region2c_p_hs(double h, double s);
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/
