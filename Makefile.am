@@ -14,7 +14,8 @@ libh2o_la_SOURCES = src/boundaries.c \
 	src/region2psa.c src/region2psb.c src/region2psc.c \
 	src/region2hsa.c src/region2hsb.c src/region2hsc.c \
 	src/region3.c \
-	src/region4.c src/region5.c \
+	src/region4.c src/region4hs.c \
+	src/region5.c \
 	src/consts.h src/xmath.h
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0

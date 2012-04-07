@@ -23,6 +23,7 @@ double h2o_region4_h_Tx(double T, double x);
 
 double h2o_region4_x_Ts(double T, double s);
 double h2o_region4_x_Th(double T, double h);
+double h2o_region4_T_hs(double h, double s);
 
 #ifdef __cplusplus
 };
