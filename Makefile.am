@@ -6,7 +6,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 lib_LTLIBRARIES = libh2o.la
 
 libh2o_la_SOURCES = src/boundaries.c \
-	src/b23.c src/b14hs.c \
+	src/b23.c src/b14hs.c src/b3a4hs.c \
 	src/region1.c src/region1ph.c src/region1ps.c \
 	src/region1hs.c \
 	src/region2.c src/region2meta.c \
