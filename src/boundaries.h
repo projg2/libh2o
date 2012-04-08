@@ -36,6 +36,7 @@ enum h2o_region h2o_region_rhoT(double rho, double T);
 double h2o_b23_p_T(double T);
 double h2o_b23_T_p(double p);
 
+double h2o_b13_h_s(double s);
 double h2o_b14_h_s(double s);
 double h2o_b3a4_h_s(double s);
 double h2o_b2ab4_h_s(double s);
