@@ -116,6 +116,57 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 		return H2O_REGION_OUT_OF_RANGE;
 }
 
+enum h2o_region h2o_region_hs(double h, double s)
+{
+	/* XXX: check range better */
+
+	if (s < -1.545495919E-4)
+		return H2O_REGION_OUT_OF_RANGE;
+	else if (s <= 3.778281340) /* B14 */
+	{
+		if (h < h2o_b14_h_s(s))
+			return H2O_REGION4;
+		else if (s <= 3.397782955 && h > h2o_b13_h_s(s))
+			return H2O_REGION3;
+		else
+			return H2O_REGION1;
+	}
+	else if (s <= 4.41202148223476) /* B3a4 */
+	{
+		if (h < h2o_b3a4_h_s(s))
+			return H2O_REGION4;
+		else
+			return H2O_REGION3;
+	}
+	else if (s <= 5.85) /* B2c3b4 */
+	{
+		if (h < h2o_b2c3b4_h_s(s))
+			return H2O_REGION4;
+		else if (s <= 5.048096828 && s <= 5.260578707)
+			return H2O_REGION3;
+		else if (s >= 5.260578707 || h >= 2812.942061E3)
+			return H2O_REGION2;
+		else
+		{
+			double p = h2o_region2c_p_hs(h, s);
+
+			if (p >= h2o_b23_p_T(h2o_b23_T_hs(h, s)))
+				return H2O_REGION3;
+			else
+				return H2O_REGION2;
+		}
+	}
+	else if (s <= 9.155759395) /* B2ab4 */
+	{
+		if (h < h2o_b2ab4_h_s(s))
+			return H2O_REGION4;
+		else
+			return H2O_REGION2;
+	}
+	else /* XXX: min boundary */
+		return H2O_REGION2;
+}
+
 enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
 {
 	if (x < 0 || x > 1 || T < 273.15 || T > 623.15)

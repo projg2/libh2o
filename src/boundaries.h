@@ -29,6 +29,7 @@ enum h2o_region
 enum h2o_region h2o_region_pT(double p, double T);
 enum h2o_region h2o_region_ph(double p, double h);
 enum h2o_region h2o_region_ps(double p, double s);
+enum h2o_region h2o_region_hs(double h, double s);
 enum h2o_region h2o_region_Tx(double T, double x);
 enum h2o_region h2o_region_px(double p, double x);
 enum h2o_region h2o_region_rhoT(double rho, double T);
