@@ -189,5 +189,9 @@ int main(void)
 	CHECK(h2o_b2c3b4_h_s(5.0), 0.2451623609E4, 1E-6);
 	CHECK(h2o_b2c3b4_h_s(4.5), 0.2144360448E4, 1E-6);
 
+	CHECK(h2o_b23_T_hs(2600, 5.10), 0.7135259364E+3, 1E-7);
+	CHECK(h2o_b23_T_hs(2700, 5.15), 0.7685345532E+3, 1E-7);
+	CHECK(h2o_b23_T_hs(2800, 5.20), 0.8176202120E+3, 1E-7);
+
 	return exit_status;
 }

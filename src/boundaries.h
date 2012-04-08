@@ -42,6 +42,8 @@ double h2o_b3a4_h_s(double s);
 double h2o_b2ab4_h_s(double s);
 double h2o_b2c3b4_h_s(double s);
 
+double h2o_b23_T_hs(double h, double s);
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/
