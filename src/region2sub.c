@@ -98,3 +98,25 @@ double h2o_region2_T_ps(double p, double s)
 
 	return T_getter(p, s);
 }
+
+double h2o_region2_p_hs(double h, double s)
+{
+	twoarg_func_t p_getter;
+
+	switch (h2o_region2_subregion_hs(h, s))
+	{
+		case H2O_REGION2A:
+			p_getter = &h2o_region2a_p_hs;
+			break;
+		case H2O_REGION2B:
+			p_getter = &h2o_region2b_p_hs;
+			break;
+		case H2O_REGION2C:
+			p_getter = &h2o_region2c_p_hs;
+			break;
+		default:
+			p_getter = &impossible_happened;
+	}
+
+	return p_getter(h, s);
+}

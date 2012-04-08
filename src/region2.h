@@ -36,6 +36,7 @@ double h2o_region2_meta_h_pT(double p, double T);
 
 double h2o_region2_T_ph(double p, double h);
 double h2o_region2_T_ps(double p, double s);
+double h2o_region2_p_hs(double h, double s);
 
 /* two above functions are preferred over those below */
 
