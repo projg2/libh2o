@@ -38,6 +38,8 @@ double h2o_b23_T_p(double p);
 
 double h2o_b14_h_s(double s);
 double h2o_b3a4_h_s(double s);
+double h2o_b2ab4_h_s(double s);
+double h2o_b2c3b4_h_s(double s);
 
 #ifdef __cplusplus
 };

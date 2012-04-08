@@ -179,6 +179,12 @@ int main(void)
 	CHECK(h2o_b3a4_h_s(3.8), 0.1685025565E4, 1E-6);
 	CHECK(h2o_b3a4_h_s(4.0), 0.1816891476E4, 1E-6);
 	CHECK(h2o_b3a4_h_s(4.2), 0.1949352563E4, 1E-6);
+	CHECK(h2o_b2ab4_h_s(7.0), 0.2723729985E4, 1E-6);
+	CHECK(h2o_b2ab4_h_s(8.0), 0.2599047210E4, 1E-6);
+	CHECK(h2o_b2ab4_h_s(9.0), 0.2511861477E4, 1E-6);
+	CHECK(h2o_b2c3b4_h_s(5.5), 0.2687693850E4, 1E-6);
+	CHECK(h2o_b2c3b4_h_s(5.0), 0.2451623609E4, 1E-6);
+	CHECK(h2o_b2c3b4_h_s(4.5), 0.2144360448E4, 1E-6);
 
 	return exit_status;
 }
