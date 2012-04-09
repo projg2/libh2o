@@ -13,32 +13,32 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
-enum h2o_region2_subregion
-{
-	H2O_REGION2_OUT_OF_RANGE,
-
-	H2O_REGION2A,
-	H2O_REGION2B,
-	H2O_REGION2C,
-
-	H2O_REGION2_MAX
-};
-
 double h2o_region2_v_pT(double p, double T);
 double h2o_region2_u_pT(double p, double T);
 double h2o_region2_s_pT(double p, double T);
 double h2o_region2_h_pT(double p, double T);
+
+double h2o_region2_T_ph(double p, double h);
+double h2o_region2_T_ps(double p, double s);
+double h2o_region2_p_hs(double h, double s);
+
+/* meta-stable vapor region functions */
 
 double h2o_region2_meta_v_pT(double p, double T);
 double h2o_region2_meta_u_pT(double p, double T);
 double h2o_region2_meta_s_pT(double p, double T);
 double h2o_region2_meta_h_pT(double p, double T);
 
-double h2o_region2_T_ph(double p, double h);
-double h2o_region2_T_ps(double p, double s);
-double h2o_region2_p_hs(double h, double s);
+/* special use functions */
 
-/* two above functions are preferred over those below */
+enum h2o_region2_subregion
+{
+	H2O_REGION2A,
+	H2O_REGION2B,
+	H2O_REGION2C,
+
+	H2O_REGION2_MAX
+};
 
 enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h);
 enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s);
