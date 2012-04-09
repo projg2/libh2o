@@ -18,6 +18,21 @@ double h2o_region3_u_rhoT(double rho, double T);
 double h2o_region3_s_rhoT(double rho, double T);
 double h2o_region3_h_rhoT(double rho, double T);
 
+/* special use functions */
+
+enum h2o_region3_subregion
+{
+	H2O_REGION3A,
+	H2O_REGION3B,
+
+	H2O_REGION3_MAX
+};
+
+enum h2o_region3_subregion h2o_region3_subregion_ph(double p, double h);
+enum h2o_region3_subregion h2o_region3_subregion_ps(double p, double s);
+
+double h2o_region3_b3ab_h_p(double p);
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/

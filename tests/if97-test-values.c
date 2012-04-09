@@ -193,5 +193,7 @@ int main(void)
 	CHECK(h2o_b23_T_hs(2700, 5.15), 0.7685345532E+3, 1E-7);
 	CHECK(h2o_b23_T_hs(2800, 5.20), 0.8176202120E+3, 1E-7);
 
+	CHECK(h2o_region3_b3ab_h_p(25), 0.2095936454E+4, 1E-6);
+
 	return exit_status;
 }
