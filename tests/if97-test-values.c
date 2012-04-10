@@ -223,5 +223,12 @@ int main(void)
 	CHECK(h2o_region3b_v_ps(50., 4.5), 0.2332634294E-2, 1E-12);
 	CHECK(h2o_region3b_v_ps(100, 5.0), 0.2449610757E-2, 1E-12);
 
+	CHECK(h2o_region3_psat_h(1700), 0.1724175718E2, 1E-8);
+	CHECK(h2o_region3_psat_h(2000), 0.2193442957E2, 1E-8);
+	CHECK(h2o_region3_psat_h(2400), 0.2018090839E2, 1E-8);
+	CHECK(h2o_region3_psat_s(3.8), 0.1687755057E2, 1E-8);
+	CHECK(h2o_region3_psat_s(4.2), 0.2164451789E2, 1E-8);
+	CHECK(h2o_region3_psat_s(5.2), 0.1668968482E2, 1E-8);
+
 	return exit_status;
 }
