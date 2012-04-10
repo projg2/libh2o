@@ -3,7 +3,12 @@
 *.o
 *.pc
 /.deps/
+/*/.deps/
+/*/*/.deps/
 /.libs/
+/*/*/.libs/
+/*/.dirstamp
+/*/*/.dirstamp
 /Makefile
 /Makefile.in
 /aclocal.m4

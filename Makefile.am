@@ -1,26 +1,42 @@
 ACLOCAL_AMFLAGS = -I m4
+AM_CPPFLAGS = -Isrc
 
 h2odir = $(includedir)/h2o
 pkgconfigdir = $(libdir)/pkgconfig
 
 lib_LTLIBRARIES = libh2o.la
 
-libh2o_la_SOURCES = src/boundaries.c \
-	src/b23.c src/b13hs.c src/b14hs.c src/b23hs.c \
-	src/b3a4hs.c src/b2ab4hs.c src/b2c3b4hs.c \
-	src/region1.c src/region1ph.c src/region1ps.c \
-	src/region1hs.c \
-	src/region2.c src/region2meta.c \
-	src/region2sub.c src/region2ph.c src/region2hs.c \
-	src/region2pha.c src/region2phb.c src/region2phc.c \
-	src/region2psa.c src/region2psb.c src/region2psc.c \
-	src/region2hsa.c src/region2hsb.c src/region2hsc.c \
-	src/region3.c src/region3sub.c src/region3ph.c \
-	src/region3Tpha.c src/region3Tphb.c src/region3vpha.c src/region3vphb.c \
-	src/region3Tpsa.c src/region3Tpsb.c src/region3vpsa.c src/region3vpsb.c \
-	src/region3psath.c src/region3psats.c \
-	src/region4.c src/region4hs.c \
-	src/region5.c \
+libh2o_la_SOURCES = src/boundaries/boundaries.c \
+	src/boundaries/b23.c src/boundaries/b13hs.c \
+	src/boundaries/b14hs.c src/boundaries/b23hs.c \
+	src/boundaries/b3a4hs.c src/boundaries/b2ab4hs.c \
+	src/boundaries/b2c3b4hs.c \
+	\
+	src/region1/region1.c src/region1/region1ph.c \
+	src/region1/region1ps.c src/region1/region1hs.c \
+	\
+	src/region2/region2.c src/region2/region2meta.c \
+	src/region2/region2sub.c src/region2/region2ph.c \
+	src/region2/region2hs.c \
+	src/region2/region2pha.c src/region2/region2phb.c \
+	src/region2/region2phc.c \
+	src/region2/region2psa.c src/region2/region2psb.c \
+	src/region2/region2psc.c \
+	src/region2/region2hsa.c src/region2/region2hsb.c \
+	src/region2/region2hsc.c \
+	\
+	src/region3/region3.c src/region3/region3sub.c \
+	src/region3/region3ph.c \
+	src/region3/region3Tpha.c src/region3/region3Tphb.c \
+	src/region3/region3vpha.c src/region3/region3vphb.c \
+	src/region3/region3Tpsa.c src/region3/region3Tpsb.c \
+	src/region3/region3vpsa.c src/region3/region3vpsb.c \
+	src/region3/region3psath.c src/region3/region3psats.c \
+	\
+	src/region4/region4.c src/region4/region4hs.c \
+	\
+	src/region5/region5.c \
+	\
 	src/consts.h src/xmath.h
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0
