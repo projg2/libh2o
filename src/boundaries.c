@@ -10,6 +10,7 @@
 #include "boundaries.h"
 #include "region1.h"
 #include "region2.h"
+#include "region3.h"
 #include "region4.h"
 #include "region5.h"
 #include "xmath.h"
@@ -67,7 +68,15 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 	}
 	else /* Then, check the B13 & B23. */
 	{
-		if (h <= h2o_region1_h_pT(p, 623.15))
+		/* psat3(h) validity range */
+		if (h >= 1670.858218 && h <= 2563.592004)
+		{
+			if (p >= h2o_region3_psat_h(h))
+				return H2O_REGION3;
+			else
+				return H2O_REGION_OUT_OF_RANGE; /* XXX: adjust region 4 */
+		}
+		else if (h <= h2o_region1_h_pT(p, 623.15))
 			return H2O_REGION1;
 		else if (h < h2o_region2_h_pT(p, h2o_b23_T_p(p)))
 			return H2O_REGION3;
@@ -103,6 +112,9 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 	{
 		if (s <= h2o_region1_s_pT(p, 623.15))
 			return H2O_REGION1;
+		/* psat3(s) validity range */
+		else if (s >= 3.778281340 && s <= 5.210887825 && p < h2o_region3_psat_s(s))
+			return H2O_REGION_OUT_OF_RANGE; /* XXX: adjust region 4 */
 		else if (s < h2o_region2_s_pT(p, h2o_b23_T_p(p)))
 			return H2O_REGION3;
 	}
