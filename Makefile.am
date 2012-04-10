@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS = -I m4
-AM_CPPFLAGS = -Isrc
+AM_CPPFLAGS = -I$(top_srcdir)/src
 
 h2odir = $(includedir)/h2o
 pkgconfigdir = $(libdir)/pkgconfig
