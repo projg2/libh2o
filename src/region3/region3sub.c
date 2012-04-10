@@ -27,6 +27,14 @@ enum h2o_region3_subregion h2o_region3_subregion_ps(double p, double s)
 		return H2O_REGION3B;
 }
 
+enum h2o_region3_subregion h2o_region3_subregion_hs(double h, double s)
+{
+	if (s <= 4.41202148223476) /* scrit */
+		return H2O_REGION3A;
+	else
+		return H2O_REGION3B;
+}
+
 typedef double (*twoarg_func_t)(double, double);
 
 /* this function intends to make compiler happy. */
@@ -113,4 +121,23 @@ double h2o_region3_v_ps(double p, double s)
 	}
 
 	return v_getter(p, s);
+}
+
+double h2o_region3_p_hs(double h, double s)
+{
+	twoarg_func_t p_getter;
+
+	switch (h2o_region3_subregion_hs(h, s))
+	{
+		case H2O_REGION3A:
+			p_getter = &h2o_region3a_p_hs;
+			break;
+		case H2O_REGION3B:
+			p_getter = &h2o_region3b_p_hs;
+			break;
+		default:
+			p_getter = &impossible_happened;
+	}
+
+	return p_getter(h, s);
 }

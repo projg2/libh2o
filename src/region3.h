@@ -22,6 +22,7 @@ double h2o_region3_T_ph(double p, double h);
 double h2o_region3_v_ph(double p, double h);
 double h2o_region3_T_ps(double p, double s);
 double h2o_region3_v_ps(double p, double s);
+double h2o_region3_p_hs(double h, double s);
 
 /* special use functions */
 
@@ -35,6 +36,7 @@ enum h2o_region3_subregion
 
 enum h2o_region3_subregion h2o_region3_subregion_ph(double p, double h);
 enum h2o_region3_subregion h2o_region3_subregion_ps(double p, double s);
+enum h2o_region3_subregion h2o_region3_subregion_hs(double h, double s);
 
 double h2o_region3_b3ab_h_p(double p);
 
