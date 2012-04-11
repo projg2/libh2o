@@ -156,32 +156,10 @@ static inline double h2o_region2_gammao_pitau(double pi, double tau, int pider, 
 
 static inline double h2o_region2_gammar_pitau(double pi, double tau, int pider, int tauder)
 {
-	double tauexpr = tau - 0.5;
-
-	int i;
-	double sum = 0;
-
-	double pipowers[18];
-	double taupowers[27];
-
-	fill_powers(pipowers, Ipows, 0, 18, pi, pider);
-	fill_powers(taupowers, Jpows, 0, 27, tauexpr, tauder);
-
-	for (i = 1; i <= 43; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double taupow = taupowers[J[i]];
-
-		double memb = n[i] * pipow * taupow;
-		if (pider == 1)
-			memb *= Ipows[I[i]];
-		if (tauder == 1)
-			memb *= Jpows[J[i]];
-
-		sum += memb;
-	}
-
-	return sum;
+	return poly_value(pi, tau - 0.5,
+			I, Ipows, 0, 18, pider,
+			J, Jpows, 0, 27, tauder,
+			n, 43);
 }
 
 static inline double h2o_region2_gamma_pT(double p, double T, int pider, int tauder)

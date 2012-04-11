@@ -101,6 +101,39 @@ static inline void fill_powers_decr(double* powers, int min, double expr, int de
 	}
 }
 
+static inline double poly_value(double x1, double x2,
+		const int I[], const double Ipows[], int Ipowzero,
+		int Ipowlen, int x1der,
+		const int J[], const double Jpows[], int Jpowzero,
+		int Jpowlen, int x2der,
+		const double n[], int nlen)
+{
+	double sum = 0;
+
+	int i;
+
+	double x1powers[Ipowlen], x2powers[Jpowlen];
+
+	fill_powers(x1powers, Ipows, Ipowzero, Ipowlen, x1, x1der);
+	fill_powers(x2powers, Jpows, Jpowzero, Jpowlen, x2, x2der);
+
+	for (i = 1; i <= nlen; ++i)
+	{
+		double x1pow = x1powers[I[i]];
+		double x2pow = x2powers[J[i]];
+
+		double memb = n[i] * x1pow * x2pow;
+		if (x1der == 1)
+			memb *= Ipows[I[i]];
+		if (x2der == 1)
+			memb *= Jpows[J[i]];
+
+		sum += memb;
+	}
+
+	return sum;
+}
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/
