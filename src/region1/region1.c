@@ -88,10 +88,31 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 	double pi = p / pstar;
 	double tau = Tstar / T;
 
-	double sum = poly_value(7.1 - pi, tau - 1.222,
-			I, Ipows, 0, 13, pider,
-			J, Jpows, 16, 25, tauder,
-			n, 34);
+	double piexpr = 7.1 - pi;
+	double tauexpr = tau - 1.222;
+
+	double sum = 0;
+
+	int i;
+
+	double pipowers[13], taupowers[25];
+
+	fill_powers(pipowers, Ipows, 0, 13, piexpr, pider);
+	fill_powers(taupowers, Jpows, 16, 25, tauexpr, tauder);
+
+	for (i = 1; i <= 34; ++i)
+	{
+		double pipow = pipowers[I[i]];
+		double taupow = taupowers[J[i]];
+
+		double memb = n[i] * pipow * taupow;
+		if (pider == 1)
+			memb *= Ipows[I[i]];
+		if (tauder == 1)
+			memb *= Jpows[J[i]];
+
+		sum += memb;
+	}
 
 	if (pider == 1)
 		sum *= -pi;
