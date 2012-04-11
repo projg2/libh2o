@@ -8,6 +8,7 @@
 #endif
 
 #include "boundaries.h"
+#include "consts.h"
 #include "region1.h"
 #include "region2.h"
 #include "region3.h"
@@ -17,10 +18,10 @@
 
 enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 {
-	if (T < 273.15 || T > 2273.15 || p <= 0 || p > 100)
+	if (T < Tmin || T > Tmax || p <= pmin || p > pmax)
 		return H2O_REGION_OUT_OF_RANGE;
 
-	else if (T <= 623.15) /* 1 or 2 */
+	else if (T <= Tb13) /* 1 or 2 */
 	{
 		if (p > h2o_region4_p_T(T))
 			return H2O_REGION1;
@@ -28,7 +29,7 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 			return H2O_REGION2;
 	}
 
-	else if (T <= 1073.15) /* 3 or 2 */
+	else if (T <= Tb25) /* 3 or 2 */
 	{
 		if (p >= h2o_b23_p_T(T))
 			return H2O_REGION3;
@@ -38,7 +39,7 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 
 	else /* 5? */
 	{
-		if (p > 50)
+		if (p > pmax5)
 			return H2O_REGION_OUT_OF_RANGE;
 		else
 			return H2O_REGION5;
@@ -49,11 +50,11 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 {
 	double psatmax = 16.5291642;
 
-	if (p < 0 || p > 100)
+	if (p < pmin || p > pmax)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	/* Left boundary. */
-	if (h < h2o_region1_h_pT(p, 273.15))
+	if (h < h2o_region1_h_pT(p, Tmin))
 		return H2O_REGION_OUT_OF_RANGE;
 
 	/* Check the region4 curves. */
@@ -76,16 +77,16 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 			else
 				return H2O_REGION_OUT_OF_RANGE; /* XXX: adjust region 4 */
 		}
-		else if (h <= h2o_region1_h_pT(p, 623.15))
+		else if (h <= h2o_region1_h_pT(p, Tb13))
 			return H2O_REGION1;
 		else if (h < h2o_region2_h_pT(p, h2o_b23_T_p(p)))
 			return H2O_REGION3;
 	}
 
 	/* Finally, check B25/right border. */
-	if (h <= h2o_region2_h_pT(p, 1073.15))
+	if (h <= h2o_region2_h_pT(p, Tb25))
 		return H2O_REGION2;
-	else if (p <= 50 && h <= h2o_region5_s_pT(p, 2273.15))
+	else if (p <= pmax5 && h <= h2o_region5_s_pT(p, Tmax))
 		return H2O_REGION5;
 	else
 		return H2O_REGION_OUT_OF_RANGE;
@@ -95,7 +96,7 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 {
 	double psatmax = 16.5291642;
 
-	if (p < 0 || p > 100 || s < 0)
+	if (p < pmin || p > pmax || s < 0)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	/* First, check the region4 curves. */
@@ -110,7 +111,7 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 	}
 	else /* Then, check the B13 & B23. */
 	{
-		if (s <= h2o_region1_s_pT(p, 623.15))
+		if (s <= h2o_region1_s_pT(p, Tb13))
 			return H2O_REGION1;
 		/* psat3(s) validity range */
 		else if (s >= 3.778281340 && s <= 5.210887825 && p < h2o_region3_psat_s(s))
@@ -120,9 +121,9 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 	}
 
 	/* Finally, check B25/right border. */
-	if (s <= h2o_region2_s_pT(p, 1073.15))
+	if (s <= h2o_region2_s_pT(p, Tb25))
 		return H2O_REGION2;
-	else if (p <= 50 && s <= h2o_region5_s_pT(p, 2273.15))
+	else if (p <= pmax5 && s <= h2o_region5_s_pT(p, Tmax))
 		return H2O_REGION5;
 	else
 		return H2O_REGION_OUT_OF_RANGE;
@@ -181,7 +182,7 @@ enum h2o_region h2o_region_hs(double h, double s)
 
 enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
 {
-	if (x < 0 || x > 1 || T < 273.15 || T > 623.15)
+	if (x < 0 || x > 1 || T < Tmin || T > Tb13)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	return H2O_REGION4;
@@ -198,7 +199,7 @@ enum h2o_region h2o_region_px(double p, double x) /* [MPa, 0..1] */
 enum h2o_region h2o_region_rhoT(double rho, double T) /* [kg/m³, K] */
 {
 	/* XXX: support other regions */
-	if (T >= 623.15)
+	if (T >= Tb13)
 	{
 		double v = 1/rho;
 

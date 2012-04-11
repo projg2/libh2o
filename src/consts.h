@@ -15,7 +15,18 @@ extern "C"
 
 /* Based on IF97-Rev, s. 3: Reference Constants */
 
-static double R = 0.461526; /* [kJ/kgK] */
+static const double R = 0.461526; /* [kJ/kgK] */
+
+/* region boundaries f(p, T) */
+
+static const double Tmin = 273.15;
+static const double Tb13 = 623.15;
+static const double Tb25 = 1073.15;
+static const double Tmax = 2273.15;
+
+static const double pmin = 0;
+static const double pmax = 100;
+static const double pmax5 = 50;
 
 #ifdef __cplusplus
 };
