@@ -22,6 +22,7 @@ static const double R = 0.461526; /* [kJ/kgK] */
 static const double Tcrit = 647.096; /* [K] */
 static const double pcrit = 22.064; /* [MPa] */
 static const double rhocrit = 322; /* [kg/m³] */
+static const double scrit = 4.41202148223476; /* [kJ/kgK] */
 
 /* region boundaries f(p, T) */
 
@@ -49,7 +50,6 @@ static const double psat3_smax = 5.210887825;
 static const double smin = -1.545495919E-4; /* XXX? */
 static const double s1max = 3.778281340;
 static const double s3min = 3.397782955;
-static const double scrit = 4.41202148223476;
 static const double s2cmax = 5.85;
 static const double s4max = 9.155759395;
 

@@ -9,6 +9,7 @@
 
 #include <stdlib.h> /* abort() */
 
+#include "consts.h"
 #include "region3.h"
 
 enum h2o_region3_subregion h2o_region3_subregion_ph(double p, double h)
@@ -21,7 +22,7 @@ enum h2o_region3_subregion h2o_region3_subregion_ph(double p, double h)
 
 enum h2o_region3_subregion h2o_region3_subregion_ps(double p, double s)
 {
-	if (s <= 4.41202148223476) /* scrit */
+	if (s <= scrit)
 		return H2O_REGION3A;
 	else
 		return H2O_REGION3B;
@@ -29,7 +30,7 @@ enum h2o_region3_subregion h2o_region3_subregion_ps(double p, double s)
 
 enum h2o_region3_subregion h2o_region3_subregion_hs(double h, double s)
 {
-	if (s <= 4.41202148223476) /* scrit */
+	if (s <= scrit)
 		return H2O_REGION3A;
 	else
 		return H2O_REGION3B;
