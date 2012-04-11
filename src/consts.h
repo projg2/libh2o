@@ -36,6 +36,27 @@ static const double pmax5 = 50;
 
 /* max psat handled by Region 4 */
 static const double psatmax = 16.5291642;
+static const double psatmin = 611.213E-6;
+
+/* Region 3 psat equations validity range */
+static const double psat3_hmin = 1670.858218;
+static const double psat3_hmax = 2563.592004;
+static const double psat3_smin = 3.778281340;
+static const double psat3_smax = 5.210887825;
+
+/* region boundaries f(h, s) */
+
+static const double smin = -1.545495919E-4; /* XXX? */
+static const double s1max = 3.778281340;
+static const double s3min = 3.397782955;
+static const double scrit = 4.41202148223476;
+static const double s2cmax = 5.85;
+static const double s4max = 9.155759395;
+
+static const double sb23min = 5.048096828;
+static const double sb23max = 5.260578707;
+static const double hb23min = 2563.592004;
+static const double hb23max = 2812.942061;
 
 #ifdef __cplusplus
 };
