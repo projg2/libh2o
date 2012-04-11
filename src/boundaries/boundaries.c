@@ -48,8 +48,6 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 
 enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 {
-	double psatmax = 16.5291642;
-
 	if (p < pmin || p > pmax)
 		return H2O_REGION_OUT_OF_RANGE;
 
@@ -94,8 +92,6 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 
 enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 {
-	double psatmax = 16.5291642;
-
 	if (p < pmin || p > pmax || s < 0)
 		return H2O_REGION_OUT_OF_RANGE;
 
@@ -190,7 +186,7 @@ enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
 
 enum h2o_region h2o_region_px(double p, double x) /* [MPa, 0..1] */
 {
-	if (x < 0 || x > 1 || p < 611.213E-6 || p > 22.064)
+	if (x < 0 || x > 1 || p < 611.213E-6 || p > psatmax)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	return H2O_REGION4;

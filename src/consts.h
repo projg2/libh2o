@@ -17,6 +17,12 @@ extern "C"
 
 static const double R = 0.461526; /* [kJ/kgK] */
 
+/* critical point */
+
+static const double Tcrit = 647.096; /* [K] */
+static const double pcrit = 22.064; /* [MPa] */
+static const double rhocrit = 322; /* [kg/m³] */
+
 /* region boundaries f(p, T) */
 
 static const double Tmin = 273.15;
@@ -27,6 +33,9 @@ static const double Tmax = 2273.15;
 static const double pmin = 0;
 static const double pmax = 100;
 static const double pmax5 = 50;
+
+/* max psat handled by Region 4 */
+static const double psatmax = 16.5291642;
 
 #ifdef __cplusplus
 };

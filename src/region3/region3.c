@@ -67,9 +67,9 @@ static const int J[] = {
 	2, 14, 2, 14, 0, 1, 14
 };
 
-static const double rhostar = 322; /* [kg/m³] */
-static const double pstar = 22.064; /* [MPa] */
-static const double Tstar = 647.096; /* [K] */
+static const double rhostar = rhocrit;
+static const double pstar = pcrit;
+static const double Tstar = Tcrit;
 
 static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, int tauder)
 	/* rho [kg/m³], T [K], pider, tauder: 0/1 */
