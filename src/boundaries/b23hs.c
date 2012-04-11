@@ -69,26 +69,10 @@ static const double sstar = 5.3; /* [kJ/kgK] */
 double h2o_b23_T_hs(double h, double s)
 {
 	double eta = h / hstar;
-	double etaexpr = eta - 0.727;
 	double sigma = s / sstar;
-	double sigmaexpr = sigma - 0.864;
 
-	double sum = 0;
-
-	int i;
-
-	double etapowers[14], sigmapowers[14];
-
-	fill_powers(etapowers, Ipows, 6, 14, etaexpr, 0);
-	fill_powers(sigmapowers, Jpows, 7, 14, sigmaexpr, 0);
-
-	for (i = 1; i <= 25; ++i)
-	{
-		double etapow = etapowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * etapow * sigmapow;
-	}
-
-	return sum * Tstar;
+	return poly_value(eta - 0.727, sigma - 0.864,
+			I, Ipows, 6, 14, 0,
+			J, Jpows, 7, 14, 0,
+			n, 25) * Tstar;
 }

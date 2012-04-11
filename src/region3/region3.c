@@ -15,7 +15,7 @@
 
 /* coefficient table; n[0] added for convenience, n[1] is for ln */
 static const double n[] = {
-	+0.00000000000000E+00,
+	+0.00000000000000E+0,
 
 	+0.10658070028513E+1, -0.15732845290239E+2,
 	+0.20944396974307E+2, -0.76867707878716E+1,
@@ -41,6 +41,10 @@ static const double n[] = {
 	-0.14834345352472E-1, +0.57922953628084E-3,
 	+0.32308904703711E-2, +0.80964802996215E-4,
 	-0.16557679795037E-3, -0.44923899061815E-4
+};
+
+static const double Ipows[] = {
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 };
 
 static const int I[] = {
@@ -74,13 +78,6 @@ static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, in
 
 	double sum;
 
-	int i;
-
-	double deltapowers[12], taupowers[15];
-
-	fill_powers_incr(deltapowers, 12, delta, deltader);
-	fill_powers(taupowers, Jpows, 0, 15, tau, tauder);
-
 	if (tauder)
 		sum = 0;
 	else if (deltader)
@@ -88,19 +85,10 @@ static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, in
 	else
 		sum = n[1] * log(delta);
 
-	for (i = 2; i <= 40; ++i)
-	{
-		double deltapow = deltapowers[I[i]];
-		double taupow = taupowers[J[i]];
-
-		double memb = n[i] * deltapow * taupow;
-		if (deltader == 1)
-			memb *= I[i];
-		if (tauder == 1)
-			memb *= Jpows[J[i]];
-
-		sum += memb;
-	}
+	sum += poly_value(delta, tau,
+			&I[1], Ipows, 0, 12, deltader,
+			&J[1], Jpows, 0, 15, tauder,
+			&n[1], 40-1);
 
 	if (deltader == 1)
 		sum *= delta;

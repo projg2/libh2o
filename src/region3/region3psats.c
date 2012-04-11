@@ -53,25 +53,9 @@ static const double sstar = 5.2; /* [kJ/kgK] */
 double h2o_region3_psat_s(double s)
 {
 	double sigma = s / sstar;
-	double sigmaexprI = sigma - 1.03;
-	double sigmaexprJ = sigma - 0.699;
 
-	double sum = 0;
-
-	int i;
-
-	double sigmapowersI[8], sigmapowersJ[9];
-
-	fill_powers(sigmapowersI, Ipows, 0, 8, sigmaexprI, 0);
-	fill_powers(sigmapowersJ, Jpows, 0, 9, sigmaexprJ, 0);
-
-	for (i = 1; i <= 10; ++i)
-	{
-		double sigmapowI = sigmapowersI[I[i]];
-		double sigmapowJ = sigmapowersJ[J[i]];
-
-		sum += n[i] * sigmapowI * sigmapowJ;
-	}
-
-	return sum * pstar;
+	return poly_value(sigma - 1.03, sigma - 0.699,
+			I, Ipows, 0, 8, 0,
+			J, Jpows, 0, 9, 0,
+			n, 10) * pstar;
 }

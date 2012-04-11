@@ -7,7 +7,6 @@
 #	include "config.h"
 #endif
 
-
 #include "region2.h"
 #include "xmath.h"
 
@@ -45,30 +44,24 @@ static const double n[] = {
 	-0.20684671118824E-7, +0.16409393674725E-8
 };
 
+static const double Ipows[] = {
+	-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5
+};
+
 static const int I[] = {
 	0,
 
-	-6, -6, -5, -5, -4, -4, -4,
-	-3, -3, -3, -3,
-	-2, -2, -2, -2,
-	-1, -1, -1, -1, -1,
-	0, 0, 0, 0, 0, 0, 0,
-	1, 1, 1, 1, 1, 1,
-	2, 2, 2, 3, 3, 3,
-	4, 4, 5, 5, 5
+	0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 11, 11, 11
+};
+
+static const double Jpows[] = {
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 };
 
 static const int J[] = {
 	0,
 
-	0, 11, 0, 11, 0, 1, 11,
-	0, 1, 11, 12,
-	0, 1, 6, 10,
-	0, 1, 5, 8, 9,
-	0, 1, 2, 4, 5, 6, 9,
-	0, 1, 2, 3, 7, 8,
-	0, 1, 5, 0, 1, 3,
-	0, 1, 0, 1, 2
+	0, 11, 0, 11, 0, 1, 11, 0, 1, 11, 12, 0, 1, 6, 10, 0, 1, 5, 8, 9, 0, 1, 2, 4, 5, 6, 9, 0, 1, 2, 3, 7, 8, 0, 1, 5, 0, 1, 3, 0, 1, 0, 1, 2
 };
 
 static const double sstar = 0.7853; /* [kJ/kgK] */
@@ -76,26 +69,9 @@ static const double sstar = 0.7853; /* [kJ/kgK] */
 double h2o_region2b_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 {
 	double sigma = s / sstar;
-	double sigmaexpr = 10 - sigma;
 
-	double sum = 0;
-
-	int i;
-
-	double pipowers_store[6+6], sigmapowers[13];
-	double* pipowers = &pipowers_store[6];
-
-	fill_powers_incr(pipowers, 6, p, 0);
-	fill_powers_decr(pipowers, -6, p, 0);
-	fill_powers_incr(sigmapowers, 13, sigmaexpr, 0);
-
-	for (i = 1; i <= 44; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * pipow * sigmapow;
-	}
-
-	return sum;
+	return poly_value(p, 10 - sigma,
+			I, Ipows, 6, 12, 0,
+			J, Jpows, 0, 13, 0,
+			n, 44);
 }

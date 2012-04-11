@@ -71,25 +71,8 @@ double h2o_region3a_T_ph(double p, double h)
 	double pi = p / pstar;
 	double eta = h / hstar;
 
-	double piexpr = pi + 0.240;
-	double etaexpr = eta - 0.615;
-
-	double sum = 0;
-
-	int i;
-
-	double pipowers[13], etapowers[13];
-
-	fill_powers(pipowers, Ipows, 7, 13, piexpr, 0);
-	fill_powers(etapowers, Jpows, 0, 13, etaexpr, 0);
-
-	for (i = 1; i <= 31; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double etapow = etapowers[J[i]];
-
-		sum += n[i] * pipow * etapow;
-	}
-
-	return sum * Tstar;
+	return poly_value(pi + 0.240, eta - 0.615,
+			I, Ipows, 7, 13, 0,
+			J, Jpows, 0, 13, 0,
+			n, 31) * Tstar;
 }

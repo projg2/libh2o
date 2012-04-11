@@ -73,25 +73,8 @@ double h2o_region3a_v_ph(double p, double h)
 	double pi = p / pstar;
 	double eta = h / hstar;
 
-	double piexpr = pi + 0.128;
-	double etaexpr = eta - 0.727;
-
-	double sum = 0;
-
-	int i;
-
-	double pipowers[15], etapowers[14];
-
-	fill_powers(pipowers, Ipows, 8, 15, piexpr, 0);
-	fill_powers(etapowers, Jpows, 0, 14, etaexpr, 0);
-
-	for (i = 1; i <= 32; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double etapow = etapowers[J[i]];
-
-		sum += n[i] * pipow * etapow;
-	}
-
-	return sum * vstar;
+	return poly_value(pi + 0.128, eta - 0.727,
+			I, Ipows, 8, 15, 0,
+			J, Jpows, 0, 14, 0,
+			n, 32) * vstar;
 }

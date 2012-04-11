@@ -73,25 +73,8 @@ double h2o_region3b_v_ps(double p, double s)
 	double pi = p / pstar;
 	double sigma = s / sstar;
 
-	double piexpr = pi + 0.298;
-	double sigmaexpr = sigma - 0.816;
-
-	double sum = 0;
-
-	int i;
-
-	double pipowers[10], sigmapowers[8];
-
-	fill_powers(pipowers, Ipows, 7, 10, piexpr, 0);
-	fill_powers(sigmapowers, Jpows, 0, 8, sigmaexpr, 0);
-
-	for (i = 1; i <= 31; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * pipow * sigmapow;
-	}
-
-	return sum * vstar;
+	return poly_value(pi + 0.298, sigma - 0.816,
+			I, Ipows, 7, 10, 0,
+			J, Jpows, 0, 8, 0,
+			n, 31) * vstar;
 }

@@ -70,25 +70,9 @@ static const double sstar = 3.8; /* [kJ/kgK] */
 double h2o_b14_h_s(double s)
 {
 	double sigma = s / sstar;
-	double sigmaexprI = sigma - 1.09;
-	double sigmaexprJ = sigma + 0.366E-4;
 
-	double sum = 0;
-
-	int i;
-
-	double sigmapowersI[16], sigmapowersJ[17];
-
-	fill_powers(sigmapowersI, Ipows, 0, 16, sigmaexprI, 0);
-	fill_powers(sigmapowersJ, Jpows, 0, 17, sigmaexprJ, 0);
-
-	for (i = 1; i <= 27; ++i)
-	{
-		double sigmapowI = sigmapowersI[I[i]];
-		double sigmapowJ = sigmapowersJ[J[i]];
-
-		sum += n[i] * sigmapowI * sigmapowJ;
-	}
-
-	return sum * hstar;
+	return poly_value(sigma - 1.09, sigma + 0.366E-4,
+			I, Ipows, 0, 16, 0,
+			J, Jpows, 0, 17, 0,
+			n, 27) * hstar;
 }

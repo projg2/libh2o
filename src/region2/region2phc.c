@@ -64,25 +64,9 @@ static const double hstar = 2000; /* [kJ/kg] */
 double h2o_region2c_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 {
 	double eta = h / hstar;
-	double piexpr = p + 25;
-	double etaexpr = eta - 1.8;
 
-	double sum = 0;
-
-	int i;
-
-	double pipowers[9], etapowers[10];
-
-	fill_powers(pipowers, Ipows, 5, 9, piexpr, 0);
-	fill_powers(etapowers, Jpows, 0, 10, etaexpr, 0);
-
-	for (i = 1; i <= 23; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double etapow = etapowers[J[i]];
-
-		sum += n[i] * pipow * etapow;
-	}
-
-	return sum;
+	return poly_value(p + 25, eta - 1.8,
+			I, Ipows, 5, 9, 0,
+			J, Jpows, 0, 10, 0,
+			n, 23);
 }

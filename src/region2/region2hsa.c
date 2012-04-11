@@ -39,6 +39,10 @@ static const double n[] = {
 	+0.400645798472063E-1
 };
 
+static const double Ipows[] = {
+	0, 1, 2, 3, 4, 5, 6, 7
+};
+
 static const int I[] = {
 	0,
 
@@ -70,27 +74,12 @@ static const double sstar = 12; /* [kJ/kgK] */
 double h2o_region2a_p_hs(double h, double s)
 {
 	double eta = h / hstar;
-	double etaexpr = eta - 0.5;
-
 	double sigma = s / sstar;
-	double sigmaexpr = sigma - 1.2;
 
-	double sum = 0;
-
-	int i;
-
-	double etapowers[8], sigmapowers[10];
-
-	fill_powers_incr(etapowers, 8, etaexpr, 0);
-	fill_powers(sigmapowers, Jpows, 0, 10, sigmaexpr, 0);
-
-	for (i = 1; i <= 29; ++i)
-	{
-		double etapow = etapowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * etapow * sigmapow;
-	}
+	double sum = poly_value(eta - 0.5, sigma - 1.2,
+			I, Ipows, 0, 8, 0,
+			J, Jpows, 0, 10, 0,
+			n, 29);
 
 	return pow4(sum) * pstar;
 }

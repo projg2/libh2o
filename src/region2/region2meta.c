@@ -43,6 +43,10 @@ static const double n[] = {
 	-0.26456501482810E-2
 };
 
+static const double Ipows[] = {
+	0, 1, 2, 3, 4, 5
+};
+
 static const int I[] = {
 	0,
 
@@ -102,32 +106,10 @@ static inline double h2o_region2_meta_gammao_pitau(double pi, double tau, int pi
 
 static inline double h2o_region2_meta_gammar_pitau(double pi, double tau, int pider, int tauder)
 {
-	double tauexpr = tau - 0.5;
-
-	int i;
-	double sum = 0;
-
-	double pipowers[6];
-	double taupowers[10];
-
-	fill_powers_incr(pipowers, 6, pi, pider);
-	fill_powers(taupowers, Jpows, 0, 10, tauexpr, tauder);
-
-	for (i = 1; i <= 13; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double taupow = taupowers[J[i]];
-
-		double memb = n[i] * pipow * taupow;
-		if (pider == 1)
-			memb *= I[i];
-		if (tauder == 1)
-			memb *= Jpows[J[i]];
-
-		sum += memb;
-	}
-
-	return sum;
+	return poly_value(pi, tau - 0.5,
+			I, Ipows, 0, 6, pider,
+			J, Jpows, 0, 10, tauder,
+			n, 13);
 }
 
 static inline double h2o_region2_meta_gamma_pT(double p, double T, int pider, int tauder)

@@ -74,30 +74,13 @@ static const double Tstar = 550; /* [K] */
 static const double hstar = 2800; /* [kJ/kg] */
 static const double sstar = 9.2; /* [kJ/kgK] */
 
-
 double h2o_region4_T_hs(double h, double s)
 {
 	double eta = h / hstar;
-	double etaexpr = eta - 0.119;
 	double sigma = s / sstar;
-	double sigmaexpr = sigma - 1.07;
 
-	double sum = 0;
-
-	int i;
-
-	double etapowers[15], sigmapowers[17];
-
-	fill_powers(etapowers, Ipows, 0, 15, etaexpr, 0);
-	fill_powers(sigmapowers, Jpows, 0, 17, sigmaexpr, 0);
-
-	for (i = 1; i <= 36; ++i)
-	{
-		double etapow = etapowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * etapow * sigmapow;
-	}
-
-	return sum * Tstar;
+	return poly_value(eta - 0.119, sigma - 1.07,
+			I, Ipows, 0, 15, 0,
+			J, Jpows, 0, 17, 0,
+			n, 36) * Tstar;
 }

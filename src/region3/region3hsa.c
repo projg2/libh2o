@@ -74,27 +74,10 @@ static const double sstar = 4.4; /* [kJ/kgK] */
 double h2o_region3a_p_hs(double h, double s)
 {
 	double eta = h / hstar;
-	double etaexpr = eta - 1.01;
-
 	double sigma = s / sstar;
-	double sigmaexpr = sigma - 0.75;
 
-	double sum = 0;
-
-	int i;
-
-	double etapowers[17], sigmapowers[16];
-
-	fill_powers(etapowers, Ipows, 0, 17, etaexpr, 0);
-	fill_powers(sigmapowers, Jpows, 0, 16, sigmaexpr, 0);
-
-	for (i = 1; i <= 33; ++i)
-	{
-		double etapow = etapowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * etapow * sigmapow;
-	}
-
-	return sum * pstar;
+	return poly_value(eta - 1.01, sigma - 0.75,
+			I, Ipows, 0, 17, 0,
+			J, Jpows, 0, 16, 0,
+			n, 33) * pstar;
 }

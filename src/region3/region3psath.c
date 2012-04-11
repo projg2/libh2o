@@ -51,29 +51,13 @@ static const int J[] = {
 
 static const double pstar = 22; /* [MPa] */
 static const double hstar = 2600; /* [kJ/kg] */
-	
+
 double h2o_region3_psat_h(double h)
 {
 	double eta = h / hstar;
-	double etaexprI = eta - 1.02;
-	double etaexprJ = eta - 0.608;
 
-	double sum = 0;
-
-	int i;
-
-	double etapowersI[11], etapowersJ[9];
-
-	fill_powers(etapowersI, Ipows, 0, 11, etaexprI, 0);
-	fill_powers(etapowersJ, Jpows, 0, 9, etaexprJ, 0);
-
-	for (i = 1; i <= 14; ++i)
-	{
-		double etapowI = etapowersI[I[i]];
-		double etapowJ = etapowersJ[J[i]];
-
-		sum += n[i] * etapowI * etapowJ;
-	}
-
-	return sum * pstar;
+	return poly_value(eta - 1.02, eta - 0.608,
+			I, Ipows, 0, 11, 0,
+			J, Jpows, 0, 9, 0,
+			n, 14) * pstar;
 }

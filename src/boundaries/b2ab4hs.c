@@ -70,25 +70,11 @@ double h2o_b2ab4_h_s(double s)
 {
 	double sigma1 = s1star / s;
 	double sigma2 = s / s2star;
-	double sigmaexprI = sigma1 - 0.513;
-	double sigmaexprJ = sigma2 - 0.524;
 
-	double sum = 0;
-
-	int i;
-
-	double sigmapowersI[14], sigmapowersJ[15];
-
-	fill_powers(sigmapowersI, Ipows, 0, 14, sigmaexprI, 0);
-	fill_powers(sigmapowersJ, Jpows, 0, 15, sigmaexprJ, 0);
-
-	for (i = 1; i <= 30; ++i)
-	{
-		double sigmapowI = sigmapowersI[I[i]];
-		double sigmapowJ = sigmapowersJ[J[i]];
-
-		sum += n[i] * sigmapowI * sigmapowJ;
-	}
+	double sum = poly_value(sigma1 - 0.513, sigma2 - 0.524,
+			I, Ipows, 0, 14, 0,
+			J, Jpows, 0, 15, 0,
+			n, 30);
 
 	return exp(sum) * hstar;
 }

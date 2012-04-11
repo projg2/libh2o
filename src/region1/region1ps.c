@@ -30,6 +30,10 @@ static const double n[] = {
 	+0.78124600459723E-28, -0.30732199903668E-30
 };
 
+static const double Ipows[] = {
+	0, 1, 2, 3, 4
+};
+
 static const int I[] = {
 	0,
 
@@ -54,24 +58,8 @@ static const int J[] = {
 
 double h2o_region1_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 {
-	double sexpr = s + 2;
-
-	double sum = 0;
-
-	int i;
-
-	double ppowers[5], spowers[10];
-
-	fill_powers_incr(ppowers, 5, p, 0);
-	fill_powers(spowers, Jpows, 0, 10, sexpr, 0);
-
-	for (i = 1; i <= 20; ++i)
-	{
-		double pipow = ppowers[I[i]];
-		double sigmapow = spowers[J[i]];
-
-		sum += n[i] * pipow * sigmapow;
-	}
-
-	return sum;
+	return poly_value(p, s + 2,
+			I, Ipows, 0, 5, 0,
+			J, Jpows, 0, 10, 0,
+			n, 20);
 }

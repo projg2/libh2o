@@ -36,19 +36,27 @@ static const double n[] = {
 	+0.10162166825089E-09, -0.16429828281347E-09
 };
 
+static const double Ipows[] = {
+	-2, -1, 0, 1, 2, 3, 4, 5, 6, 7
+};
+
 static const int I[] = {
 	0,
 
-	-2, -2,
-	-1,
-	0, 0, 0, 0,
-	1, 1, 1, 1,
-	2, 2, 2,
-	3, 3, 3,
+	0, 0,
+	1,
+	2, 2, 2, 2,
+	3, 3, 3, 3,
 	4, 4, 4,
 	5, 5, 5,
-	6, 6,
-	7, 7, 7, 7, 7
+	6, 6, 6,
+	7, 7, 7,
+	8, 8,
+	9, 9, 9, 9, 9
+};
+
+static const double Jpows[] = {
+	0, 1, 2, 3, 4, 5
 };
 
 static const int J[] = {
@@ -71,26 +79,9 @@ static const double sstar = 2.9251; /* [kJ/kgK] */
 double h2o_region2c_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 {
 	double sigma = s / sstar;
-	double sigmaexpr = 2 - sigma;
 
-	double sum = 0;
-
-	int i;
-
-	double pipowers_store[2+8], sigmapowers[6];
-	double* pipowers = &pipowers_store[2];
-
-	fill_powers_incr(pipowers, 8, p, 0);
-	fill_powers_decr(pipowers, -2, p, 0);
-	fill_powers_incr(sigmapowers, 6, sigmaexpr, 0);
-
-	for (i = 1; i <= 30; ++i)
-	{
-		double pipow = pipowers[I[i]];
-		double sigmapow = sigmapowers[J[i]];
-
-		sum += n[i] * pipow * sigmapow;
-	}
-
-	return sum;
+	return poly_value(p, 2 - sigma,
+			I, Ipows, 2, 10, 0,
+			J, Jpows, 0, 6, 0,
+			n, 30);
 }
