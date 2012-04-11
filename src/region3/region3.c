@@ -7,7 +7,6 @@
 #	include "config.h"
 #endif
 
-
 #include "consts.h"
 #include "region3.h"
 #include "xmath.h"
@@ -67,15 +66,11 @@ static const int J[] = {
 	2, 14, 2, 14, 0, 1, 14
 };
 
-static const double rhostar = rhocrit;
-static const double pstar = pcrit;
-static const double Tstar = Tcrit;
-
 static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, int tauder)
 	/* rho [kg/m³], T [K], pider, tauder: 0/1 */
 {
-	double delta = rho / rhostar;
-	double tau = Tstar / T;
+	double delta = rho / rhocrit;
+	double tau = Tcrit / T;
 
 	double sum;
 
