@@ -125,8 +125,7 @@ static inline double h2o_region2_gammao_pitau(double pi, double tau, int pider, 
 			/* shift it for negative indices */
 		double* taupowers = &taupowers_store[5];
 
-		fill_powers_incr(taupowers, 4, tau, tauder);
-		fill_powers_decr(taupowers, -5, tau, tauder);
+		fill_powers_incr(taupowers, -5, 4, tau, tauder);
 
 		if (!tauder)
 			sum = log(pi);
