@@ -57,6 +57,10 @@ double h2o_region3_psat_s(double s);
 
 double h2o_region3u_v_pT(double p, double T);
 double h2o_region3v_v_pT(double p, double T);
+double h2o_region3w_v_pT(double p, double T);
+double h2o_region3x_v_pT(double p, double T);
+double h2o_region3y_v_pT(double p, double T);
+double h2o_region3z_v_pT(double p, double T);
 
 #ifdef __cplusplus
 };
