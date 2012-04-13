@@ -56,7 +56,7 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 		return H2O_REGION_OUT_OF_RANGE;
 
 	/* Check the region4 curves. */
-	if (p <= psatmax)
+	if (p <= psat12max)
 	{
 		double Tsat = h2o_region4_T_p(p);
 
@@ -96,7 +96,7 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 		return H2O_REGION_OUT_OF_RANGE;
 
 	/* First, check the region4 curves. */
-	if (p <= psatmax)
+	if (p <= psat12max)
 	{
 		double Tsat = h2o_region4_T_p(p);
 
@@ -178,7 +178,7 @@ enum h2o_region h2o_region_hs(double h, double s)
 
 enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
 {
-	if (x < 0 || x > 1 || T < Tmin || T > Tb13)
+	if (x < 0 || x > 1 || T < Tmin || T > Tcrit)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	return H2O_REGION4;
@@ -186,7 +186,7 @@ enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
 
 enum h2o_region h2o_region_px(double p, double x) /* [MPa, 0..1] */
 {
-	if (x < 0 || x > 1 || p < psatmin || p > psatmax)
+	if (x < 0 || x > 1 || p < psatmin || p > pcrit)
 		return H2O_REGION_OUT_OF_RANGE;
 
 	return H2O_REGION4;
