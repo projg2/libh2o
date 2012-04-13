@@ -281,22 +281,16 @@ double h2o_region4_h_Tx(double T, double x) /* [K, 0..1] -> [kJ/kg] */
 
 double h2o_region4_x_Ts(double T, double s) /* [K, kJ/kgK] -> [0..1] */
 {
-	double p = h2o_region4_p_T(T);
-
-	double s1 = h2o_region1_s_pT(p, T);
-	double s2 = p <= 10 ? h2o_region2_meta_s_pT(p, T)
-			: h2o_region2_s_pT(p, T);
+	double s1 = h2o_region4_s_Tx(T, 0);
+	double s2 = h2o_region4_s_Tx(T, 1);
 
 	return (s - s1) / (s2 - s1);
 }
 
 double h2o_region4_x_Th(double T, double h) /* [K, kJ/kg] -> [0..1] */
 {
-	double p = h2o_region4_p_T(T);
-
-	double h1 = h2o_region1_h_pT(p, T);
-	double h2 = p <= 10 ? h2o_region2_meta_h_pT(p, T)
-			: h2o_region2_h_pT(p, T);
+	double h1 = h2o_region4_h_Tx(T, 0);
+	double h2 = h2o_region4_h_Tx(T, 1);
 
 	return (h - h1) / (h2 - h1);
 }

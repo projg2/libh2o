@@ -73,7 +73,7 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 			if (p >= h2o_region3_psat_h(h))
 				return H2O_REGION3;
 			else
-				return H2O_REGION_OUT_OF_RANGE; /* XXX: adjust region 4 */
+				return H2O_REGION4;
 		}
 		else if (h <= h2o_region1_h_pT(p, Tb13))
 			return H2O_REGION1;
@@ -111,7 +111,7 @@ enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
 			return H2O_REGION1;
 		/* psat3(s) validity range */
 		else if (s >= psat3_smin && s <= psat3_smax && p < h2o_region3_psat_s(s))
-			return H2O_REGION_OUT_OF_RANGE; /* XXX: adjust region 4 */
+			return H2O_REGION4;
 		else if (s < h2o_region2_s_pT(p, h2o_b23_T_p(p)))
 			return H2O_REGION3;
 	}
