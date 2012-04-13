@@ -40,6 +40,7 @@ static const double psatmax = 16.5291642;
 static const double psatmin = 611.213E-6;
 
 /* Region 3 psat equations validity range */
+
 static const double psat3_hmin = 1670.858218;
 static const double psat3_hmax = 2563.592004;
 static const double psat3_smin = 3.778281340;
@@ -57,6 +58,9 @@ static const double sb23min = 5.048096828;
 static const double sb23max = 5.260578707;
 static const double hb23min = 2563.592004;
 static const double hb23max = 2812.942061;
+
+/* region 4 boundary saturation temperatures */
+static const double Tsat2meta2 = 584.1494880287; /* T(10 MPa) */
 
 #ifdef __cplusplus
 };
