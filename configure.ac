@@ -4,6 +4,8 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.6 foreign dist-bzip2 subdir-objects])
 
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
+
 AC_PROG_CC
 AC_C_INLINE
 
