@@ -55,7 +55,11 @@ double h2o_region3b_p_hs(double h, double s);
 double h2o_region3_psat_h(double h);
 double h2o_region3_psat_s(double s);
 
+double h2o_region3a_v_pT(double p, double T);
+double h2o_region3b_v_pT(double p, double T);
 double h2o_region3c_v_pT(double p, double T);
+double h2o_region3d_v_pT(double p, double T);
+double h2o_region3e_v_pT(double p, double T);
 double h2o_region3r_v_pT(double p, double T);
 double h2o_region3s_v_pT(double p, double T);
 double h2o_region3t_v_pT(double p, double T);
