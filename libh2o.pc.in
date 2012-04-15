@@ -8,3 +8,5 @@ Description: Routines for calculating water & steam properties per IF97
 Version: @VERSION@
 Libs: -L${libdir} -lh2o
 Cflags: -I${includedir}
+
+Libs.private: -lm
