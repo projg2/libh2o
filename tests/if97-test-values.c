@@ -247,20 +247,16 @@ int main(void)
 	CHECK(h2o_region3d_v_pT(30.000, 670.00), 0.2506897702E-2, 1E-12);
 	CHECK(h2o_region3e_v_pT(26.000, 661.00), 0.2970225962E-2, 1E-12);
 	CHECK(h2o_region3e_v_pT(30.000, 675.00), 0.3004627086E-2, 1E-12);
-#if 0
 	CHECK(h2o_region3f_v_pT(26.000, 671.00), 0.5019029401E-2, 1E-12);
 	CHECK(h2o_region3f_v_pT(30.000, 690.00), 0.4656470142E-2, 1E-12);
-#endif
 	CHECK(h2o_region3g_v_pT(23.600, 649.00), 0.2163198378E-2, 1E-12);
 	CHECK(h2o_region3g_v_pT(24.000, 650.00), 0.2166044161E-2, 1E-12);
 	CHECK(h2o_region3h_v_pT(23.600, 652.00), 0.2651081407E-2, 1E-12);
 	CHECK(h2o_region3h_v_pT(24.000, 654.00), 0.2967802335E-2, 1E-12);
-#if 0
 	CHECK(h2o_region3i_v_pT(23.600, 653.00), 0.3273916816E-2, 1E-12);
 	CHECK(h2o_region3i_v_pT(24.000, 655.00), 0.3550329864E-2, 1E-12);
 	CHECK(h2o_region3j_v_pT(23.500, 655.00), 0.4545001142E-2, 1E-12);
 	CHECK(h2o_region3j_v_pT(24.000, 660.00), 0.5100267704E-2, 1E-12);
-#endif
 	CHECK(h2o_region3k_v_pT(23.000, 660.00), 0.6109525997E-2, 1E-12);
 	CHECK(h2o_region3k_v_pT(24.000, 670.00), 0.6427325645E-2, 1E-12);
 	CHECK(h2o_region3l_v_pT(22.600, 646.00), 0.2117860851E-2, 1E-12);
