@@ -9,7 +9,7 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
 AC_PROG_CC
 AC_C_INLINE
 
-LT_INIT([disable-static])
+LT_INIT([disable-static win32-dll])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile libh2o.pc])

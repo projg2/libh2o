@@ -47,7 +47,7 @@ libh2o_la_SOURCES = src/boundaries/boundaries.c \
 	\
 	src/consts.h src/xmath.h
 libh2o_la_LIBADD = -lm
-libh2o_la_LDFLAGS = -version-info 0:0:0
+libh2o_la_LDFLAGS = -version-info 0:0:0 -no-undefined
 
 h2o_HEADERS = src/boundaries.h \
 	src/region1.h src/region2.h src/region3.h src/region4.h src/region5.h
