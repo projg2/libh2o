@@ -250,18 +250,22 @@ int main(void)
 #if 0
 	CHECK(h2o_region3f_v_pT(26.000, 671.00), 0.5019029401E-2, 1E-12);
 	CHECK(h2o_region3f_v_pT(30.000, 690.00), 0.4656470142E-2, 1E-12);
+#endif
 	CHECK(h2o_region3g_v_pT(23.600, 649.00), 0.2163198378E-2, 1E-12);
 	CHECK(h2o_region3g_v_pT(24.000, 650.00), 0.2166044161E-2, 1E-12);
 	CHECK(h2o_region3h_v_pT(23.600, 652.00), 0.2651081407E-2, 1E-12);
 	CHECK(h2o_region3h_v_pT(24.000, 654.00), 0.2967802335E-2, 1E-12);
+#if 0
 	CHECK(h2o_region3i_v_pT(23.600, 653.00), 0.3273916816E-2, 1E-12);
 	CHECK(h2o_region3i_v_pT(24.000, 655.00), 0.3550329864E-2, 1E-12);
 	CHECK(h2o_region3j_v_pT(23.500, 655.00), 0.4545001142E-2, 1E-12);
 	CHECK(h2o_region3j_v_pT(24.000, 660.00), 0.5100267704E-2, 1E-12);
 	CHECK(h2o_region3k_v_pT(23.000, 660.00), 0.6109525997E-2, 1E-12);
 	CHECK(h2o_region3k_v_pT(24.000, 670.00), 0.6427325645E-2, 1E-12);
+#endif
 	CHECK(h2o_region3l_v_pT(22.600, 646.00), 0.2117860851E-2, 1E-12);
 	CHECK(h2o_region3l_v_pT(23.000, 646.00), 0.2062374674E-2, 1E-12);
+#if 0
 	CHECK(h2o_region3m_v_pT(22.600, 648.60), 0.2533063780E-2, 1E-12);
 	CHECK(h2o_region3m_v_pT(22.800, 649.30), 0.2572971781E-2, 1E-12);
 	CHECK(h2o_region3n_v_pT(22.600, 649.00), 0.2923432711E-2, 1E-12);
@@ -270,9 +274,9 @@ int main(void)
 	CHECK(h2o_region3o_v_pT(22.800, 649.90), 0.3221160278E-2, 1E-12);
 	CHECK(h2o_region3p_v_pT(22.600, 649.40), 0.3715596186E-2, 1E-12);
 	CHECK(h2o_region3p_v_pT(22.800, 650.20), 0.3664754790E-2, 1E-12);
+#endif
 	CHECK(h2o_region3q_v_pT(21.100, 640.00), 0.1970999272E-2, 1E-12);
 	CHECK(h2o_region3q_v_pT(21.800, 643.00), 0.2043919161E-2, 1E-12);
-#endif
 	CHECK(h2o_region3r_v_pT(21.100, 644.00), 0.5251009921E-2, 1E-12);
 	CHECK(h2o_region3r_v_pT(21.800, 648.00), 0.5256844741E-2, 1E-12);
 	CHECK(h2o_region3s_v_pT(19.100, 635.00), 0.1932829079E-2, 1E-12);
