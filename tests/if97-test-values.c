@@ -260,9 +260,9 @@ int main(void)
 	CHECK(h2o_region3i_v_pT(24.000, 655.00), 0.3550329864E-2, 1E-12);
 	CHECK(h2o_region3j_v_pT(23.500, 655.00), 0.4545001142E-2, 1E-12);
 	CHECK(h2o_region3j_v_pT(24.000, 660.00), 0.5100267704E-2, 1E-12);
+#endif
 	CHECK(h2o_region3k_v_pT(23.000, 660.00), 0.6109525997E-2, 1E-12);
 	CHECK(h2o_region3k_v_pT(24.000, 670.00), 0.6427325645E-2, 1E-12);
-#endif
 	CHECK(h2o_region3l_v_pT(22.600, 646.00), 0.2117860851E-2, 1E-12);
 	CHECK(h2o_region3l_v_pT(23.000, 646.00), 0.2062374674E-2, 1E-12);
 #if 0
