@@ -11,6 +11,14 @@ AC_C_INLINE
 
 LT_INIT([disable-static win32-dll])
 
+AC_ARG_ENABLE([debug],
+	[AS_HELP_STRING([--enable-debug],
+		[Enable debugging assertions])])
+
+AS_IF([test x"$enable_debug" != x"yes"], [
+	AC_DEFINE([NDEBUG], [1], [define to disable assertions])
+])
+
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile libh2o.pc])
 AC_OUTPUT
