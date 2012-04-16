@@ -261,12 +261,10 @@ int main(void)
 	CHECK(h2o_region3k_v_pT(24.000, 670.00), 0.6427325645E-2, 1E-12);
 	CHECK(h2o_region3l_v_pT(22.600, 646.00), 0.2117860851E-2, 1E-12);
 	CHECK(h2o_region3l_v_pT(23.000, 646.00), 0.2062374674E-2, 1E-12);
-#if 0
 	CHECK(h2o_region3m_v_pT(22.600, 648.60), 0.2533063780E-2, 1E-12);
 	CHECK(h2o_region3m_v_pT(22.800, 649.30), 0.2572971781E-2, 1E-12);
 	CHECK(h2o_region3n_v_pT(22.600, 649.00), 0.2923432711E-2, 1E-12);
 	CHECK(h2o_region3n_v_pT(22.800, 649.70), 0.2913311494E-2, 1E-12);
-#endif
 	CHECK(h2o_region3o_v_pT(22.600, 649.10), 0.3131208996E-2, 1E-12);
 	CHECK(h2o_region3o_v_pT(22.800, 649.90), 0.3221160278E-2, 1E-12);
 	CHECK(h2o_region3p_v_pT(22.600, 649.40), 0.3715596186E-2, 1E-12);
