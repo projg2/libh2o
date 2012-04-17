@@ -17,7 +17,8 @@
 #include "region4.h"
 #include "region5.h"
 
-int exit_status;
+int tests_done = 0;
+int tests_failed = 0;
 
 void _check(double result, double expected, double precision, const char* call)
 {
@@ -27,11 +28,13 @@ void _check(double result, double expected, double precision, const char* call)
 	{
 		fprintf(stderr, "[FAIL] %s = %.9e, while %.9e expected.\n",
 				call, result, expected);
-		exit_status++;
+		++tests_failed;
 	}
 	else
 		fprintf(stderr, "[ OK ] %s = %.9e.\n",
 				call, result);
+
+	++tests_done;
 }
 
 #define CHECK(call, expected, precision) _check(call, expected, precision, #call)
@@ -301,5 +304,10 @@ int main(void)
 	CHECK(h2o_region3qu_T_p(22.0), 0.6456355027E3, 1E-7);
 	CHECK(h2o_region3rx_T_p(22.0), 0.6482622754E3, 1E-7);
 
-	return exit_status;
+	if (tests_failed == 0)
+		fprintf(stderr, "%d tests done. All tests suceeded.\n", tests_done);
+	else
+		fprintf(stderr, "%d of %d tests failed.\n", tests_failed, tests_done);
+
+	return tests_failed ? 1 : 0;
 }
