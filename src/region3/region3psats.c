@@ -54,7 +54,7 @@ double h2o_region3_psat_s(double s)
 {
 	double sigma = s / sstar;
 
-	return poly_value(sigma - 1.03, sigma - 0.699,
+	return twoarg_poly_value(sigma - 1.03, sigma - 0.699,
 			I, Ipows, 0, 8, 0,
 			J, Jpows, 0, 9, 0,
 			n, 10) * pstar;

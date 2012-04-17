@@ -56,7 +56,7 @@ double h2o_region3_psat_h(double h)
 {
 	double eta = h / hstar;
 
-	return poly_value(eta - 1.02, eta - 0.608,
+	return twoarg_poly_value(eta - 1.02, eta - 0.608,
 			I, Ipows, 0, 11, 0,
 			J, Jpows, 0, 9, 0,
 			n, 14) * pstar;

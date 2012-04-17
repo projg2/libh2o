@@ -106,7 +106,7 @@ static inline double h2o_region2_meta_gammao_pitau(double pi, double tau, int pi
 
 static inline double h2o_region2_meta_gammar_pitau(double pi, double tau, int pider, int tauder)
 {
-	return poly_value(pi, tau - 0.5,
+	return twoarg_poly_value(pi, tau - 0.5,
 			I, Ipows, 0, 6, pider,
 			J, Jpows, 0, 10, tauder,
 			n, 13);

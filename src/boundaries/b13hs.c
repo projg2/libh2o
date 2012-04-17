@@ -55,7 +55,7 @@ double h2o_b13_h_s(double s)
 {
 	double sigma = s / sstar;
 
-	return poly_value(sigma - 0.884, sigma - 0.864,
+	return twoarg_poly_value(sigma - 0.884, sigma - 0.864,
 			I, Ipows, 0, 5, 0,
 			J, Jpows, 4, 7, 0,
 			n, 6) * hstar;

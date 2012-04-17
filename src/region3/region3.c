@@ -85,7 +85,7 @@ static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, in
 	else
 		sum = n[1] * log(delta);
 
-	sum += poly_value(delta, tau,
+	sum += twoarg_poly_value(delta, tau,
 			&I[1], Ipows, 0, 12, deltader,
 			&J[1], Jpows, 0, 15, tauder,
 			&n[1], 40-1);

@@ -88,7 +88,7 @@ static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tau
 	double pi = p / pstar;
 	double tau = Tstar / T;
 
-	double sum = poly_value(7.1 - pi, tau - 1.222,
+	double sum = twoarg_poly_value(7.1 - pi, tau - 1.222,
 			I, Ipows, 0, 13, pider,
 			J, Jpows, 16, 25, tauder,
 			n, 34);

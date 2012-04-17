@@ -76,7 +76,7 @@ double h2o_region2a_p_hs(double h, double s)
 	double eta = h / hstar;
 	double sigma = s / sstar;
 
-	double sum = poly_value(eta - 0.5, sigma - 1.2,
+	double sum = twoarg_poly_value(eta - 0.5, sigma - 1.2,
 			I, Ipows, 0, 8, 0,
 			J, Jpows, 0, 10, 0,
 			n, 29);

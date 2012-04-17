@@ -71,7 +71,7 @@ double h2o_b2ab4_h_s(double s)
 	double sigma1 = s1star / s;
 	double sigma2 = s / s2star;
 
-	double sum = poly_value(sigma1 - 0.513, sigma2 - 0.524,
+	double sum = twoarg_poly_value(sigma1 - 0.513, sigma2 - 0.524,
 			I, Ipows, 0, 14, 0,
 			J, Jpows, 0, 15, 0,
 			n, 30);

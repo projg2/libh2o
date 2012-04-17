@@ -58,7 +58,7 @@ static const int J[] = {
 
 double h2o_region1_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 {
-	return poly_value(p, s + 2,
+	return twoarg_poly_value(p, s + 2,
 			I, Ipows, 0, 5, 0,
 			J, Jpows, 0, 10, 0,
 			n, 20);

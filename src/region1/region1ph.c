@@ -64,7 +64,7 @@ double h2o_region1_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
 {
 	double eta = h / hstar;
 
-	return poly_value(p, eta + 1,
+	return twoarg_poly_value(p, eta + 1,
 			I, Ipows, 0, 7, 0,
 			J, Jpows, 0, 9, 0,
 			n, 20);

@@ -71,7 +71,7 @@ double h2o_region3b_v_pT(double p, double T)
 	double pi = p / pstar;
 	double theta = T / Tstar;
 
-	return poly_value(pi - 0.280, theta - 0.779,
+	return twoarg_poly_value(pi - 0.280, theta - 0.779,
 			I, Ipows, 9, 14, 0,
 			J, Jpows, 0, 11, 0,
 			n, 32) * vstar;

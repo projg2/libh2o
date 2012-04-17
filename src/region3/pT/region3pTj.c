@@ -70,7 +70,7 @@ double h2o_region3j_v_pT(double p, double T)
 	double pi = p / pstar;
 	double theta = T / Tstar;
 
-	double sum = poly_value(sqrt(pi - 0.875), theta - 0.964,
+	double sum = twoarg_poly_value(sqrt(pi - 0.875), theta - 0.964,
 			I, Ipows, 0, 15, 0,
 			J, Jpows, 8, 12, 0,
 			n, 29);

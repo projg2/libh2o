@@ -71,7 +71,7 @@ double h2o_b14_h_s(double s)
 {
 	double sigma = s / sstar;
 
-	return poly_value(sigma - 1.09, sigma + 0.366E-4,
+	return twoarg_poly_value(sigma - 1.09, sigma + 0.366E-4,
 			I, Ipows, 0, 16, 0,
 			J, Jpows, 0, 17, 0,
 			n, 27) * hstar;

@@ -64,7 +64,7 @@ double h2o_region1_p_hs(double h, double s) /* [kJ/kg, kJ/kgK] -> [MPa] */
 	double eta = h / hstar;
 	double sigma = s / sstar;
 
-	return poly_value(eta + 0.05, sigma + 0.05,
+	return twoarg_poly_value(eta + 0.05, sigma + 0.05,
 			I, Ipows, 0, 6, 0,
 			J, Jpows, 0, 9, 0,
 			n, 19) * pstar;

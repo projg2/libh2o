@@ -80,7 +80,7 @@ double h2o_region2c_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 {
 	double sigma = s / sstar;
 
-	return poly_value(p, 2 - sigma,
+	return twoarg_poly_value(p, 2 - sigma,
 			I, Ipows, 2, 10, 0,
 			J, Jpows, 0, 6, 0,
 			n, 30);

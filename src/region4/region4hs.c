@@ -79,7 +79,7 @@ double h2o_region4_T_hs(double h, double s)
 	double eta = h / hstar;
 	double sigma = s / sstar;
 
-	return poly_value(eta - 0.119, sigma - 1.07,
+	return twoarg_poly_value(eta - 0.119, sigma - 1.07,
 			I, Ipows, 0, 15, 0,
 			J, Jpows, 0, 17, 0,
 			n, 36) * Tstar;

@@ -71,7 +71,7 @@ double h2o_b23_T_hs(double h, double s)
 	double eta = h / hstar;
 	double sigma = s / sstar;
 
-	return poly_value(eta - 0.727, sigma - 0.864,
+	return twoarg_poly_value(eta - 0.727, sigma - 0.864,
 			I, Ipows, 6, 14, 0,
 			J, Jpows, 7, 14, 0,
 			n, 25) * Tstar;

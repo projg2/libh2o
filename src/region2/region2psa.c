@@ -97,7 +97,7 @@ double h2o_region2a_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
 {
 	double sigma = s / sstar;
 
-	return poly_value(sqrt(sqrt(p)), sigma - 2,
+	return twoarg_poly_value(sqrt(sqrt(p)), sigma - 2,
 			I, Ipows, 6, 13, 0,
 			J, Jpows, 18, 34, 0,
 			n, 46);

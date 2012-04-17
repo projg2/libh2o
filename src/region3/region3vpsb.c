@@ -73,7 +73,7 @@ double h2o_region3b_v_ps(double p, double s)
 	double pi = p / pstar;
 	double sigma = s / sstar;
 
-	return poly_value(pi + 0.298, sigma - 0.816,
+	return twoarg_poly_value(pi + 0.298, sigma - 0.816,
 			I, Ipows, 7, 10, 0,
 			J, Jpows, 0, 8, 0,
 			n, 31) * vstar;

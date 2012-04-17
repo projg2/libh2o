@@ -92,7 +92,7 @@ static inline void fill_powers_incr(double* powers, int min, int count, double e
 	}
 }
 
-static inline double poly_value(double x1, double x2,
+static inline double twoarg_poly_value(double x1, double x2,
 		const int I[], const double Ipows[], int Ipowzero,
 		int Ipowlen, int x1der,
 		const int J[], const double Jpows[], int Jpowzero,
