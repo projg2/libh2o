@@ -290,5 +290,7 @@ int main(void)
 	CHECK(h2o_region3z_v_pT(22.000, 646.89), 0.3798732962E-2, 1E-12);
 	CHECK(h2o_region3z_v_pT(22.064, 647.15), 0.3701940010E-2, 1E-12);
 
+	CHECK(h2o_region3ab_T_p(40.0), 0.6930341408E3, 1E-7);
+
 	return exit_status;
 }
