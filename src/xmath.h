@@ -92,6 +92,35 @@ static inline void fill_powers_incr(double* powers, int min, int count, double e
 	}
 }
 
+static inline double poly_value(double x,
+		int min, int max, int deriv,
+		const double n[])
+{
+	double sum;
+
+	const int maxn = 1 - min + max;
+
+	int i;
+
+	sum = n[maxn];
+
+	if (deriv == 1)
+		sum *= maxn + min - 1;
+
+	for (i = maxn - 1; i >= 1; --i)
+	{
+		double coeff = n[i];
+
+		if (deriv == 1)
+			coeff *= i + min - 1;
+
+		sum *= x;
+		sum += coeff;
+	}
+
+	return sum * pow(x, min - deriv);
+}
+
 static inline double twoarg_poly_value(double x1, double x2,
 		const int I[], const double Ipows[], int Ipowzero,
 		int Ipowlen, int x1der,
