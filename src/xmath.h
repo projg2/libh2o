@@ -69,29 +69,6 @@ static inline void fill_powers(double* powers, const double* exponents,
 	}
 }
 
-static inline void fill_powers_incr(double* powers, int min, int count, double expr, int deriv)
-{
-	int i;
-	double tmp = expr;
-
-	powers[deriv + 1] = tmp;
-
-	for (i = deriv + 2; i < count; ++i)
-	{
-		tmp *= expr;
-		powers[i] = tmp;
-	}
-
-	tmp = 1.0;
-	powers[deriv] = tmp;
-
-	for (i = deriv - 1; i >= min; --i)
-	{
-		tmp /= expr;
-		powers[i] = tmp;
-	}
-}
-
 static inline double poly_value(double x,
 		int min, int max, int deriv,
 		const double n[])
