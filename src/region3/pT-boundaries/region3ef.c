@@ -15,16 +15,7 @@
  * for Region 3 of the IAPWS Industrial Formulation 1997 for the
  * Thermodynamic Properties of Water and Steam */
 
-/* reordered to sort powers incrementally */
-static const double n[] = {
-	+0.000000000000000E0,
-
-	+0.918419702359447E3, -0.191887498864292E4,
-	+0.154793642129415E4, -0.187661219490113E3,
-	+0.213144632222113E2
-};
-
-double h2o_region3ab_T_p(double p)
+double h2o_region3ef_T_p(double p)
 {
-	return poly_value(log(p), -2, 2, 0, n);
+	return 3.727888004 * (p - 22.064) + 647.096;
 }
