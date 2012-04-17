@@ -14,20 +14,15 @@
 /* Based on IF97-Rev, s. 6: Equations for Region 2 */
 
 /* ideal-gas part coefficients */
-static const double no_store[] = {
-	-0.56087911283020E-2,
-	+0.71452738081455E-1,
-	-0.40710498223928E+0,
-	+0.14240819171444E+1,
-	-0.43839511319450E+1,
-	-0.96927686500217E+1,
-	+0.10086655968018E+2,
-	-0.28408632460772E+0,
+static const double no[] = {
+	+0.00000000000000E+0,
+
+	-0.56087911283020E-2, +0.71452738081455E-1,
+	-0.40710498223928E+0, +0.14240819171444E+1,
+	-0.43839511319450E+1, -0.96927686500217E+1,
+	+0.10086655968018E+2, -0.28408632460772E+0,
 	+0.21268463753307E-1
 };
-
-/* shift for negative indices */
-static const double *no = &no_store[5];
 
 /* resident part coefficients */
 static const double n[] = {
@@ -118,28 +113,10 @@ static inline double h2o_region2_gammao_pitau(double pi, double tau, int pider, 
 {
 	if (!pider)
 	{
-		int i;
-		double sum = 0;
-
-		double taupowers_store[4 + 5];
-			/* shift it for negative indices */
-		double* taupowers = &taupowers_store[5];
-
-		fill_powers_incr(taupowers, -5, 4, tau, tauder);
+		double sum = poly_value(tau, -5, 3, tauder, no);
 
 		if (!tauder)
-			sum = log(pi);
-
-		for (i = -5; i <= 3; ++i)
-		{
-			double taupow = taupowers[i];
-
-			double memb = no[i] * taupow;
-			if (tauder == 1)
-				memb *= i;
-
-			sum += memb;
-		}
+			sum += log(pi);
 
 		return sum;
 	}

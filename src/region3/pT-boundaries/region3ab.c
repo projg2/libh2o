@@ -16,29 +16,15 @@
  * Thermodynamic Properties of Water and Steam */
 
 /* reordered to sort powers incrementally */
-static const double n_store[] = {
+static const double n[] = {
+	+0.000000000000000E0,
+
 	+0.918419702359447E3, -0.191887498864292E4,
 	+0.154793642129415E4, -0.187661219490113E3,
 	+0.213144632222113E2
 };
 
-static const double *n = &n_store[2];
-
 double h2o_region3ab_T_p(double p)
 {
-	double pi = p;
-
-	int i;
-	double sum = 0;
-
-	double pipowers_store[3 + 2];
-		/* shift it for negative indices */
-	double* pipowers = &pipowers_store[2];
-
-	fill_powers_incr(pipowers, -2, 3, log(pi), 0);
-
-	for (i = -2; i <= 2; ++i)
-		sum += n[i] * pipowers[i];
-
-	return sum;
+	return poly_value(log(p), -2, 3, 0, n);
 }
