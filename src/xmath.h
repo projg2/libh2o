@@ -95,7 +95,10 @@ static inline double poly_value(double x,
 		sum += coeff;
 	}
 
-	return sum * pow(x, min - deriv);
+	if (min - deriv != 0)
+		sum *= pow(x, min - deriv);
+
+	return sum;
 }
 
 static inline double twoarg_poly_value(double x1, double x2,
