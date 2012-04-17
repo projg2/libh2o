@@ -47,6 +47,11 @@ libh2o_la_SOURCES = src/boundaries/boundaries.c \
 	src/region3/pT/region3pTw.c src/region3/pT/region3pTx.c \
 	src/region3/pT/region3pTy.c src/region3/pT/region3pTz.c \
 	src/region3/pT-boundaries/region3ab.c \
+	src/region3/pT-boundaries/region3cd.c \
+	src/region3/pT-boundaries/region3gh.c \
+	src/region3/pT-boundaries/region3ij.c \
+	src/region3/pT-boundaries/region3jk.c \
+	src/region3/pT-boundaries/region3mn.c \
 	\
 	src/region4/region4.c src/region4/region4hs.c \
 	\
