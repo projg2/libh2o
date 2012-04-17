@@ -26,5 +26,5 @@ static const double n[] = {
 
 double h2o_region2_b2ab_h_s(double s)
 {
-	return deg3_value(n[4], n[3], n[2], n[1], s);
+	return poly_value(s, 0, 3, 0, n);
 }
