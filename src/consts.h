@@ -67,6 +67,10 @@ static const double Tsat3xmax = 646.4833337075;
 /* and pressures */
 static const double psatmin = 611.213E-6;
 static const double psat12max = 16.5291642443;
+static const double psat3rsmax = 21.0433673066;
+
+/* region 3 */
+static const double p3cd = 19.00881189173929;
 
 #ifdef __cplusplus
 };

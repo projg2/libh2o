@@ -24,6 +24,8 @@ double h2o_region3_T_ps(double p, double s);
 double h2o_region3_v_ps(double p, double s);
 double h2o_region3_p_hs(double h, double s);
 
+double h2o_region3_v_pT(double p, double T);
+
 /* special use functions */
 
 enum h2o_region3_subregion
@@ -54,6 +56,21 @@ double h2o_region3b_p_hs(double h, double s);
 
 double h2o_region3_psat_h(double h);
 double h2o_region3_psat_s(double s);
+
+enum h2o_region3_subregion_pT
+{
+	H2O_REGION3A_PT, H2O_REGION3B_PT, H2O_REGION3C_PT, H2O_REGION3D_PT,
+	H2O_REGION3E_PT, H2O_REGION3F_PT, H2O_REGION3G_PT, H2O_REGION3H_PT,
+	H2O_REGION3I_PT, H2O_REGION3J_PT, H2O_REGION3K_PT, H2O_REGION3L_PT,
+	H2O_REGION3M_PT, H2O_REGION3N_PT, H2O_REGION3O_PT, H2O_REGION3P_PT,
+	H2O_REGION3Q_PT, H2O_REGION3R_PT, H2O_REGION3S_PT, H2O_REGION3T_PT,
+	H2O_REGION3U_PT, H2O_REGION3V_PT, H2O_REGION3W_PT, H2O_REGION3X_PT,
+	H2O_REGION3Y_PT, H2O_REGION3Z_PT,
+
+	H2O_REGION3_PT_MAX
+};
+
+enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T);
 
 double h2o_region3a_v_pT(double p, double T);
 double h2o_region3b_v_pT(double p, double T);
