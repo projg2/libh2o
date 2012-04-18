@@ -109,6 +109,8 @@ double h2o_region3mn_T_p(double p);
 double h2o_region3op_T_p(double p);
 double h2o_region3qu_T_p(double p);
 double h2o_region3rx_T_p(double p);
+double h2o_region3uv_T_p(double p);
+double h2o_region3wx_T_p(double p);
 
 #ifdef __cplusplus
 };

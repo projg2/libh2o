@@ -303,6 +303,8 @@ int main(void)
 	CHECK(h2o_region3op_T_p(22.8), 0.6500106943E3, 1E-7);
 	CHECK(h2o_region3qu_T_p(22.0), 0.6456355027E3, 1E-7);
 	CHECK(h2o_region3rx_T_p(22.0), 0.6482622754E3, 1E-7);
+	CHECK(h2o_region3uv_T_p(22.3), 0.6477996121E3, 1E-7);
+	CHECK(h2o_region3wx_T_p(22.3), 0.6482049480E3, 1E-7);
 
 	if (tests_failed == 0)
 		fprintf(stderr, "%d tests done. All tests suceeded.\n", tests_done);
