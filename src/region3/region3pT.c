@@ -28,11 +28,18 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 		else
 			return H2O_REGION3B_PT;
 	}
+	else if (p <= p3cd)
+	{
+		if (T <= h2o_region4_T_p(p))
+			return H2O_REGION3C_PT;
+		else
+			return H2O_REGION3T_PT;
+	}
+	else if (T <= h2o_region3cd_T_p(p))
+		return H2O_REGION3C_PT;
 	else if (p > 25)
 	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region3ab_T_p(p))
+		if (T <= h2o_region3ab_T_p(p))
 			return H2O_REGION3D_PT;
 		else if (T <= h2o_region3ef_T_p(p))
 			return H2O_REGION3E_PT;
@@ -41,9 +48,7 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 	}
 	else if (p > 23.5)
 	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region3gh_T_p(p))
+		if (T <= h2o_region3gh_T_p(p))
 			return H2O_REGION3G_PT;
 		else if (T <= h2o_region3ef_T_p(p))
 			return H2O_REGION3H_PT;
@@ -56,9 +61,7 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 	}
 	else if (p > 23)
 	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region3gh_T_p(p))
+		if (T <= h2o_region3gh_T_p(p))
 			return H2O_REGION3L_PT;
 		else if (T <= h2o_region3ef_T_p(p))
 			return H2O_REGION3H_PT;
@@ -71,9 +74,7 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 	}
 	else if (p > 22.5)
 	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region3gh_T_p(p))
+		if (T <= h2o_region3gh_T_p(p))
 			return H2O_REGION3L_PT;
 		else if (T <= h2o_region3mn_T_p(p))
 			return H2O_REGION3M_PT;
@@ -90,9 +91,7 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 	}
 	else if (p > psat3rsmax) /* @ 643.15K */
 	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region3qu_T_p(p))
+		if (T <= h2o_region3qu_T_p(p))
 			return H2O_REGION3Q_PT;
 		else if (T <= h2o_region3rx_T_p(p))
 		{
@@ -144,28 +143,17 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 	}
 	else if (p > 20.5)
 	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region4_T_p(p))
+		if (T <= h2o_region4_T_p(p))
 			return H2O_REGION3S_PT;
 		else if (T <= h2o_region3jk_T_p(p))
 			return H2O_REGION3R_PT;
 		else
 			return H2O_REGION3K_PT;
 	}
-	else if (p > p3cd)
-	{
-		if (T <= h2o_region3cd_T_p(p))
-			return H2O_REGION3C_PT;
-		else if (T <= h2o_region4_T_p(p))
-			return H2O_REGION3S_PT;
-		else
-			return H2O_REGION3T_PT;
-	}
 	else
 	{
 		if (T <= h2o_region4_T_p(p))
-			return H2O_REGION3C_PT;
+			return H2O_REGION3S_PT;
 		else
 			return H2O_REGION3T_PT;
 	}
