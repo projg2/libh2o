@@ -71,6 +71,8 @@ static const double psat3rsmax = 21.0433673066;
 
 /* region 3 */
 static const double p3cd = 19.00881189173929;
+static const double p3ymin = 21.93161551; /* 0.00264 m³/kg */
+static const double p3zmin = 21.90096265; /* 0.00385 m³/kg */
 
 #ifdef __cplusplus
 };

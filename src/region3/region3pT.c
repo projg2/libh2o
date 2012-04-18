@@ -95,7 +95,48 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 		else if (T <= h2o_region3qu_T_p(p))
 			return H2O_REGION3Q_PT;
 		else if (T <= h2o_region3rx_T_p(p))
-			return H2O_REGION3_PT_MAX; /* XXX: backwards eq */
+		{
+			/* backwards equations */
+			if (p > 22.11)
+			{
+				if (T <= h2o_region3uv_T_p(p))
+					return H2O_REGION3U_PT;
+				else if (T <= h2o_region3ef_T_p(p))
+					return H2O_REGION3V_PT;
+				else if (T <= h2o_region3wx_T_p(p))
+					return H2O_REGION3W_PT;
+				else
+					return H2O_REGION3X_PT;
+			}
+			else if (p > pcrit)
+			{
+				if (T <= h2o_region3uv_T_p(p))
+					return H2O_REGION3U_PT;
+				else if (T <= h2o_region3ef_T_p(p))
+					return H2O_REGION3Y_PT;
+				else if (T <= h2o_region3wx_T_p(p))
+					return H2O_REGION3Z_PT;
+				else
+					return H2O_REGION3X_PT;
+			}
+			else
+			{
+				if (T <= h2o_region4_T_p(p))
+				{
+					if (p > p3ymin && T > h2o_region3uv_T_p(p))
+						return H2O_REGION3Y_PT;
+					else
+						return H2O_REGION3U_PT;
+				}
+				else
+				{
+					if (p > p3zmin && T <= h2o_region3wx_T_p(p))
+						return H2O_REGION3Z_PT;
+					else
+						return H2O_REGION3X_PT;
+				}
+			}
+		}
 		else if (T <= h2o_region3jk_T_p(p))
 			return H2O_REGION3R_PT;
 		else
