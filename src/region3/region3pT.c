@@ -46,23 +46,15 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 		else
 			return H2O_REGION3F_PT;
 	}
-	else if (p > 23.5)
-	{
-		if (T <= h2o_region3gh_T_p(p))
-			return H2O_REGION3G_PT;
-		else if (T <= h2o_region3ef_T_p(p))
-			return H2O_REGION3H_PT;
-		else if (T <= h2o_region3ij_T_p(p))
-			return H2O_REGION3I_PT;
-		else if (T <= h2o_region3jk_T_p(p))
-			return H2O_REGION3J_PT;
-		else
-			return H2O_REGION3K_PT;
-	}
 	else if (p > 23)
 	{
 		if (T <= h2o_region3gh_T_p(p))
-			return H2O_REGION3L_PT;
+		{
+			if (p > 23.5)
+				return H2O_REGION3G_PT;
+			else
+				return H2O_REGION3L_PT;
+		}
 		else if (T <= h2o_region3ef_T_p(p))
 			return H2O_REGION3H_PT;
 		else if (T <= h2o_region3ij_T_p(p))
