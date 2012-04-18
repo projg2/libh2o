@@ -165,7 +165,7 @@ enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T)
 	else
 	{
 		if (T <= h2o_region4_T_p(p))
-			return H2O_REGION3S_PT;
+			return H2O_REGION3C_PT;
 		else
 			return H2O_REGION3T_PT;
 	}
