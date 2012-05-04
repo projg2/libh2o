@@ -251,6 +251,16 @@ h2o_t h2o_new_rhoT(double rho, double T)
 	return ret;
 }
 
+int h2o_is_valid(const h2o_t state)
+{
+	return state.region != H2O_REGION_OUT_OF_RANGE;
+}
+
+enum h2o_region h2o_get_region(const h2o_t state)
+{
+	return state.region;
+}
+
 double h2o_get_p(const h2o_t state)
 {
 	double ret;

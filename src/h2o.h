@@ -31,6 +31,10 @@ h2o_t h2o_new_ps(double p, double s);
 h2o_t h2o_new_hs(double h, double s);
 h2o_t h2o_new_rhoT(double rho, double T);
 
+int h2o_is_valid(const h2o_t state);
+
+enum h2o_region h2o_get_region(const h2o_t state);
+
 double h2o_get_p(const h2o_t state);
 double h2o_get_T(const h2o_t state);
 double h2o_get_x(const h2o_t state);
