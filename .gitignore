@@ -19,5 +19,5 @@
 /libtool
 /m4/
 /stamp-h1
-/if97-test-values
-/h2o-t-tests
+/tests/if97-test-values
+/tests/h2o-t-tests

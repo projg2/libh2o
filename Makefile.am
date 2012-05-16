@@ -75,13 +75,13 @@ h2o_HEADERS = src/boundaries.h src/h2o.h \
 
 pkgconfig_DATA = libh2o.pc
 
-TESTS = if97-test-values h2o-t-tests
+TESTS = tests/if97-test-values tests/h2o-t-tests
 check_PROGRAMS = $(TESTS)
 
-if97_test_values_SOURCES = tests/if97-test-values.c
-if97_test_values_CPPFLAGS = -I$(top_srcdir)/src
-if97_test_values_LDADD = libh2o.la
+tests_if97_test_values_SOURCES = tests/if97-test-values.c
+tests_if97_test_values_CPPFLAGS = -I$(top_srcdir)/src
+tests_if97_test_values_LDADD = libh2o.la
 
-h2o_t_tests_SOURCES = tests/h2o-t-tests.c
-h2o_t_tests_CPPFLAGS = -I$(top_srcdir)/src
-h2o_t_tests_LDADD = libh2o.la
+tests_h2o_t_tests_SOURCES = tests/h2o-t-tests.c
+tests_h2o_t_tests_CPPFLAGS = -I$(top_srcdir)/src
+tests_h2o_t_tests_LDADD = libh2o.la
