@@ -36,9 +36,12 @@ enum h2o_region3_subregion
 	H2O_REGION3_MAX
 };
 
-enum h2o_region3_subregion h2o_region3_subregion_ph(double p, double h);
-enum h2o_region3_subregion h2o_region3_subregion_ps(double p, double s);
-enum h2o_region3_subregion h2o_region3_subregion_hs(double h, double s);
+enum h2o_region3_subregion
+	h2o_region3_subregion_ph(double p, double h);
+enum h2o_region3_subregion
+	h2o_region3_subregion_ps(double p, double s);
+enum h2o_region3_subregion
+	h2o_region3_subregion_hs(double h, double s);
 
 double h2o_region3_b3ab_h_p(double p);
 
@@ -73,7 +76,8 @@ enum h2o_region3_subregion_pT
 	H2O_REGION3_PT_MAX
 };
 
-enum h2o_region3_subregion_pT h2o_region3_subregion_pT(double p, double T);
+enum h2o_region3_subregion_pT
+	h2o_region3_subregion_pT(double p, double T);
 
 double h2o_region3a_v_pT(double p, double T);
 double h2o_region3b_v_pT(double p, double T);

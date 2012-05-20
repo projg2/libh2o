@@ -40,9 +40,12 @@ enum h2o_region2_subregion
 	H2O_REGION2_MAX
 };
 
-enum h2o_region2_subregion h2o_region2_subregion_ph(double p, double h);
-enum h2o_region2_subregion h2o_region2_subregion_ps(double p, double s);
-enum h2o_region2_subregion h2o_region2_subregion_hs(double h, double s);
+enum h2o_region2_subregion
+	h2o_region2_subregion_ph(double p, double h);
+enum h2o_region2_subregion
+	h2o_region2_subregion_ps(double p, double s);
+enum h2o_region2_subregion
+	h2o_region2_subregion_hs(double h, double s);
 
 double h2o_region2_b2bc_p_h(double h);
 double h2o_region2_b2bc_h_p(double p);
