@@ -66,7 +66,7 @@ libh2o_la_SOURCES = src/boundaries/boundaries.c \
 	\
 	src/h2o.c \
 	\
-	src/consts.h src/xmath.h
+	src/xmath.c src/consts.h src/xmath.h
 libh2o_la_LIBADD = -lm
 libh2o_la_LDFLAGS = -version-info 0:0:0 -no-undefined
 
