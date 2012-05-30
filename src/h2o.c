@@ -104,6 +104,9 @@ h2o_t h2o_new_ph(double p, double h)
 			ret._arg2 = h2o_region4_x_Th(T, h);
 			break;
 		}
+		case H2O_REGION5:
+			region = H2O_REGION_OUT_OF_RANGE;
+			break;
 		case H2O_REGION_OUT_OF_RANGE:
 			break;
 
@@ -154,6 +157,9 @@ h2o_t h2o_new_ps(double p, double s)
 			ret._arg2 = h2o_region4_x_Ts(T, s);
 			break;
 		}
+		case H2O_REGION5:
+			region = H2O_REGION_OUT_OF_RANGE;
+			break;
 		case H2O_REGION_OUT_OF_RANGE:
 			break;
 
@@ -194,38 +200,45 @@ h2o_t h2o_new_hs(double h, double s)
 	h2o_t ret;
 	enum h2o_region region = h2o_region_hs(h, s);
 
-	if (region != H2O_REGION_OUT_OF_RANGE)
+	switch (region)
 	{
-		twoarg_func_t getter;
-		double arg1;
-
-		switch (region)
+		case H2O_REGION5:
+			ret.region = H2O_REGION_OUT_OF_RANGE;
+			break;
+		case H2O_REGION_OUT_OF_RANGE:
+			ret.region = region;
+			break;
+		default:
 		{
-			case H2O_REGION1:
-				getter = &h2o_region1_p_hs;
-				break;
-			case H2O_REGION2:
-				getter = &h2o_region2_p_hs;
-				break;
-			case H2O_REGION3:
-				getter = &h2o_region3_p_hs;
-				break;
-			case H2O_REGION4:
-				getter = &h2o_region4_T_hs;
-				break;
-			default:
-				assert(not_reached);
+			twoarg_func_t getter;
+			double arg1;
+
+			switch (region)
+			{
+				case H2O_REGION1:
+					getter = &h2o_region1_p_hs;
+					break;
+				case H2O_REGION2:
+					getter = &h2o_region2_p_hs;
+					break;
+				case H2O_REGION3:
+					getter = &h2o_region3_p_hs;
+					break;
+				case H2O_REGION4:
+					getter = &h2o_region4_T_hs;
+					break;
+				default:
+					assert(not_reached);
+			}
+
+			arg1 = getter(h, s);
+
+			if (region == H2O_REGION4)
+				ret = h2o_new_Tx(arg1, h2o_region4_x_Th(arg1, h));
+			else
+				ret = h2o_new_ps(arg1, s);
 		}
-
-		arg1 = getter(h, s);
-
-		if (region == H2O_REGION4)
-			ret = h2o_new_Tx(arg1, h2o_region4_x_Th(arg1, h));
-		else
-			ret = h2o_new_ps(arg1, s);
 	}
-	else
-		ret.region = region;
 
 	return ret;
 }
