@@ -1,0 +1,61 @@
+===================================================================
+libh2o -- a lightweight library for the properties of water & steam
+===================================================================
+:Author: Michał Górny
+:Copyright: 2-clause BSD license
+:Homepage: https://bitbucket.org/mgorny/libh2o/
+:Issue tracker: https://bitbucket.org/mgorny/libh2o/issues/
+
+
+Introduction
+-------------
+
+libh2o is a lightweight (and supposedly fast) library for obtaining
+water & steam properties. It provides a simple implementation of all
+equations provided in IAPWS_ releases (IF97 and supplementary releases).
+
+The library was intended to be fast, small and portable. Thus, it
+doesn't depend on any additional libraries except the standard C
+library, and doesn't use anything but straight functions specified
+in IF97. Thus, it has all its limitations and accuracies.
+
+.. _IAPWS: http://iapws.org/
+
+
+API documentation
+------------------
+
+The API hasn't been documented yet. I still need to choose
+a documentation writing system/format for it.
+
+The suggested API for library use is the one specified in ``h2o/h2o.h``.
+Other header files are intended for low-level use and provide direct
+access to the implemented equations and helper functions.
+
+For linking to the library, the *libh2o* pkg-config package should be
+used.
+
+A simple use example::
+
+	#include <stdio.h> /* for printf() */
+
+	#include <h2o/h2o.h>
+
+	int main()
+	{
+		h2o_t water;
+
+		water = h2o_new_pT(10, 773.15); /* [MPa, K] */
+
+		if (!h2o_is_valid(water))
+		{
+			fprintf(stderr, "Invalid parameters.\n");
+			return 1;
+		}
+
+		printf("h = %f\n", h2o_get_h(water));
+
+		return 0;
+	}
+
+.. vim:syn=rst
