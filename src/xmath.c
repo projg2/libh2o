@@ -98,10 +98,14 @@ double twoarg_poly_value(double x1, double x2,
 		double x2pow = x2powers[J[i]];
 
 		double memb = n[i] * x1pow * x2pow;
-		if (x1der == 1)
+		if (x1der >= 1)
 			memb *= Ipows[I[i]];
-		if (x2der == 1)
+		if (x1der == 2)
+			memb *= Ipows[I[i]] - 1;
+		if (x2der >= 1)
 			memb *= Jpows[J[i]];
+		if (x2der == 2)
+			memb *= Jpows[J[i]] - 1;
 
 		sum += memb;
 	}
