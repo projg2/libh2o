@@ -85,3 +85,9 @@ tests_if97_test_values_LDADD = libh2o.la
 tests_h2o_t_tests_SOURCES = tests/h2o-t-tests.c
 tests_h2o_t_tests_CPPFLAGS = -I$(top_srcdir)/src
 tests_h2o_t_tests_LDADD = libh2o.la
+
+EXTRA_DIST = NEWS
+NEWS: configure.ac Makefile.am
+	git for-each-ref refs/tags --sort '-*committerdate' \
+		--format '# %(tag) (%(*committerdate:short))%0a%(contents:body)' \
+		> NEWS
