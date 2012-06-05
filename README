@@ -25,8 +25,7 @@ in IF97. Thus, it has all its limitations and accuracies.
 API documentation
 ------------------
 
-The API hasn't been documented yet. I still need to choose
-a documentation writing system/format for it.
+The API is shortly described in the installed header files.
 
 The suggested API for library use is the one specified in ``h2o/h2o.h``.
 Other header files are intended for low-level use and provide direct
