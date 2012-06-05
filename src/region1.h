@@ -17,6 +17,7 @@ double h2o_region1_v_pT(double p, double T);
 double h2o_region1_u_pT(double p, double T);
 double h2o_region1_s_pT(double p, double T);
 double h2o_region1_h_pT(double p, double T);
+double h2o_region1_cp_pT(double p, double T);
 
 double h2o_region1_T_ph(double p, double h);
 double h2o_region1_T_ps(double p, double s);

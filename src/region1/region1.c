@@ -136,3 +136,13 @@ double h2o_region1_h_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 
 	return tau * gammatau * R * T;
 }
+
+double h2o_region1_cp_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
+{
+	double pi = p / pstar;
+	double tau = Tstar / T;
+
+	double gammatautau = h2o_region1_gamma_pitau(pi, tau, 0, 2);
+
+	return -pow2(tau) * gammatautau * R;
+}
