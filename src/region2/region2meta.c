@@ -14,20 +14,15 @@
 /* Based on IF97-Rev, s. 6: Equations for Region 2 */
 
 /* ideal-gas part coefficients */
-static const double no_store[] = {
-	-0.56087911283020E-2,
-	+0.71452738081455E-1,
-	-0.40710498223928E+0,
-	+0.14240819171444E+1,
-	-0.43839511319450E+1,
-	-0.96937268393049E+1,
-	+0.10087275970006E+2,
-	-0.28408632460772E+0,
+static const double no[] = {
+	+0.00000000000000E+0,
+
+	-0.56087911283020E-2, +0.71452738081455E-1,
+	-0.40710498223928E+0, +0.14240819171444E+1,
+	-0.43839511319450E+1, -0.96937268393049E+1,
+	+0.10087275970006E+2, -0.28408632460772E+0,
 	+0.21268463753307E-1
 };
-
-/* shift for negative indices */
-static const double *no = &no_store[5];
 
 /* resident part coefficients */
 static const double n[] = {
@@ -65,38 +60,14 @@ static const int J[] = {
 
 static const double Tstar = 540; /* [K] */
 
-static inline double h2o_region2_meta_gammao_pitau(double pi, double tau, int pider, int tauder)
+static double h2o_region2_meta_gammao_pitau(double pi, double tau, int pider, int tauder)
 {
 	if (!pider)
 	{
-		int i;
-		double sum = 0;
-
-		double taupowers_store[4 + 5];
-			/* shift it for negative indices */
-		double* taupowers = &taupowers_store[5];
-
-		taupowers[tauder] = 1;
-		taupowers[tauder + 1] = tau;
-
-		for (i = tauder + 2; i <= 3; ++i)
-			taupowers[i] = taupowers[i - 1] * tau;
-		for (i = tauder - 1; i >= -5; --i)
-			taupowers[i] = taupowers[i + 1] / tau;
+		double sum = poly_value(tau, -5, 3, tauder, no);
 
 		if (!tauder)
-			sum = log(pi);
-
-		for (i = -5; i <= 3; ++i)
-		{
-			double taupow = taupowers[i];
-
-			double memb = no[i] * taupow;
-			if (tauder == 1)
-				memb *= i;
-
-			sum += memb;
-		}
+			sum += log(pi);
 
 		return sum;
 	}
@@ -104,7 +75,7 @@ static inline double h2o_region2_meta_gammao_pitau(double pi, double tau, int pi
 		return 1/pi;
 }
 
-static inline double h2o_region2_meta_gammar_pitau(double pi, double tau, int pider, int tauder)
+static double h2o_region2_meta_gammar_pitau(double pi, double tau, int pider, int tauder)
 {
 	return twoarg_poly_value(pi, tau - 0.5,
 			I, Ipows, 0, 6, pider,
@@ -112,51 +83,54 @@ static inline double h2o_region2_meta_gammar_pitau(double pi, double tau, int pi
 			n, 13);
 }
 
-static inline double h2o_region2_meta_gamma_pT(double p, double T, int pider, int tauder)
-	/* p [MPa], T [K], pider, tauder: 0/1 */
+static double h2o_region2_meta_gamma_pitau(double pi, double tau, int pider, int tauder)
 {
-	double tau = Tstar / T;
-
 	double sum;
 
-	/* ideal-gas part */
-	sum = h2o_region2_meta_gammao_pitau(p, tau, pider, tauder);
-	sum += h2o_region2_meta_gammar_pitau(p, tau, pider, tauder);
-
-	if (pider == 1)
-		sum *= p;
-	if (tauder == 1)
-		sum *= tau;
+	sum = h2o_region2_meta_gammao_pitau(pi, tau, pider, tauder);
+	sum += h2o_region2_meta_gammar_pitau(pi, tau, pider, tauder);
 
 	return sum;
 }
 
 double h2o_region2_meta_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 {
-	double gammapi = h2o_region2_meta_gamma_pT(p, T, 1, 0);
+	double pi = p;
+	double tau = Tstar / T;
 
-	return gammapi * R * T / p * 1E-3;
+	double gammapi = h2o_region2_meta_gamma_pitau(pi, tau, 1, 0);
+
+	return pi * gammapi * R * T / p * 1E-3;
 }
 
 double h2o_region2_meta_u_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 {
-	double gammatau = h2o_region2_meta_gamma_pT(p, T, 0, 1);
-	double gammapi = h2o_region2_meta_gamma_pT(p, T, 1, 0);
+	double pi = p;
+	double tau = Tstar / T;
 
-	return (gammatau - gammapi) * R * T;
+	double gammatau = h2o_region2_meta_gamma_pitau(pi, tau, 0, 1);
+	double gammapi = h2o_region2_meta_gamma_pitau(pi, tau, 1, 0);
+
+	return (tau * gammatau - pi * gammapi) * R * T;
 }
 
 double h2o_region2_meta_s_pT(double p, double T) /* [MPa, K] -> [kJ/kgK] */
 {
-	double gammatau = h2o_region2_meta_gamma_pT(p, T, 0, 1);
-	double gamma = h2o_region2_meta_gamma_pT(p, T, 0, 0);
+	double pi = p;
+	double tau = Tstar / T;
 
-	return (gammatau - gamma) * R;
+	double gammatau = h2o_region2_meta_gamma_pitau(pi, tau, 0, 1);
+	double gamma = h2o_region2_meta_gamma_pitau(pi, tau, 0, 0);
+
+	return (tau * gammatau - gamma) * R;
 }
 
 double h2o_region2_meta_h_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 {
-	double gammatau = h2o_region2_meta_gamma_pT(p, T, 0, 1);
+	double pi = p;
+	double tau = Tstar / T;
 
-	return gammatau * R * T;
+	double gammatau = h2o_region2_meta_gamma_pitau(pi, tau, 0, 1);
+
+	return tau * gammatau * R * T;
 }

@@ -70,12 +70,8 @@ static const int J[] = {
 	2, 14, 2, 14, 0, 1, 14
 };
 
-static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, int tauder)
-	/* rho [kg/m³], T [K], pider, tauder: 0/1 */
+static double h2o_region3_phi_deltatau(double delta, double tau, int deltader, int tauder)
 {
-	double delta = rho / rhocrit;
-	double tau = Tcrit / T;
-
 	double sum;
 
 	if (tauder)
@@ -90,40 +86,47 @@ static inline double h2o_region3_phi_rhoT(double rho, double T, int deltader, in
 			&J[1], Jpows, 0, 15, tauder,
 			&n[1], 40-1);
 
-	if (deltader == 1)
-		sum *= delta;
-	if (tauder == 1)
-		sum *= tau;
-
 	return sum;
 }
 
 double h2o_region3_p_rhoT(double rho, double T) /* [kg/m³, K] -> [MPa] */
 {
-	double phidelta = h2o_region3_phi_rhoT(rho, T, 1, 0);
+	double delta = rho / rhocrit;
+	double tau = Tcrit / T;
 
-	return phidelta * rho * R * T * 1E-3;
+	double phidelta = h2o_region3_phi_deltatau(delta, tau, 1, 0);
+
+	return delta * phidelta * rho * R * T * 1E-3;
 }
 
 double h2o_region3_u_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kg] */
 {
-	double phitau = h2o_region3_phi_rhoT(rho, T, 0, 1);
+	double delta = rho / rhocrit;
+	double tau = Tcrit / T;
 
-	return phitau * R * T;
+	double phitau = h2o_region3_phi_deltatau(delta, tau, 0, 1);
+
+	return tau * phitau * R * T;
 }
 
 double h2o_region3_s_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kgK] */
 {
-	double phitau = h2o_region3_phi_rhoT(rho, T, 0, 1);
-	double phi = h2o_region3_phi_rhoT(rho, T, 0, 0);
+	double delta = rho / rhocrit;
+	double tau = Tcrit / T;
 
-	return (phitau - phi) * R;
+	double phitau = h2o_region3_phi_deltatau(delta, tau, 0, 1);
+	double phi = h2o_region3_phi_deltatau(delta, tau, 0, 0);
+
+	return (tau * phitau - phi) * R;
 }
 
 double h2o_region3_h_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kg] */
 {
-	double phidelta = h2o_region3_phi_rhoT(rho, T, 1, 0);
-	double phitau = h2o_region3_phi_rhoT(rho, T, 0, 1);
+	double delta = rho / rhocrit;
+	double tau = Tcrit / T;
 
-	return (phitau + phidelta) * R * T;
+	double phidelta = h2o_region3_phi_deltatau(delta, tau, 1, 0);
+	double phitau = h2o_region3_phi_deltatau(delta, tau, 0, 1);
+
+	return (tau * phitau + delta * phidelta) * R * T;
 }

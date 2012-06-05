@@ -82,51 +82,57 @@ static const int J[] = {
 static const double pstar = 16.53; /* [MPa] */
 static const double Tstar = 1386; /* [K] */
 
-static inline double h2o_region1_gamma_pT(double p, double T, int pider, int tauder)
-	/* p [MPa], T [K], pider, tauder: 0/1 */
+static double h2o_region1_gamma_pitau(double pi, double tau, int pider, int tauder)
 {
-	double pi = p / pstar;
-	double tau = Tstar / T;
-
 	double sum = twoarg_poly_value(7.1 - pi, tau - 1.222,
 			I, Ipows, 0, 13, pider,
 			J, Jpows, 16, 25, tauder,
 			n, 34);
 
 	if (pider == 1)
-		sum *= -pi;
-	if (tauder == 1)
-		sum *= tau;
+		sum *= -1;
 
 	return sum;
 }
 
 double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 {
-	double gammapi = h2o_region1_gamma_pT(p, T, 1, 0);
+	double pi = p / pstar;
+	double tau = Tstar / T;
 
-	return gammapi * R * T / p * 1E-3;
+	double gammapi = h2o_region1_gamma_pitau(pi, tau, 1, 0);
+
+	return pi * gammapi * R * T / p * 1E-3;
 }
 
 double h2o_region1_u_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 {
-	double gammatau = h2o_region1_gamma_pT(p, T, 0, 1);
-	double gammapi = h2o_region1_gamma_pT(p, T, 1, 0);
+	double pi = p / pstar;
+	double tau = Tstar / T;
 
-	return (gammatau - gammapi) * R * T;
+	double gammatau = h2o_region1_gamma_pitau(pi, tau, 0, 1);
+	double gammapi = h2o_region1_gamma_pitau(pi, tau, 1, 0);
+
+	return (tau * gammatau - pi * gammapi) * R * T;
 }
 
 double h2o_region1_s_pT(double p, double T) /* [MPa, K] -> [kJ/kgK] */
 {
-	double gammatau = h2o_region1_gamma_pT(p, T, 0, 1);
-	double gamma = h2o_region1_gamma_pT(p, T, 0, 0);
+	double pi = p / pstar;
+	double tau = Tstar / T;
 
-	return (gammatau - gamma) * R;
+	double gammatau = h2o_region1_gamma_pitau(pi, tau, 0, 1);
+	double gamma = h2o_region1_gamma_pitau(pi, tau, 0, 0);
+
+	return (tau * gammatau - gamma) * R;
 }
 
 double h2o_region1_h_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 {
-	double gammatau = h2o_region1_gamma_pT(p, T, 0, 1);
+	double pi = p / pstar;
+	double tau = Tstar / T;
 
-	return gammatau * R * T;
+	double gammatau = h2o_region1_gamma_pitau(pi, tau, 0, 1);
+
+	return tau * gammatau * R * T;
 }
