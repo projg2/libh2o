@@ -51,6 +51,8 @@ double poly_value(double x,
 
 	int i;
 
+	assert(deriv >= 0 && deriv <= 1);
+
 	sum = n[maxn];
 
 	if (deriv == 1)
@@ -86,6 +88,8 @@ double twoarg_poly_value(double x1, double x2,
 
 	double x1powers[20], x2powers[34];
 
+	assert(x1der >= 0 && x1der <= 2);
+	assert(x2der >= 0 && x2der <= 2);
 	assert(Ipowlen <= 20);
 	assert(Jpowlen <= 34);
 
