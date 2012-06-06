@@ -474,3 +474,87 @@ double h2o_get_s(const h2o_t state)
 
 	return func(state._arg1, state._arg2);
 }
+
+double h2o_get_cp(const h2o_t state)
+{
+	twoarg_func_t func;
+
+	switch (state.region)
+	{
+		case H2O_REGION1:
+			func = &h2o_region1_cp_pT;
+			break;
+		case H2O_REGION2:
+			func = &h2o_region2_cp_pT;
+			break;
+		case H2O_REGION3:
+			func = &h2o_region3_cp_rhoT;
+			break;
+		case H2O_REGION4:
+			func = &h2o_region4_cp_Tx;
+			break;
+		case H2O_REGION5:
+			func = &h2o_region5_cp_pT;
+			break;
+		default:
+			assert(not_reached);
+	}
+
+	return func(state._arg1, state._arg2);
+}
+
+double h2o_get_cv(const h2o_t state)
+{
+	twoarg_func_t func;
+
+	switch (state.region)
+	{
+		case H2O_REGION1:
+			func = &h2o_region1_cv_pT;
+			break;
+		case H2O_REGION2:
+			func = &h2o_region2_cv_pT;
+			break;
+		case H2O_REGION3:
+			func = &h2o_region3_cv_rhoT;
+			break;
+		case H2O_REGION4:
+			func = &h2o_region4_cv_Tx;
+			break;
+		case H2O_REGION5:
+			func = &h2o_region5_cv_pT;
+			break;
+		default:
+			assert(not_reached);
+	}
+
+	return func(state._arg1, state._arg2);
+}
+
+double h2o_get_w(const h2o_t state)
+{
+	twoarg_func_t func;
+
+	switch (state.region)
+	{
+		case H2O_REGION1:
+			func = &h2o_region1_w_pT;
+			break;
+		case H2O_REGION2:
+			func = &h2o_region2_w_pT;
+			break;
+		case H2O_REGION3:
+			func = &h2o_region3_w_rhoT;
+			break;
+		case H2O_REGION4:
+			func = &h2o_region4_w_Tx;
+			break;
+		case H2O_REGION5:
+			func = &h2o_region5_w_pT;
+			break;
+		default:
+			assert(not_reached);
+	}
+
+	return func(state._arg1, state._arg2);
+}

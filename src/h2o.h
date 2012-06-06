@@ -40,6 +40,9 @@ typedef struct
  * h - specific enthalpy [kJ/kg],
  * s - specific enthropy [kJ/kgK],
  * v - specific volume [m³/kg],
+ * cp - specific isobaric heat capacity [kJ/kgK],
+ * cv - specific isochoric heat capacity [kJ/kgK],
+ * w - speed of sound [m/s],
  * rho - density [kg/m³],
  * x - dryness [0..1].
  */
@@ -102,6 +105,9 @@ double h2o_get_v(const h2o_t state);
 double h2o_get_u(const h2o_t state);
 double h2o_get_h(const h2o_t state);
 double h2o_get_s(const h2o_t state);
+double h2o_get_cp(const h2o_t state);
+double h2o_get_cv(const h2o_t state);
+double h2o_get_w(const h2o_t state);
 
 #ifdef __cplusplus
 };
