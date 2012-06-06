@@ -51,13 +51,13 @@ static const int I[] = {
 };
 
 static const double Jpows[] = {
-	0, 1, 2, 4, 5, 7, 9, 10, 11, 16
+	0, 1, 2, 3, 4, 5, 7, 9, 10, 11, 16
 };
 
 static const int J[] = {
 	0,
 
-	0, 2, 4, 8, 1, 5, 9, 3, 9, 5, 7, 6, 7
+	0, 2, 5, 9, 1, 6, 10, 4, 10, 6, 8, 7, 8
 };
 
 static const double Tstar = 540; /* [K] */
@@ -88,7 +88,7 @@ static double h2o_region2_meta_gammar_pitau(double pi, double tau, int pider, in
 {
 	return twoarg_poly_value(pi, tau - 0.5,
 			I, Ipows, 0, 6, pider,
-			J, Jpows, 0, 10, tauder,
+			J, Jpows, 0, 11, tauder,
 			n, 13);
 }
 

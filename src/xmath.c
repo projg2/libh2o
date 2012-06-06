@@ -18,6 +18,9 @@ static void fill_powers(double* powers, const double* exponents,
 	int i;
 	double tmp = expr;
 
+	assert(exponents[zeropos + deriv] == deriv);
+	assert(exponents[zeropos + deriv + 1] == deriv + 1);
+
 	powers[zeropos + deriv] = 1;
 	powers[zeropos + deriv + 1] = tmp;
 
