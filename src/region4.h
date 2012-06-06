@@ -20,6 +20,9 @@ double h2o_region4_v_Tx(double T, double x);
 double h2o_region4_u_Tx(double T, double x);
 double h2o_region4_s_Tx(double T, double x);
 double h2o_region4_h_Tx(double T, double x);
+double h2o_region4_cp_Tx(double T, double x);
+double h2o_region4_cv_Tx(double T, double x);
+double h2o_region4_w_Tx(double T, double x);
 
 double h2o_region4_x_Ts(double T, double s);
 double h2o_region4_x_Th(double T, double h);
