@@ -105,18 +105,21 @@ int main(void)
 	CHECK(h2o_region2_meta_v_pT(1.0, 450), 0.192516540E+0, 1E-9);
 	CHECK(h2o_region2_meta_v_pT(1.0, 440), 0.186212297E+0, 1E-9);
 	CHECK(h2o_region2_meta_v_pT(1.5, 450), 0.121685206E+0, 1E-9);
-
 	CHECK(h2o_region2_meta_h_pT(1.0, 450), 0.276881115E+4, 1E-5);
 	CHECK(h2o_region2_meta_h_pT(1.0, 440), 0.274015123E+4, 1E-5);
 	CHECK(h2o_region2_meta_h_pT(1.5, 450), 0.272134539E+4, 1E-5);
-
 	CHECK(h2o_region2_meta_u_pT(1.0, 450), 0.257629461E+4, 1E-5);
 	CHECK(h2o_region2_meta_u_pT(1.0, 440), 0.255393894E+4, 1E-5);
 	CHECK(h2o_region2_meta_u_pT(1.5, 450), 0.253881758E+4, 1E-5);
-
 	CHECK(h2o_region2_meta_s_pT(1.0, 450), 0.656660377E+1, 1E-8);
 	CHECK(h2o_region2_meta_s_pT(1.0, 440), 0.650218759E+1, 1E-8);
 	CHECK(h2o_region2_meta_s_pT(1.5, 450), 0.629170440E+1, 1E-8);
+	CHECK(h2o_region2_meta_cp_pT(1.0, 450), 0.276349265E+1, 1E-8);
+	CHECK(h2o_region2_meta_cp_pT(1.0, 440), 0.298166443E+1, 1E-8);
+	CHECK(h2o_region2_meta_cp_pT(1.5, 450), 0.362795578E+1, 1E-8);
+	CHECK(h2o_region2_meta_w_pT(1.0, 450), 0.498408101E+3, 1E-6);
+	CHECK(h2o_region2_meta_w_pT(1.0, 440), 0.489363295E+3, 1E-6);
+	CHECK(h2o_region2_meta_w_pT(1.5, 450), 0.481941819E+3, 1E-6);
 
 	CHECK(h2o_region2_b2bc_p_h(0.3516004323E4), 0.1E3, 1E-6);
 	CHECK(h2o_region2_b2bc_h_p(0.1E3), 0.3516004323E4, 1E-5);

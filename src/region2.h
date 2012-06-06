@@ -31,6 +31,9 @@ double h2o_region2_meta_v_pT(double p, double T);
 double h2o_region2_meta_u_pT(double p, double T);
 double h2o_region2_meta_s_pT(double p, double T);
 double h2o_region2_meta_h_pT(double p, double T);
+double h2o_region2_meta_cp_pT(double p, double T);
+double h2o_region2_meta_cv_pT(double p, double T);
+double h2o_region2_meta_w_pT(double p, double T);
 
 /* special use functions */
 
