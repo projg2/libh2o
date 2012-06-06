@@ -49,21 +49,19 @@ double poly_value(double x,
 
 	const int maxn = 1 - min + max;
 
-	int i;
-
-	assert(deriv >= 0 && deriv <= 1);
+	int i, j;
 
 	sum = n[maxn];
 
-	if (deriv == 1)
-		sum *= maxn + min - 1;
+	for (j = deriv; j > 0; --j)
+		sum *= maxn + min - j;
 
 	for (i = maxn - 1; i >= 1; --i)
 	{
 		double coeff = n[i];
 
-		if (deriv == 1)
-			coeff *= i + min - 1;
+		for (j = deriv; j > 0; --j)
+			coeff *= i + min - j;
 
 		sum *= x;
 		sum += coeff;
