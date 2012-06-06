@@ -7,6 +7,7 @@
 #	include "config.h"
 #endif
 
+#include <assert.h>
 
 #include "consts.h"
 #include "region5.h"
@@ -56,17 +57,24 @@ static const double Tstar = 1000; /* [K] */
 
 static double h2o_region5_gammao_pitau(double pi, double tau, int pider, int tauder)
 {
-	if (!pider)
+	switch (pider)
 	{
-		double sum = poly_value(tau, -3, 2, tauder, no);
+		case 0:
+		{
+			double sum = poly_value(tau, -3, 2, tauder, no);
 
-		if (!tauder)
-			sum += log(pi);
+			if (!tauder)
+				sum += log(pi);
 
-		return sum;
+			return sum;
+		}
+		case 1:
+			return 1/pi;
+		case 2:
+			return -1/pow2(pi);
+		default:
+			assert(not_reached);
 	}
-	else
-		return 1/pi;
 }
 
 static double h2o_region5_gammar_pitau(double pi, double tau, int pider, int tauder)
@@ -128,4 +136,54 @@ double h2o_region5_h_pT(double p, double T)
 	double gammatau = h2o_region5_gamma_pitau(pi, tau, 0, 1);
 
 	return tau * gammatau * R * T;
+}
+
+double h2o_region5_cp_pT(double p, double T)
+{
+	double pi = p;
+	double tau = Tstar / T;
+
+	double gammatautau = h2o_region5_gamma_pitau(pi, tau, 0, 2);
+
+	return -pow2(tau) * gammatautau * R;
+}
+
+double h2o_region5_cv_pT(double p, double T)
+{
+	double pi = p;
+	double tau = Tstar / T;
+
+	double gammatautau = h2o_region5_gamma_pitau(pi, tau, 0, 2);
+	double gammarpi = h2o_region5_gammar_pitau(pi, tau, 1, 0);
+	double gammarpitau = h2o_region5_gammar_pitau(pi, tau, 1, 1);
+	double gammarpipi = h2o_region5_gammar_pitau(pi, tau, 2, 0);
+
+	return (-pow2(tau) * gammatautau -
+		(
+			pow2(1 + pi * gammarpi - tau * pi * gammarpitau)
+			/ (1 - pow2(pi) * gammarpipi)
+		)
+		) * R;
+}
+
+double h2o_region5_w_pT(double p, double T)
+{
+	double pi = p;
+	double tau = Tstar / T;
+
+	double gammatautau = h2o_region5_gamma_pitau(pi, tau, 0, 2);
+	double gammarpi = h2o_region5_gammar_pitau(pi, tau, 1, 0);
+	double gammarpitau = h2o_region5_gammar_pitau(pi, tau, 1, 1);
+	double gammarpipi = h2o_region5_gammar_pitau(pi, tau, 2, 0);
+
+	return sqrt(
+			(1 + pi * gammarpi * (2 + pi * gammarpi)) /
+			(
+				(1 - pow2(pi) * gammarpipi) +
+				(
+					pow2(1 + pi * (gammarpi - tau * gammarpitau))
+					/ pow2(tau) / gammatautau
+				)
+			)
+			* R * T * 1E3);
 }
