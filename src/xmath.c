@@ -99,6 +99,11 @@ double twoarg_poly_value(double x1, double x2,
 		double x1pow = x1powers[I[i]];
 		double x2pow = x2powers[J[i]];
 
+#if 0 /* for debugging */
+		x1pow = pow(x1, Ipows[I[i]] - x1der);
+		x2pow = pow(x2, Jpows[J[i]] - x2der);
+#endif
+
 		double memb = n[i] * x1pow * x2pow;
 		if (x1der >= 1)
 			memb *= Ipows[I[i]];
