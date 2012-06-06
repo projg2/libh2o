@@ -146,3 +146,36 @@ double h2o_region1_cp_pT(double p, double T)
 
 	return -pow2(tau) * gammatautau * R;
 }
+
+double h2o_region1_cv_pT(double p, double T)
+{
+	double pi = p / pstar;
+	double tau = Tstar / T;
+
+	double gammatautau = h2o_region1_gamma_pitau(pi, tau, 0, 2);
+	double gammapi = h2o_region1_gamma_pitau(pi, tau, 1, 0);
+	double gammapitau = h2o_region1_gamma_pitau(pi, tau, 1, 1);
+	double gammapipi = h2o_region1_gamma_pitau(pi, tau, 2, 0);
+
+	return (-pow2(tau) * gammatautau
+			+ pow2(gammapi - tau * gammapitau) / gammapipi) * R;
+}
+
+double h2o_region1_w_pT(double p, double T)
+{
+	double pi = p / pstar;
+	double tau = Tstar / T;
+
+	double gammatautau = h2o_region1_gamma_pitau(pi, tau, 0, 2);
+	double gammapi = h2o_region1_gamma_pitau(pi, tau, 1, 0);
+	double gammapitau = h2o_region1_gamma_pitau(pi, tau, 1, 1);
+	double gammapipi = h2o_region1_gamma_pitau(pi, tau, 2, 0);
+
+	return sqrt(
+			pow2(gammapi) /
+			(
+				pow2(gammapi - tau * gammapitau) / pow2(tau) / gammatautau
+				- gammapipi
+			)
+			* R * T * 1E3);
+}
