@@ -76,7 +76,7 @@ static const int J[] = {
 
 static const double hstar = 2000; /* [kJ/kg] */
 
-double h2o_region2a_T_ph(double p, double h) /* [MPa, kJ/kg] -> [K] */
+double h2o_region2a_T_ph(double p, double h)
 {
 	double eta = h / hstar;
 

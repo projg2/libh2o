@@ -59,7 +59,7 @@ static const double pstar = 100; /* [MPa] */
 static const double hstar = 3400; /* [kJ/kg] */
 static const double sstar = 7.6; /* [kJ/kgK] */
 
-double h2o_region1_p_hs(double h, double s) /* [kJ/kg, kJ/kgK] -> [MPa] */
+double h2o_region1_p_hs(double h, double s)
 {
 	double eta = h / hstar;
 	double sigma = s / sstar;

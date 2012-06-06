@@ -16,7 +16,7 @@
 #include "region5.h"
 #include "xmath.h"
 
-enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
+enum h2o_region h2o_region_pT(double p, double T)
 {
 	if (T < Tmin || T > Tmax || p <= pmin || p > pmax)
 		return H2O_REGION_OUT_OF_RANGE;
@@ -46,7 +46,7 @@ enum h2o_region h2o_region_pT(double p, double T) /* [MPa, K] */
 	}
 }
 
-enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
+enum h2o_region h2o_region_ph(double p, double h)
 {
 	if (p < pmin || p > pmax)
 		return H2O_REGION_OUT_OF_RANGE;
@@ -90,7 +90,7 @@ enum h2o_region h2o_region_ph(double p, double h) /* [MPa, kJ/kg] */
 		return H2O_REGION_OUT_OF_RANGE;
 }
 
-enum h2o_region h2o_region_ps(double p, double s) /* [MPa, kJ/kgK] */
+enum h2o_region h2o_region_ps(double p, double s)
 {
 	if (p < pmin || p > pmax || s < smin)
 		return H2O_REGION_OUT_OF_RANGE;
@@ -176,7 +176,7 @@ enum h2o_region h2o_region_hs(double h, double s)
 		return H2O_REGION2;
 }
 
-enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
+enum h2o_region h2o_region_Tx(double T, double x)
 {
 	if (x < 0 || x > 1 || T < Tmin || T > Tcrit)
 		return H2O_REGION_OUT_OF_RANGE;
@@ -184,7 +184,7 @@ enum h2o_region h2o_region_Tx(double T, double x) /* [K, 0..1] */
 	return H2O_REGION4;
 }
 
-enum h2o_region h2o_region_px(double p, double x) /* [MPa, 0..1] */
+enum h2o_region h2o_region_px(double p, double x)
 {
 	if (x < 0 || x > 1 || p < psatmin || p > pcrit)
 		return H2O_REGION_OUT_OF_RANGE;
@@ -192,7 +192,7 @@ enum h2o_region h2o_region_px(double p, double x) /* [MPa, 0..1] */
 	return H2O_REGION4;
 }
 
-enum h2o_region h2o_region_rhoT(double rho, double T) /* [kg/m³, K] */
+enum h2o_region h2o_region_rhoT(double rho, double T)
 {
 	/* XXX: support other regions */
 	if (T >= Tb13)

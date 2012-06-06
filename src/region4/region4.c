@@ -128,7 +128,7 @@ static enum h2o_region4_subregion h2o_region4_subregion_T(double T)
 		return H2O_REGION4_3YZ;
 }
 
-double h2o_region4_v_Tx(double T, double x) /* [K, 0..1] -> [m³/kg] */
+double h2o_region4_v_Tx(double T, double x)
 {
 	twoarg_func_t water_func, steam_func;
 
@@ -185,7 +185,7 @@ static double sat_region3_u2_pT(double p, double T)
 	return h2o_region3_u_rhoT(1/v, T);
 }
 
-double h2o_region4_u_Tx(double T, double x) /* [K, 0..1] -> [kJ/kg] */
+double h2o_region4_u_Tx(double T, double x)
 {
 	twoarg_func_t water_func, steam_func;
 
@@ -221,7 +221,7 @@ static double sat_region3_s2_pT(double p, double T)
 	return h2o_region3_s_rhoT(1/v, T);
 }
 
-double h2o_region4_s_Tx(double T, double x) /* [K, 0..1] -> [kJ/kgK] */
+double h2o_region4_s_Tx(double T, double x)
 {
 	twoarg_func_t water_func, steam_func;
 
@@ -257,7 +257,7 @@ static double sat_region3_h2_pT(double p, double T)
 	return h2o_region3_h_rhoT(1/v, T);
 }
 
-double h2o_region4_h_Tx(double T, double x) /* [K, 0..1] -> [kJ/kg] */
+double h2o_region4_h_Tx(double T, double x)
 {
 	twoarg_func_t water_func, steam_func;
 
@@ -279,7 +279,7 @@ double h2o_region4_h_Tx(double T, double x) /* [K, 0..1] -> [kJ/kg] */
 	return region4_interp(water_func, steam_func, T, x);
 }
 
-double h2o_region4_x_Ts(double T, double s) /* [K, kJ/kgK] -> [0..1] */
+double h2o_region4_x_Ts(double T, double s)
 {
 	double s1 = h2o_region4_s_Tx(T, 0);
 	double s2 = h2o_region4_s_Tx(T, 1);
@@ -287,7 +287,7 @@ double h2o_region4_x_Ts(double T, double s) /* [K, kJ/kgK] -> [0..1] */
 	return (s - s1) / (s2 - s1);
 }
 
-double h2o_region4_x_Th(double T, double h) /* [K, kJ/kg] -> [0..1] */
+double h2o_region4_x_Th(double T, double h)
 {
 	double h1 = h2o_region4_h_Tx(T, 0);
 	double h2 = h2o_region4_h_Tx(T, 1);

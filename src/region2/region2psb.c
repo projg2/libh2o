@@ -66,7 +66,7 @@ static const int J[] = {
 
 static const double sstar = 0.7853; /* [kJ/kgK] */
 
-double h2o_region2b_T_ps(double p, double s) /* [MPa, kJ/kgK] -> [K] */
+double h2o_region2b_T_ps(double p, double s)
 {
 	double sigma = s / sstar;
 

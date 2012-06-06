@@ -89,7 +89,7 @@ static double h2o_region3_phi_deltatau(double delta, double tau, int deltader, i
 	return sum;
 }
 
-double h2o_region3_p_rhoT(double rho, double T) /* [kg/m³, K] -> [MPa] */
+double h2o_region3_p_rhoT(double rho, double T)
 {
 	double delta = rho / rhocrit;
 	double tau = Tcrit / T;
@@ -99,7 +99,7 @@ double h2o_region3_p_rhoT(double rho, double T) /* [kg/m³, K] -> [MPa] */
 	return delta * phidelta * rho * R * T * 1E-3;
 }
 
-double h2o_region3_u_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kg] */
+double h2o_region3_u_rhoT(double rho, double T)
 {
 	double delta = rho / rhocrit;
 	double tau = Tcrit / T;
@@ -109,7 +109,7 @@ double h2o_region3_u_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kg] */
 	return tau * phitau * R * T;
 }
 
-double h2o_region3_s_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kgK] */
+double h2o_region3_s_rhoT(double rho, double T)
 {
 	double delta = rho / rhocrit;
 	double tau = Tcrit / T;
@@ -120,7 +120,7 @@ double h2o_region3_s_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kgK] */
 	return (tau * phitau - phi) * R;
 }
 
-double h2o_region3_h_rhoT(double rho, double T) /* [kg/m³, K] -> [kJ/kg] */
+double h2o_region3_h_rhoT(double rho, double T)
 {
 	double delta = rho / rhocrit;
 	double tau = Tcrit / T;

@@ -22,12 +22,12 @@ static const double n[] = {
 	+0.45257578905948E+1
 };
 
-double h2o_region2_b2bc_p_h(double h) /* [kJ/kg] -> [MPa] */
+double h2o_region2_b2bc_p_h(double h)
 {
 	return quadr_value(n[3], n[2], n[1], h);
 }
 
-double h2o_region2_b2bc_h_p(double p) /* [MPa] -> [kJ/kg] */
+double h2o_region2_b2bc_h_p(double p)
 {
 	return sqrt((p - n[5]) / n[3]) + n[4];
 }

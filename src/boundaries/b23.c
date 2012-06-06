@@ -23,12 +23,12 @@ static const double n[] = {
 	+0.13918839778870E+2
 };
 
-double h2o_b23_p_T(double T) /* [K] -> [MPa] */
+double h2o_b23_p_T(double T)
 {
 	return quadr_value(n[3], n[2], n[1], T);
 }
 
-double h2o_b23_T_p(double p) /* [MPa] -> [K] */
+double h2o_b23_T_p(double p)
 {
 	return sqrt((p - n[5]) / n[3]) + n[4];
 }

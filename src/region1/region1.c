@@ -95,7 +95,7 @@ static double h2o_region1_gamma_pitau(double pi, double tau, int pider, int taud
 	return sum;
 }
 
-double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
+double h2o_region1_v_pT(double p, double T)
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
@@ -105,7 +105,7 @@ double h2o_region1_v_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
 	return pi * gammapi * R * T / p * 1E-3;
 }
 
-double h2o_region1_u_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
+double h2o_region1_u_pT(double p, double T)
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
@@ -116,7 +116,7 @@ double h2o_region1_u_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 	return (tau * gammatau - pi * gammapi) * R * T;
 }
 
-double h2o_region1_s_pT(double p, double T) /* [MPa, K] -> [kJ/kgK] */
+double h2o_region1_s_pT(double p, double T)
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
@@ -127,7 +127,7 @@ double h2o_region1_s_pT(double p, double T) /* [MPa, K] -> [kJ/kgK] */
 	return (tau * gammatau - gamma) * R;
 }
 
-double h2o_region1_h_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
+double h2o_region1_h_pT(double p, double T)
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
@@ -137,7 +137,7 @@ double h2o_region1_h_pT(double p, double T) /* [MPa, K] -> [kJ/kg] */
 	return tau * gammatau * R * T;
 }
 
-double h2o_region1_cp_pT(double p, double T) /* [MPa, K] -> [m³/kg] */
+double h2o_region1_cp_pT(double p, double T)
 {
 	double pi = p / pstar;
 	double tau = Tstar / T;
