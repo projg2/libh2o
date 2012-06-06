@@ -17,6 +17,9 @@ double h2o_region3_p_rhoT(double rho, double T);
 double h2o_region3_u_rhoT(double rho, double T);
 double h2o_region3_s_rhoT(double rho, double T);
 double h2o_region3_h_rhoT(double rho, double T);
+double h2o_region3_cv_rhoT(double rho, double T);
+double h2o_region3_cp_rhoT(double rho, double T);
+double h2o_region3_w_rhoT(double rho, double T);
 
 double h2o_region3_T_ph(double p, double h);
 double h2o_region3_v_ph(double p, double h);
