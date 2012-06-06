@@ -13,6 +13,9 @@ extern "C"
 {
 #endif /*__cplusplus*/
 
+/* used in assertions, always false */
+static const int not_reached = 0;
+
 /* Based on IF97-Rev, s. 3: Reference Constants */
 
 static const double R = 0.461526; /* [kJ/kgK] */

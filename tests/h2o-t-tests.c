@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "consts.h"
 #include "h2o.h"
 
 int tests_done = 0;
@@ -18,8 +19,6 @@ int tests_failed = 0;
 
 typedef double (*func_get)(const h2o_t);
 typedef h2o_t (*func_new)(double, double);
-
-static const int not_reached = 0;
 
 const char* name_by_prop(func_get prop)
 {

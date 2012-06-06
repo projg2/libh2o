@@ -7,6 +7,7 @@
 #	include "config.h"
 #endif
 
+#include "consts.h"
 #include "h2o.h"
 #include "region1.h"
 #include "region2.h"
@@ -15,8 +16,6 @@
 #include "region5.h"
 
 #include <assert.h>
-
-static const int not_reached = 0;
 
 typedef double (*twoarg_func_t)(double, double);
 

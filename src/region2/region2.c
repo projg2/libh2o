@@ -111,8 +111,6 @@ static const int J[] = {
 
 static const double Tstar = 540; /* [K] */
 
-static const int not_reached = 0;
-
 static double h2o_region2_gammao_pitau(double pi, double tau, int pider, int tauder)
 {
 	switch (pider)
