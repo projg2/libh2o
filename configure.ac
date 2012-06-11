@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([libh2o], [0.2],
+AC_INIT([libh2o], [0.2.1],
 		[https://bitbucket.org/mgorny/libh2o/issues/],
 		[libh2o],
 		[https://bitbucket.org/mgorny/libh2o/])
