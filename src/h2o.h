@@ -109,6 +109,22 @@ double h2o_get_cp(const h2o_t state);
 double h2o_get_cv(const h2o_t state);
 double h2o_get_w(const h2o_t state);
 
+/**
+ * Perform an expansion calculation from the given state point.
+ *
+ * @pout: target pressure [MPa]
+ * @eta: (optional) isenthropic efficiency [0..1]
+ *
+ * Returns a new state point. If the pre- or post-expansions parameters
+ * were out of supported range, the struct will have region set
+ * to H2O_REGION_OUT_OF_RNAGE.
+ *
+ * The variant without @eta assumes ideal expansion (@eta = 1).
+ */
+
+h2o_t h2o_expand(const h2o_t in_state, double pout);
+h2o_t h2o_expand_real(const h2o_t in_state, double pout, double eta);
+
 #ifdef __cplusplus
 };
 #endif /*__cplusplus*/

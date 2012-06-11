@@ -558,3 +558,25 @@ double h2o_get_w(const h2o_t state)
 
 	return func(state._arg1, state._arg2);
 }
+
+h2o_t h2o_expand(const h2o_t in_state, double pout)
+{
+	/* h2o_new_ps() will return OOR in R5 */
+	return h2o_new_ps(pout, h2o_get_s(in_state));
+}
+
+h2o_t h2o_expand_real(const h2o_t in_state, double pout, double eta)
+{
+	h2o_t ideal = h2o_expand(in_state, pout);
+
+	if (ideal.region == H2O_REGION_OUT_OF_RANGE)
+		return ideal;
+	else
+	{
+		double hin = h2o_get_h(in_state);
+		double hout = h2o_get_h(ideal);
+		double houtr = hin - (hin - hout) * eta;
+
+		return h2o_new_ph(pout, houtr);
+	}
+}
